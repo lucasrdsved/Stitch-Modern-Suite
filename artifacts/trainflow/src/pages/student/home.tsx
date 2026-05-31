@@ -22,7 +22,7 @@ export default function StudentHome() {
           <h3 className="font-display text-2xl mb-2">{today.todayWorkout.name}</h3>
           <p className="text-muted-foreground mb-6">{today.todayWorkout.exercises?.length || 0} exercícios</p>
           <Button asChild className="w-full h-12 rounded-full bg-primary text-black font-bold">
-            <Link href={`/workout/new?dayId=${today.todayWorkout.id}`}>INICIAR TREINO →</Link>
+            <Link href="/treinos">INICIAR TREINO →</Link>
           </Button>
         </div>
       ) : (
@@ -31,21 +31,20 @@ export default function StudentHome() {
         </div>
       )}
 
-      {/* Bottom Nav Placeholder */}
       <div className="fixed bottom-0 left-0 right-0 h-20 bg-background/80 backdrop-blur-md border-t border-border flex items-center justify-around px-6">
-        <div className="flex flex-col items-center text-primary">
+        <Link href="/home" className="flex flex-col items-center text-primary">
           <div className="w-1.5 h-1.5 rounded-full bg-primary mb-1" />
           <span className="text-xs font-medium">Home</span>
-        </div>
-        <div className="flex flex-col items-center text-muted-foreground">
+        </Link>
+        <Link href="/treinos" className="flex flex-col items-center text-muted-foreground">
           <span className="text-xs font-medium">Treino</span>
-        </div>
-        <div className="flex flex-col items-center text-muted-foreground">
+        </Link>
+        <Link href="/chat" className="flex flex-col items-center text-muted-foreground">
           <span className="text-xs font-medium">Chat</span>
-        </div>
-        <div className="flex flex-col items-center text-muted-foreground">
+        </Link>
+        <Link href="/profile" className="flex flex-col items-center text-muted-foreground">
           <span className="text-xs font-medium">Perfil</span>
-        </div>
+        </Link>
       </div>
     </div>
   );

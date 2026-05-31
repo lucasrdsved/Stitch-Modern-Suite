@@ -1,8 +1,9 @@
 import { useListExercises } from "@workspace/api-client-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Search, Plus } from "lucide-react";
+import { Search, Plus, Dumbbell } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function TrainerExercises() {
   const [search, setSearch] = useState("");
@@ -32,11 +33,14 @@ export default function TrainerExercises() {
           exercises.map((ex) => (
             <div key={ex.id} className="bg-card rounded-2xl p-4 flex items-center gap-4">
               <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center shrink-0">
-                {ex.gifUrl ? <img src={ex.gifUrl} className="w-full h-full object-cover rounded-lg" alt="" /> : <div className="text-muted-foreground text-xs">IMG</div>}
+                {ex.gifUrl
+                  ? <img src={ex.gifUrl} className="w-full h-full object-cover rounded-lg" alt="" />
+                  : <Dumbbell className="w-5 h-5 text-muted-foreground" />
+                }
               </div>
               <div className="flex-1">
                 <div className="font-bold">{ex.name}</div>
-                <div className="text-xs text-muted-foreground">{ex.muscleGroup || 'Geral'}</div>
+                <div className="text-xs text-muted-foreground">{ex.muscleGroup || "Geral"}</div>
               </div>
             </div>
           ))
@@ -49,17 +53,17 @@ export default function TrainerExercises() {
         <Plus className="w-6 h-6" />
       </Button>
 
-      {/* Bottom Nav Trainer */}
       <div className="fixed bottom-0 left-0 right-0 h-20 bg-background/80 backdrop-blur-md border-t border-border flex items-center justify-around px-6">
-        <a href="/t/dashboard" className="flex flex-col items-center text-muted-foreground">
+        <Link href="/t/dashboard" className="flex flex-col items-center text-muted-foreground">
           <span className="text-xs font-medium">Home</span>
-        </a>
-        <a href="/t/students" className="flex flex-col items-center text-muted-foreground">
+        </Link>
+        <Link href="/t/students" className="flex flex-col items-center text-muted-foreground">
           <span className="text-xs font-medium">Alunos</span>
-        </a>
-        <a href="/t/exercises" className="flex flex-col items-center text-primary">
+        </Link>
+        <Link href="/t/exercises" className="flex flex-col items-center text-primary">
+          <div className="w-1.5 h-1.5 rounded-full bg-primary mb-1" />
           <span className="text-xs font-medium">Biblioteca</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import StudentWelcome from "@/pages/student/welcome";
 import StudentProfile from "@/pages/student/profile";
 import StudentWorkout from "@/pages/student/workout";
 import StudentChat from "@/pages/student/chat";
+import StudentConversation from "@/pages/student/conversation";
 
 import TrainerLogin from "@/pages/trainer/login";
 import TrainerRegister from "@/pages/trainer/register";
@@ -80,6 +81,7 @@ function Router() {
       <Route path="/profile">{(params) => <ProtectedRoute component={StudentProfile} role="student" {...params} />}</Route>
       <Route path="/treinos">{(params) => <ProtectedRoute component={StudentWorkout} role="student" {...params} />}</Route>
       <Route path="/chat">{(params) => <ProtectedRoute component={StudentChat} role="student" {...params} />}</Route>
+      <Route path="/chat/:id">{(params) => <ProtectedRoute component={StudentConversation} role="student" {...params} />}</Route>
 
       {/* Trainer Routes */}
       <Route path="/t/dashboard">{(params) => <ProtectedRoute component={TrainerDashboard} role="trainer" {...params} />}</Route>
