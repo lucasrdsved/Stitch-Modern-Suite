@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container": "#201f1f",
+                        "background": "#131313",
+                        "secondary": "#c8c6c5",
+                        "surface": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "border-subtle": "#333333",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#274b5f",
+                        "on-surface": "#e5e2e1",
+                        "outline-variant": "#444934",
+                        "primary-fixed-dim": "#aed50d",
+                        "on-surface-variant": "#c5c9ae",
+                        "outline": "#8f937b",
+                        "on-tertiary": "#0c3447",
+                        "secondary-fixed": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed": "#c5e7ff",
+                        "surface-bright": "#3a3939",
+                        "on-error-container": "#ffdad6",
+                        "text-muted": "#888888",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-tertiary-container": "#45687d",
+                        "on-primary": "#293500",
+                        "tertiary": "#fefdff",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#001e2d",
+                        "on-primary-container": "#566c00",
+                        "surface-container-highest": "#353534",
+                        "pure-black": "#000000",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed": "#171e00",
+                        "tertiary-container": "#c2e6ff",
+                        "on-secondary": "#313030",
+                        "status-warning": "#FFB800",
+                        "secondary-container": "#474746",
+                        "surface-variant": "#353534",
+                        "surface-tint": "#aed50d",
+                        "on-secondary-fixed-variant": "#474746",
+                        "tertiary-fixed-dim": "#a8cbe4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "surface-dim": "#131313",
+                        "primary-fixed": "#c9f236",
+                        "inverse-primary": "#526600",
+                        "on-primary-fixed-variant": "#3d4d00",
+                        "primary-container": "#c8f135",
+                        "surface-container-lowest": "#0e0e0e",
+                        "error-container": "#93000a",
+                        "primary": "#ffffef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target-min": "2.75rem",
+                        "container-margin": "1.5rem",
+                        "gutter": "1rem",
+                        "stack-gap-lg": "2rem",
+                        "button-height-heavy": "5rem",
+                        "button-height-standard": "3.5rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-giant": ["Bebas Neue"],
+                        "headline-lg": ["Bebas Neue"],
+                        "headline-md": ["Bebas Neue"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Bebas Neue"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .chat-container {
+            height: calc(100vh - 128px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-pure-black text-on-surface font-body-md overflow-hidden">
+<!-- Top AppBar -->
+<header class="bg-pure-black fixed top-0 w-full z-50 flex justify-between items-center px-container-margin h-touch-target-min">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a fitness coach with short dark hair and a focused expression. The background is a dimly lit, high-end gym with charcoal tones and electric lime lighting accents. The overall aesthetic is clean, professional, and intense, matching the dark performance theme of the app." src="https://lh3.googleusercontent.com/aida/ADBb0uiWn76HVp0LMBoK20h0yfgfOvnu1qblDHyk0w6VAhE-Vf5E6Sw1XMK_Vt54Jt0T8ECBYNg9uBMTVRfqvkVA06M5FrSBmX79NpkzMgV2gRMI00MEd9wecC-9NXHHdwjTvfJU617qrDQJfy4Cf-FESs-1ddbls2fex23Fp3DvTTLHmuAcblSmG9YiPMbWYE3-zw88Ou1JPgSkfu6lM-ZluD7K6mchtm7ySuWSQh3Re4HCbF-YU915D_VNhKc"/>
+</div>
+<h1 class="font-headline-lg text-headline-lg tracking-widest text-primary-container">TRAINFLOW</h1>
+</div>
+<button class="text-primary-container hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Desktop Sidebar / Chat List Overlay for Mobile -->
+<main class="pt-touch-target-min pb-button-height-standard flex h-screen">
+<!-- Conversation List -->
+<aside class="hidden md:flex flex-col w-1/3 max-w-sm border-r border-border-subtle bg-surface-container-lowest overflow-hidden">
+<div class="p-gutter">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+<input class="w-full bg-surface-container border-none rounded-lg pl-10 text-body-md py-2 focus:ring-1 focus:ring-primary-container" placeholder="Search students..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar">
+<!-- Chat Item Active -->
+<div class="flex items-center gap-4 px-gutter py-4 bg-surface-container-high border-l-4 border-primary-container cursor-pointer">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a young male athlete with a determined gaze, sweating after an intense workout. The lighting is cinematic and high-contrast, casting deep shadows against a dark industrial gym wall. The color palette is dominated by deep blacks and cool greys to maintain the high-performance brand identity." src="https://lh3.googleusercontent.com/aida/ADBb0uiX-4DNLQRt5aXSNo6q6BMDqBXdG0TLASg2ojTNABCZ3Z2HoYZARsbZ1kfiv7v2Zc8FzvaI98lgsaJpWksrHmpZpspklq9kJmzvXXYgyQVNoAYDpt1gqKGI65qf3zruMNqU73nPpkHAgH8m8nra6TJdpUrDMAaPPDKp9LE1jW9ABkqB02O1oy7vhYWVYJfhbRXN38ultP5gmVFGhQsjilVBnpfkyxnNh6hMcvn00fyWf4gCC0ME3SRBeFw"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-primary-container rounded-full border-2 border-pure-black"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline">
+<h3 class="font-bold text-on-surface truncate">Ricardo Silva</h3>
+<span class="text-[10px] text-primary-container">JUST NOW</span>
+</div>
+<p class="text-label-md text-text-muted truncate">Finished the leg press sets...</p>
+</div>
+<div class="bg-primary-container text-pure-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">2</div>
+</div>
+<!-- Chat Item -->
+<div class="flex items-center gap-4 px-gutter py-4 hover:bg-surface-container transition-colors cursor-pointer border-l-4 border-transparent">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A focused female athlete in her late 20s during a recovery session. She is wearing sleek black athletic wear. The background is a minimalist studio with soft, focused spotlighting that creates a high-end, professional atmosphere. The image uses a desaturated color palette with subtle contrast." src="https://lh3.googleusercontent.com/aida/ADBb0ujYrjF9FIxsfsfHRziqZ9o3KfdeovV7zPYajcx8pNJ4a8wSEVHizuuREQtO6ALiOb_OB_axepiVH20DqvGsvRFwceOgFBlIMhlrvwt7THNLaiIr61tmDfzZSzD-oYy5c3FH2mC6XT9udK8jIQYcThC_FMwbolaJ7nUNjQKP_JML1Jh92AmH_XePrxkdZN45g_oVU_kcMwgbZbon3mkX8GWnK-R6MNb6XcGbbDw9SbtpICmaSnYNJxkNdQ"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline">
+<h3 class="font-bold text-on-surface truncate">Ana Martins</h3>
+<span class="text-[10px] text-text-muted">14:20</span>
+</div>
+<p class="text-label-md text-text-muted truncate">The meal plan feels great.</p>
+</div>
+</div>
+<!-- Chat Item -->
+<div class="flex items-center gap-4 px-gutter py-4 hover:bg-surface-container transition-colors cursor-pointer border-l-4 border-transparent">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A male gym-goer in his 30s adjusting his wrist wraps, looking ready for a heavy lift. The environment is a dark, gritty powerlifting gym with raw textures and strong directional lighting. The image emphasizes strength and focus, fitting the intense brand aesthetic of the design system." src="https://lh3.googleusercontent.com/aida/ADBb0uizflHHIowcscvPTbm0Jei5CJVZvqbQ6jV08_WO4Kjy6ZgPUadB3wIZw1rPeTKSKvsIuJXjEjBjDoWyXRRCl_kFJtPFDI5RF9HGbsT0a8MZLnoCWdnzY3rbJ2EVpWGYby0SA3D98mAOXMzYiT2PQ2X0ZWisVOaZcJx0bjUnl41MNESl8dcXh27zYyZqRYAIBHUX8nNyq3qhuTixM5a6hrbDCwmXVrB789xVLw1nEibG1rOJ1fRlsRSKZ2M"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline">
+<h3 class="font-bold text-on-surface truncate">Marcus Volt</h3>
+<span class="text-[10px] text-text-muted">YESTERDAY</span>
+</div>
+<p class="text-label-md text-text-muted truncate">Can we reschedule to 6PM?</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Active Chat Window -->
+<section class="flex-1 flex flex-col bg-pure-black relative">
+<!-- Chat Header -->
+<div class="p-gutter border-b border-border-subtle flex items-center justify-between bg-surface-container-lowest/80 backdrop-blur-xl">
+<div class="flex items-center gap-3">
+<button class="md:hidden text-on-surface mr-2">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Close up of a determined athlete, Ricardo Silva, with beads of sweat on his forehead. The lighting is low-key with a sharp lime rim light that highlights his silhouette against the dark gym background. This portrait represents the high-intensity performance mood of the TRAINFLOW platform." src="https://lh3.googleusercontent.com/aida/ADBb0uiJBZk7ubeDbwM33NI1cNhK82NDH-tUkR_P0NIS_GFJCO2FD-rKsV30WMkJY8NwM7VIm2WtZxL62-X2vvY5jccHK8O7O17KLhWmgVUMbz4qcVo-oKfR62i1zlNSmL0cFiQBtwPV8N3C-_13uzi9ku69y1U92R9hC8b0DfTLkxrNr1FXLYO7lTQZ3Eh4b_MfBnDnl7CdPGkR07hOCCb98Zg75n6x_8qVzIotJSKSQUXew-pvgn4wylVuoQ"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary-container rounded-full border-2 border-pure-black"></div>
+</div>
+<div>
+<h2 class="font-bold text-body-lg">Ricardo Silva</h2>
+<span class="text-label-sm text-primary-container">Active now • Leg Day</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="text-on-surface hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="text-on-surface hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="text-on-surface hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-gutter space-y-6 no-scrollbar chat-container">
+<div class="flex justify-center">
+<span class="bg-surface-container-high px-4 py-1 rounded-full text-[10px] font-bold text-text-muted uppercase tracking-tighter">Today</span>
+</div>
+<!-- Received Message -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="bg-surface-container-high text-on-surface p-4 rounded-t-2xl rounded-br-2xl rounded-bl-none shadow-lg">
+<p class="text-body-md">Coach, just finished the second set of squats. Feeling a bit of tension in my lower back, should I lower the weight?</p>
+<span class="text-[10px] text-text-muted mt-2 block text-right">09:12 AM</span>
+</div>
+</div>
+<!-- Sent Message -->
+<div class="flex items-end gap-2 max-w-[85%] ml-auto">
+<div class="bg-primary-container text-pure-black p-4 rounded-t-2xl rounded-bl-2xl rounded-br-none shadow-lg">
+<p class="text-body-md font-medium">Lower the weight by 10kg and focus on bracing your core harder. Send me a video of your next set if you can.</p>
+<div class="flex items-center justify-end gap-1 mt-1">
+<span class="text-[10px] opacity-70">09:14 AM</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+</div>
+<!-- Received Message -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="bg-surface-container-high text-on-surface p-4 rounded-t-2xl rounded-br-2xl rounded-bl-none shadow-lg">
+<p class="text-body-md">Understood. Bracing harder now. Here's the video from the last set.</p>
+<div class="mt-3 relative rounded-xl overflow-hidden aspect-video border border-border-subtle group cursor-pointer">
+<img class="w-full h-full object-cover brightness-50 group-hover:brightness-75 transition-all" data-alt="A first-person perspective video thumbnail of a heavy barbell squat inside a dark, modern power rack. The lighting is cinematic with electric lime accents highlighting the plates. The scene is intense and focused, reflecting a high-performance training environment." src="https://lh3.googleusercontent.com/aida/ADBb0ugZhFfeh5Ehjj3QcZbneAu1act-KOM_gvoKyhJHRCCC5HQDWrsFZxSHUx9GHRkJvOq9jeKbnNGxYsMJK5Zc9mjRGQljtKwJlunIZ1uxoZX-VaHux4IyBLBlbHdklxcSa6TTO27vy4o8uq4LYwj53zZ_TisTlVzYAVdhRnJuOZmcu2Xd2KllYpQNF8l0x4tCA31EkueKrHh5CqmaWSG_wHrAudwWWxElPoZSLpKPgPxxVeshSb5o909nnlc"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-5xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<span class="text-[10px] text-text-muted mt-2 block text-right">09:15 AM</span>
+</div>
+</div>
+<!-- Sent Message -->
+<div class="flex items-end gap-2 max-w-[85%] ml-auto">
+<div class="bg-primary-container text-pure-black p-4 rounded-t-2xl rounded-bl-2xl rounded-br-none shadow-lg">
+<p class="text-body-md font-medium">Form looks solid, just keep your chest up. Finished the leg press sets...</p>
+<div class="flex items-center justify-end gap-1 mt-1">
+<span class="text-[10px] opacity-70">09:18 AM</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-4 bg-surface-container-lowest/80 backdrop-blur-xl border-t border-border-subtle">
+<div class="flex items-center gap-3 bg-surface-container rounded-full px-4 h-12 shadow-inner">
+<button class="text-primary-container hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface text-body-md placeholder-text-muted" placeholder="Type a message..." type="text"/>
+<button class="text-text-muted hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined">sentiment_satisfied</span>
+</button>
+<button class="w-10 h-10 bg-primary-container text-pure-black rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-button-height-standard px-gutter pb-safe bg-pure-black/80 backdrop-blur-xl border-t border-border-subtle">
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-sm text-label-sm">Workout</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm">Students</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container font-bold scale-110 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for sending message
+        const input = document.querySelector('input[type="text"]');
+        const sendBtn = document.querySelector('button .material-symbols-outlined[data-icon="send"]')?.parentElement || document.querySelector('button:has(span[style*="send"])');
+        const chatContainer = document.querySelector('.chat-container');
+
+        if (sendBtn) {
+            sendBtn.addEventListener('click', () => {
+                if (input.value.trim() !== '') {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = 'flex items-end gap-2 max-w-[85%] ml-auto';
+                    msgDiv.innerHTML = `
+                        <div class="bg-primary-container text-pure-black p-4 rounded-t-2xl rounded-bl-2xl rounded-br-none shadow-lg animate-in slide-in-from-bottom-2 duration-300">
+                            <p class="text-body-md font-medium">${input.value}</p>
+                            <div class="flex items-center justify-end gap-1 mt-1">
+                                <span class="text-[10px] opacity-70">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">done</span>
+                            </div>
+                        </div>
+                    `;
+                    chatContainer.appendChild(msgDiv);
+                    input.value = '';
+                    chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+                }
+            });
+        }
+
+        // Handle Enter key
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendBtn.click();
+            }
+        });
+
+        // Scroll to bottom initially
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    </script>
+</body></html>

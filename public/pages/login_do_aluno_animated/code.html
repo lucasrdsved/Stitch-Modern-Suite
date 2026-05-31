@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trainflow - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#a8cbe4",
+                    "surface-dim": "#0a0a0a",
+                    "on-secondary-container": "#b7b5b4",
+                    "tertiary-container": "#c2e6ff",
+                    "primary-fixed": "#c9f236",
+                    "background": "#000000",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "error-container": "#93000a",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-variant": "#1a1a1a",
+                    "surface-container-highest": "#1a1a1a",
+                    "on-surface-variant": "#c5c9ae",
+                    "error": "#ffb4ab",
+                    "pure-black": "#000000",
+                    "on-tertiary-fixed": "#001e2d",
+                    "on-background": "#ffffff",
+                    "outline": "#333333",
+                    "status-warning": "#FFB800",
+                    "surface-container-low": "#0a0a0a",
+                    "outline-variant": "#222222",
+                    "secondary": "#c8c6c5",
+                    "inverse-on-surface": "#000000",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "inverse-primary": "#526600",
+                    "tertiary": "#fefdff",
+                    "on-tertiary-fixed-variant": "#274b5f",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-container": "#0a0a0a",
+                    "surface": "#000000",
+                    "on-primary-fixed-variant": "#3d4d00",
+                    "primary-fixed-dim": "#aed50d",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#313030",
+                    "primary-container": "#c8f135",
+                    "tertiary-fixed": "#c5e7ff",
+                    "secondary-container": "#222222",
+                    "text-muted": "#888888",
+                    "surface-container-high": "#121212",
+                    "on-primary-fixed": "#171e00",
+                    "on-tertiary": "#0c3447",
+                    "primary": "#ffffff",
+                    "border-subtle": "#222222",
+                    "on-surface": "#ffffff",
+                    "on-tertiary-container": "#45687d",
+                    "on-primary-container": "#566c00",
+                    "surface-container-lowest": "#000000",
+                    "on-primary": "#000000",
+                    "surface-bright": "#1a1a1a",
+                    "on-secondary-fixed-variant": "#474746",
+                    "surface-tint": "#aed50d",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "button-height-heavy": "5rem",
+                    "gutter": "1rem",
+                    "container-margin": "1.5rem",
+                    "button-height-standard": "3.5rem",
+                    "touch-target-min": "2.75rem",
+                    "stack-gap-lg": "2rem"
+            },
+            "fontFamily": {
+                    "display-lg": ["Bebas Neue"],
+                    "headline-md": ["Bebas Neue"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Bebas Neue"],
+                    "display-giant": ["Bebas Neue"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", { "lineHeight": "64px", "fontWeight": "700" }],
+                    "headline-md": ["24px", { "lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                    "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                    "headline-lg": ["32px", { "lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                    "display-giant": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+            }
+          }
+        }
+      }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>/* Entrance: Logo drop down */
+@keyframes logoEntry {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+        } to {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }
+.animate-logo {
+    animation: logoEntry 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards
+    }
+/* Main Heading: Sharp scale up */
+@keyframes sharpScaleUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+        filter: blur(10px);
+        } 70% {
+        transform: scale(1.05);
+        filter: blur(0);
+        } 100% {
+        opacity: 1;
+        transform: scale(1);
+        }
+    }
+.animate-heading {
+    opacity: 0;
+    animation: sharpScaleUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.3s
+    }
+/* Input: Slide from left */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+        } to {
+        opacity: 1;
+        transform: translateX(0);
+        }
+    }
+.animate-input {
+    opacity: 0;
+    animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.5s
+    }
+/* Button: Scale up entrance + Continuous Glow */
+@keyframes buttonEntry {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+        } to {
+        opacity: 1;
+        transform: scale(1);
+        }
+    }
+@keyframes continuousGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(201, 242, 54, 0.2);
+        } 50% {
+        box-shadow: 0 0 30px rgba(201, 242, 54, 0.5);
+        }
+    }
+.animate-button-entrance {
+    opacity: 0;
+    animation: buttonEntry 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: 0.7s
+    }
+.animate-glow {
+    animation: continuousGlow 3s ease-in-out infinite
+    }
+/* Footer: Fade + Float */
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translateY(0);
+        } 50% {
+        transform: translateY(-5px);
+        }
+    }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        } to {
+        opacity: 1;
+        }
+    }
+.animate-footer {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards, floatSlow 4s ease-in-out infinite;
+    animation-delay: 1.2s
+    }
+/* Background Grain Animation */
+@keyframes grainMove {
+    0%, 100% {
+        transform: translate(0, 0);
+        } 10% {
+        transform: translate(-1%, -1%);
+        } 30% {
+        transform: translate(1%, 1%);
+        } 50% {
+        transform: translate(-1%, 1%);
+        } 70% {
+        transform: translate(1%, -1%);
+        } 90% {
+        transform: translate(-0.5%, -0.5%);
+        }
+    }
+.bg-grain {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url(https://lh3.googleusercontent.com/aida/ADBb0ugxRS-AzT1cb67iHYiscQZuHBlWYUCZjPMW_v6inEdE-he3yzZQ2OtdcBeP1bNV5ij_Qk0NjVT2yGPDd3hOb7dCqZGPiiuX0QSr2JlZhTjxSDZGCVQK9csHxa-q-UZiaNFbWCIaTdIG683Rj_rx6jzHJx3oJ8gBbcD-qbRMAHLvHgqRWwLKW61V5nNferl4DG_9QOLVaJaWm5vQSfkATvGov0n0_ZNfB9chOr22FcbMOuCEC7S8-3FA5Q);
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: -1;
+    animation: grainMove 8s steps(10) infinite
+    }
+body {
+    min-height: max(884px, 100dvh);
+    overflow: hidden;
+    /* Prevent scroll on entrance if possible */
+    }</style>
+</head>
+<body class="bg-pure-black text-on-surface min-h-screen flex flex-col items-center justify-between p-container-margin font-body-md antialiased relative z-10 selection:bg-primary-fixed selection:text-pure-black">
+<!-- Atmospheric Background -->
+<div class="fixed inset-0 pointer-events-none z-[-2] bg-pure-black"></div>
+<div class="bg-grain"></div>
+<!-- Top: Logo Anchor -->
+<header class="w-full max-w-md pt-8 flex justify-center md:justify-start animate-logo">
+<h1 class="font-headline-md text-headline-md text-primary-fixed tracking-widest">TRAINFLOW</h1>
+</header>
+<!-- Center: Primary Interaction Canvas -->
+<main class="w-full max-w-md flex-1 flex flex-col justify-center">
+<div class="mb-10 text-center md:text-left animate-heading">
+<h2 class="font-display-lg text-display-lg text-primary-fixed mb-2 drop-shadow-[0_0_15px_rgba(201,242,54,0.15)]">BEM-VINDO</h2>
+<p class="font-body-md text-body-md text-text-muted">Enviaremos um link de acesso para o seu email.</p>
+</div>
+<form class="flex flex-col gap-4" onsubmit="event.preventDefault();">
+<div class="relative group animate-input">
+<input class="w-full h-button-height-standard bg-surface-container-high border border-border-subtle rounded-xl px-4 py-2 font-body-md text-body-md text-on-surface placeholder:text-on-secondary-container focus:outline-none focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed transition-all duration-300 group-hover:border-outline-variant" id="email" placeholder="Seu email" required="" type="email"/>
+</div>
+<div class="animate-button-entrance">
+<button class="w-full h-button-height-standard bg-primary-fixed text-pure-black font-headline-md text-headline-md rounded-full flex items-center justify-center gap-2 hover:bg-primary-container active:scale-95 transition-all duration-200 mt-4 animate-glow shadow-[0_4px_20px_rgba(201,242,54,0.15)]" type="submit">
+                    ENTRAR
+                    <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+</div>
+</form>
+</main>
+<!-- Footer: Secondary Action -->
+<footer class="w-full max-w-md pb-8 flex justify-center animate-footer">
+<a class="font-label-md text-label-md text-text-muted hover:text-primary-fixed transition-colors duration-200 inline-block py-2 px-4 rounded-full hover:bg-surface-container-high" href="#">
+            Sou personal trainer
+        </a>
+</footer>
+</body></html>

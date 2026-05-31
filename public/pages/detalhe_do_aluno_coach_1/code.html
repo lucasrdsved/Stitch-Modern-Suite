@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalhe do Aluno - Ricardo Silva</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid #333333;
+        }
+        .active-dot::after {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: #c9f236;
+            border-radius: 50%;
+            margin-top: 4px;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#2a2a2a",
+                      "surface-container": "#201f1f",
+                      "background": "#131313",
+                      "secondary": "#c8c6c5",
+                      "surface": "#131313",
+                      "inverse-surface": "#e5e2e1",
+                      "border-subtle": "#333333",
+                      "on-background": "#e5e2e1",
+                      "on-tertiary-fixed-variant": "#274b5f",
+                      "on-surface": "#e5e2e1",
+                      "outline-variant": "#444934",
+                      "primary-fixed-dim": "#aed50d",
+                      "on-surface-variant": "#c5c9ae",
+                      "outline": "#8f937b",
+                      "on-tertiary": "#0c3447",
+                      "secondary-fixed": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "tertiary-fixed": "#c5e7ff",
+                      "surface-bright": "#3a3939",
+                      "on-error-container": "#ffdad6",
+                      "text-muted": "#888888",
+                      "on-secondary-container": "#b7b5b4",
+                      "on-tertiary-container": "#45687d",
+                      "on-primary": "#293500",
+                      "tertiary": "#fefdff",
+                      "on-error": "#690005",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed": "#001e2d",
+                      "on-primary-container": "#566c00",
+                      "surface-container-highest": "#353534",
+                      "pure-black": "#000000",
+                      "surface-container-low": "#1c1b1b",
+                      "on-primary-fixed": "#171e00",
+                      "tertiary-container": "#c2e6ff",
+                      "on-secondary": "#313030",
+                      "status-warning": "#FFB800",
+                      "secondary-container": "#474746",
+                      "surface-variant": "#353534",
+                      "surface-tint": "#aed50d",
+                      "on-secondary-fixed-variant": "#474746",
+                      "tertiary-fixed-dim": "#a8cbe4",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "surface-dim": "#131313",
+                      "primary-fixed": "#c9f236",
+                      "inverse-primary": "#526600",
+                      "on-primary-fixed-variant": "#3d4d00",
+                      "primary-container": "#c8f135",
+                      "surface-container-lowest": "#0e0e0e",
+                      "error-container": "#93000a",
+                      "primary": "#ffffef"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "touch-target-min": "2.75rem",
+                      "container-margin": "1.5rem",
+                      "gutter": "1rem",
+                      "stack-gap-lg": "2rem",
+                      "button-height-heavy": "5rem",
+                      "button-height-standard": "3.5rem"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "display-giant": ["Bebas Neue"],
+                      "headline-lg": ["Bebas Neue"],
+                      "headline-md": ["Bebas Neue"],
+                      "label-md": ["Inter"],
+                      "display-lg": ["Bebas Neue"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-pure-black text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="bg-pure-black flex justify-between items-center w-full px-container-margin h-touch-target-min fixed top-0 z-50">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary-container hover:opacity-80 transition-opacity" data-icon="arrow_back">arrow_back</button>
+<h1 class="font-headline-lg text-headline-lg tracking-widest text-primary-container">TRAINFLOW</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle">
+<img alt="Coach Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a fitness coach in a dark, high-end gym setting. He has a focused and determined expression, lit by dramatic cinematic lighting that emphasizes his athletic features. The background is softly blurred, showing premium gym equipment in a minimalist aesthetic of deep blacks and subtle metallic textures." src="https://lh3.googleusercontent.com/aida/ADBb0ugdkqPcbGZxy5KDLimLxC6aqJrGHEtHbmnnknpXyPbKoaq8LUPEQs6QwOqDzynbO7CGWTQY56fbvts0Du76Uyr_NaAqAvSj1HE-oJn0yFJqHvADikmRYpLEI3CHsFcZQAOIwugFN2VJhyyJd49cH9YoXDlYlhWGCC-RwD90qpvorRrpkK_wo9BP2irkbH76m56pZOnfJH97HVn6wPpnMgMtgWrTGXIPCy2SomcGUg1RTmgNAEdaN0L_hwA"/>
+</div>
+</div>
+</header>
+<main class="mt-20 px-container-margin">
+<!-- Student Hero Profile -->
+<section class="flex flex-col gap-6 mb-stack-gap-lg">
+<div class="flex items-center gap-6">
+<div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-primary-fixed-dim shrink-0">
+<img alt="Ricardo Silva" class="w-full h-full object-cover" data-alt="A high-contrast, muscular male athlete named Ricardo Silva training in a dark, atmospheric industrial gym. He is wearing high-performance black athletic gear. The lighting is intense and directional, highlighting his physique against the void-like black background, reflecting a professional and energetic somatotype aesthetic." src="https://lh3.googleusercontent.com/aida/ADBb0ujzoiwsZwjt4CI5r47PG9bkucnHJBHqlA53wthsGXSBQzrT9D6xVhLpPsXuDkny2BDEM42-7BhJii5OSPGifGA3vigEJL6w-eLhTB5U7wgV_qosJj3Ej8FFNlQVmswtTB-OnOEohYQALUDc7OkOocphA55cJ1YrC1e9UWXnWC_gqwV3eA-xG5ZHOK0Z9xoytylUHL2RL_4JnaxR4VUX4ql3paA73fdeRPhNih-ruwXs6E7VbaSlvhgvau0"/>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Ricardo Silva</h2>
+<div class="flex gap-2 mt-2">
+<span class="bg-primary-fixed-dim/10 text-primary-fixed-dim px-3 py-1 rounded-full text-label-sm font-label-sm border border-primary-fixed-dim/20 uppercase tracking-wider">Ativo</span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-subtle uppercase tracking-wider">Ectomorfo</span>
+</div>
+</div>
+</div>
+<!-- Action Primary -->
+<button class="bg-primary-fixed-dim text-pure-black h-button-height-standard w-full rounded-full font-headline-md text-headline-md flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary-fixed-dim/20">
+<span class="material-symbols-outlined" data-icon="add_chart">add_chart</span>
+                NOVA AVALIAÇÃO
+            </button>
+</section>
+<!-- Navigation Tabs -->
+<nav class="flex justify-between border-b border-border-subtle mb-6 sticky top-20 bg-pure-black z-40">
+<button class="pb-3 text-primary-fixed-dim font-bold font-label-md text-label-md border-b-2 border-primary-fixed-dim transition-colors" onclick="switchTab('treinos')">Treinos</button>
+<button class="pb-3 text-text-muted font-label-md text-label-md hover:text-on-surface transition-colors" onclick="switchTab('historico')">Histórico</button>
+<button class="pb-3 text-text-muted font-label-md text-label-md hover:text-on-surface transition-colors" onclick="switchTab('avaliacoes')">Avaliações</button>
+<button class="pb-3 text-text-muted font-label-md text-label-md hover:text-on-surface transition-colors" onclick="switchTab('chat')">Chat</button>
+</nav>
+<!-- Tab Content: Treinos (Default) -->
+<div class="space-y-6" id="tab-treinos">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-text-muted font-label-sm text-label-sm uppercase tracking-widest">Plano Atual</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">HIPERTROFIA AVANÇADA V2</h3>
+</div>
+<span class="text-primary-fixed-dim font-label-md text-label-md">Semana 4/12</span>
+</div>
+<!-- Training Summary Cards (Bento Style) -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-panel p-5 rounded-2xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="calendar_today">calendar_today</span>
+<p class="text-text-muted font-label-sm text-label-sm">Frequência</p>
+<p class="font-headline-md text-headline-md">5X SEMANA</p>
+</div>
+<div class="glass-panel p-5 rounded-2xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-status-warning" data-icon="timer">timer</span>
+<p class="text-text-muted font-label-sm text-label-sm">Duração Média</p>
+<p class="font-headline-md text-headline-md">75 MIN</p>
+</div>
+<div class="glass-panel p-5 rounded-2xl col-span-2 flex justify-between items-center group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col gap-1">
+<p class="text-text-muted font-label-sm text-label-sm uppercase">Próxima Sessão</p>
+<p class="font-headline-md text-headline-md text-primary-fixed-dim">TREINO B: DORSAIS &amp; BÍCEPS</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed-dim group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Workout List Breakdown -->
+<div class="space-y-4 pt-4">
+<h4 class="font-label-md text-label-md text-text-muted uppercase tracking-widest border-l-2 border-primary-fixed-dim pl-3">Distribuição Semanal</h4>
+<div class="space-y-3">
+<div class="bg-surface-container border border-border-subtle p-4 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim/10 flex items-center justify-center">
+<span class="font-headline-md text-primary-fixed-dim">A</span>
+</div>
+<div>
+<p class="text-on-surface font-label-md font-bold">PEITO &amp; TRÍCEPS</p>
+<p class="text-text-muted text-label-sm">8 Exercícios • 32 Sets</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="bg-surface-container border border-border-subtle p-4 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="font-headline-md text-on-surface-variant">B</span>
+</div>
+<div>
+<p class="text-on-surface font-label-md font-bold">COSTAS &amp; BÍCEPS</p>
+<p class="text-text-muted text-label-sm">7 Exercícios • 28 Sets</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="bg-surface-container border border-border-subtle p-4 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="font-headline-md text-on-surface-variant">C</span>
+</div>
+<div>
+<p class="text-on-surface font-label-md font-bold">PERNAS (FOCO QUAD.)</p>
+<p class="text-text-muted text-label-sm">6 Exercícios • 24 Sets</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted" data-icon="drag_indicator">drag_indicator</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Coach Context: Students is Active) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-button-height-standard px-gutter pb-safe bg-pure-black/80 backdrop-blur-xl border-t border-border-subtle">
+<div class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-sm text-label-sm">Workout</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary-container font-bold scale-110 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-sm text-label-sm">Students</span>
+</div>
+<div class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<script>
+        function switchTab(tabName) {
+            // Logica visual simples para trocar abas no protótipo
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => {
+                btn.classList.remove('text-primary-fixed-dim', 'font-bold', 'border-b-2', 'border-primary-fixed-dim');
+                btn.classList.add('text-text-muted');
+            });
+
+            const clickedBtn = Array.from(buttons).find(btn => btn.innerText.toLowerCase() === tabName);
+            if (clickedBtn) {
+                clickedBtn.classList.remove('text-text-muted');
+                clickedBtn.classList.add('text-primary-fixed-dim', 'font-bold', 'border-b-2', 'border-primary-fixed-dim');
+            }
+
+            // Para efeito do protótipo, apenas mostramos/escondemos o conteúdo de Treinos
+            const treinosContent = document.getElementById('tab-treinos');
+            if (tabName !== 'treinos') {
+                treinosContent.style.opacity = '0.3';
+                treinosContent.style.pointerEvents = 'none';
+            } else {
+                treinosContent.style.opacity = '1';
+                treinosContent.style.pointerEvents = 'auto';
+            }
+        }
+    </script>
+</body></html>

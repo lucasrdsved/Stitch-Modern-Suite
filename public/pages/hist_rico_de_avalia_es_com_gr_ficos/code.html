@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#c2e6ff",
+                      "surface-container-highest": "#353534",
+                      "status-warning": "#FFB800",
+                      "primary": "#ffffef",
+                      "background": "#131313",
+                      "on-primary-fixed": "#171e00",
+                      "text-muted": "#888888",
+                      "surface-variant": "#353534",
+                      "pure-black": "#000000",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-tertiary": "#0c3447",
+                      "tertiary": "#fefdff",
+                      "on-tertiary-container": "#45687d",
+                      "on-surface-variant": "#c5c9ae",
+                      "surface-container-low": "#1c1b1b",
+                      "primary-fixed": "#c9f236",
+                      "on-primary-container": "#566c00",
+                      "secondary-fixed": "#e5e2e1",
+                      "outline": "#8f937b",
+                      "surface-container-high": "#2a2a2a",
+                      "on-tertiary-fixed-variant": "#274b5f",
+                      "surface-tint": "#aed50d",
+                      "on-secondary": "#313030",
+                      "on-primary-fixed-variant": "#3d4d00",
+                      "inverse-on-surface": "#313030",
+                      "on-primary": "#293500",
+                      "on-background": "#e5e2e1",
+                      "on-surface": "#e5e2e1",
+                      "outline-variant": "#444934",
+                      "surface-dim": "#131313",
+                      "primary-fixed-dim": "#aed50d",
+                      "surface-container-lowest": "#0e0e0e",
+                      "secondary-container": "#474746",
+                      "surface-container": "#201f1f",
+                      "primary-container": "#c8f135",
+                      "tertiary-fixed-dim": "#a8cbe4",
+                      "surface": "#131313",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "on-error-container": "#ffdad6",
+                      "secondary": "#c8c6c5",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed": "#001e2d",
+                      "error-container": "#93000a",
+                      "inverse-primary": "#526600",
+                      "tertiary-fixed": "#c5e7ff",
+                      "error": "#ffb4ab",
+                      "on-secondary-fixed-variant": "#474746",
+                      "inverse-surface": "#e5e2e1",
+                      "on-secondary-container": "#b7b5b4",
+                      "border-subtle": "#333333",
+                      "surface-bright": "#3a3939"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "2xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-gap-lg": "2rem",
+                      "gutter": "1rem",
+                      "button-height-standard": "3.5rem",
+                      "container-margin": "1.5rem",
+                      "touch-target-min": "2.75rem",
+                      "button-height-heavy": "5rem"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg": ["Bebas Neue"],
+                      "headline-md": ["Bebas Neue"],
+                      "display-giant": ["Bebas Neue"],
+                      "headline-lg": ["Bebas Neue"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+        }
+        .glass-nav {
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md pb-32">
+<!-- Header / TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary-fixed">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary-fixed tracking-tight">HISTÓRICO DE AVALIAÇÕES</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed/20">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a determined athlete in a dark gym environment. The lighting is dramatic and low-key, highlighting muscle definition with high-contrast electric lime reflections. The overall mood is intense, professional, and focused, aligning with a high-performance fitness brand identity." src="https://lh3.googleusercontent.com/aida/ADBb0uhhun5hcLGO6277T_n9_ztUXdQsA8izGxfH3w3QMStYSrxmHGzEshImOHNmHzZjdTyGd-lyN-Elr0t5zUVo2mByUSOX2uVqyMrhHBb1dQIum9koUSZwJ6_xAzfPb460EvshnAdgJfs5ACcv-U2n8igEhBL4oJPtnPogDtXLnhcaTj37R2cKGheYQeSGrFGO1z4Ng-RpYm4mc4ANl2rXPGFdcW69hpuNqe-tMYihVcjDItPDA26V2IvZ-Co"/>
+</div>
+</header>
+<main class="mt-20 px-container-margin space-y-stack-gap-lg">
+<!-- Most Recent Assessment Card (Summary) -->
+<section class="mb-8">
+<h2 class="font-label-sm text-label-sm text-text-muted uppercase tracking-widest mb-4">EVOLUÇÃO VISUAL</h2>
+<div class="flex overflow-x-auto gap-4 pb-4 snap-x no-scrollbar">
+<!-- Body Fat Chart -->
+<div class="flex-none w-72 snap-start bg-[#1A1A1A] rounded-2xl border border-border-subtle p-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-label-md text-label-md text-on-surface">GORDURA CORPORAL (%)</h3>
+<span class="text-primary-fixed font-headline-md">12.4%</span>
+</div>
+<div class="h-32 w-full">
+<svg class="w-full h-full" viewbox="0 0 200 100">
+<!-- Grid Lines -->
+<line stroke="#333" stroke-width="0.5" x1="0" x2="200" y1="20" y2="20"></line>
+<line stroke="#333" stroke-width="0.5" x1="0" x2="200" y1="50" y2="50"></line>
+<line stroke="#333" stroke-width="0.5" x1="0" x2="200" y1="80" y2="80"></line>
+<!-- Trend Line -->
+<defs>
+<filter id="glow">
+<fegaussianblur result="coloredBlur" stddeviation="2"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<path d="M 10 20 L 100 50 L 190 80" fill="none" filter="url(#glow)" stroke="#C8F135" stroke-linecap="round" stroke-width="3"></path>
+<!-- Data Points -->
+<circle cx="10" cy="20" fill="#C8F135" r="4"></circle>
+<circle cx="100" cy="50" fill="#C8F135" r="4"></circle>
+<circle cx="190" cy="80" fill="#C8F135" r="4"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-2 font-label-sm text-text-muted">
+<span>AGO</span>
+<span>SET</span>
+<span>OUT</span>
+</div>
+</div>
+<!-- Lean Mass Chart -->
+<div class="flex-none w-72 snap-start bg-[#1A1A1A] rounded-2xl border border-border-subtle p-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-label-md text-label-md text-on-surface">MASSA MAGRA (KG)</h3>
+<span class="text-primary-fixed font-headline-md">78.5 KG</span>
+</div>
+<div class="h-32 w-full">
+<svg class="w-full h-full" viewbox="0 0 200 100">
+<!-- Grid Lines -->
+<line stroke="#333" stroke-width="0.5" x1="0" x2="200" y1="20" y2="20"></line>
+<line stroke="#333" stroke-width="0.5" x1="0" x2="200" y1="50" y2="50"></line>
+<line stroke="#333" stroke-width="0.5" x1="0" x2="200" y1="80" y2="80"></line>
+<!-- Trend Line -->
+<path d="M 10 80 L 100 45 L 190 15" fill="none" filter="url(#glow)" stroke="#C8F135" stroke-linecap="round" stroke-width="3"></path>
+<!-- Data Points -->
+<circle cx="10" cy="80" fill="#C8F135" r="4"></circle>
+<circle cx="100" cy="45" fill="#C8F135" r="4"></circle>
+<circle cx="190" cy="15" fill="#C8F135" r="4"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-2 font-label-sm text-text-muted">
+<span>AGO</span>
+<span>SET</span>
+<span>OUT</span>
+</div>
+</div>
+</div>
+</section><section class="mt-6">
+<h2 class="font-label-sm text-label-sm text-text-muted uppercase tracking-widest mb-3">RESULTADO MAIS RECENTE</h2>
+<div class="bg-surface-container-high rounded-2xl border border-border-subtle p-6 relative overflow-hidden">
+<!-- Background Accent Blur -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary-fixed/10 rounded-full blur-3xl"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-sm text-label-sm text-primary-fixed">15 DE OUTUBRO, 2023</p>
+<h3 class="font-headline-lg text-headline-lg mt-1">CHECK-IN MENSAL</h3>
+</div>
+<span class="bg-primary-fixed text-pure-black font-label-md text-label-md px-3 py-1 rounded-full">MESOMORFO</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-pure-black/40 rounded-xl p-4 border border-border-subtle/50">
+<p class="font-label-sm text-label-sm text-text-muted mb-1 uppercase">Gordura Corporal</p>
+<div class="flex items-end gap-2">
+<span class="font-display-lg text-display-lg leading-none text-primary-fixed">12.4%</span>
+<span class="material-symbols-outlined text-primary-fixed mb-2" style="font-variation-settings: 'FILL' 1;">arrow_downward</span>
+</div>
+</div>
+<div class="bg-pure-black/40 rounded-xl p-4 border border-border-subtle/50">
+<p class="font-label-sm text-label-sm text-text-muted mb-1 uppercase">Massa Magra</p>
+<div class="flex items-end gap-2">
+<span class="font-display-lg text-display-lg leading-none">78.5</span>
+<span class="font-headline-md text-headline-md mb-2 text-text-muted">KG</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="space-y-4">
+<h2 class="font-label-sm text-label-sm text-text-muted uppercase tracking-widest">LINHA DO TEMPO</h2>
+<!-- Timeline Item 1 -->
+<div class="relative pl-8 pb-8 border-l border-border-subtle last:border-0 last:pb-0">
+<!-- Timeline Dot -->
+<div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-primary-fixed rounded-full ring-4 ring-primary-fixed/20"></div>
+<div class="bg-surface-container-low border border-border-subtle rounded-2xl p-5 hover:bg-surface-container-high transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-label-sm text-label-sm text-text-muted">12 de Setembro, 2023</span>
+<h4 class="font-headline-md text-headline-md text-on-surface">Check-in Mensal</h4>
+</div>
+<div class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded">MESOMORFO</div>
+</div>
+<div class="flex items-center gap-8 mb-6">
+<div>
+<p class="font-label-sm text-label-sm text-text-muted uppercase">Gordura</p>
+<div class="flex items-center gap-1">
+<span class="font-headline-md text-headline-md">13.1%</span>
+<span class="material-symbols-outlined text-error text-[18px]">arrow_upward</span>
+</div>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-muted uppercase">Massa Magra</p>
+<span class="font-headline-md text-headline-md">77.2 kg</span>
+</div>
+</div>
+<button class="w-full h-12 flex items-center justify-center gap-2 border border-border-subtle rounded-full font-label-md text-label-md hover:border-primary-fixed hover:text-primary-fixed transition-all active:scale-95">
+                        VER DETALHES
+                        <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-8 pb-8 border-l border-border-subtle last:border-0 last:pb-0">
+<div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-text-muted rounded-full"></div>
+<div class="bg-surface-container-low border border-border-subtle rounded-2xl p-5 group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-label-sm text-label-sm text-text-muted">10 de Agosto, 2023</span>
+<h4 class="font-headline-md text-headline-md text-on-surface">Avaliação Inicial</h4>
+</div>
+<div class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded">ECTOMORFO</div>
+</div>
+<div class="flex items-center gap-8 mb-6">
+<div>
+<p class="font-label-sm text-label-sm text-text-muted uppercase">Gordura</p>
+<div class="flex items-center gap-1">
+<span class="font-headline-md text-headline-md">14.5%</span>
+<span class="material-symbols-outlined text-primary-fixed text-[18px]">remove</span>
+</div>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-muted uppercase">Massa Magra</p>
+<span class="font-headline-md text-headline-md">75.0 kg</span>
+</div>
+</div>
+<button class="w-full h-12 flex items-center justify-center gap-2 border border-border-subtle rounded-full font-label-md text-label-md hover:border-primary-fixed hover:text-primary-fixed transition-all active:scale-95">
+                        VER DETALHES
+                        <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Loading/Empty State Suffix -->
+<div class="text-center py-6">
+<p class="text-text-muted font-label-sm text-label-sm">FIM DO HISTÓRICO DISPONÍVEL</p>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-2xl glass-nav bg-pure-black/80 border-t border-border-subtle">
+<div class="flex justify-around items-center h-button-height-standard px-gutter w-full max-w-md mx-auto">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<!-- Workout -->
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-sm text-label-sm mt-1">Workout</span>
+</a>
+<!-- Chat -->
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm mt-1">Chat</span>
+</a>
+<!-- Profile (Active) -->
+<a class="flex flex-col items-center justify-center text-primary-fixed font-bold bg-surface-variant/30 rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                // Simple ripple effect placeholder or interaction logic
+                console.log('Interaction detected on:', el.textContent.trim());
+            });
+        });
+
+        // Atmospheric Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-2xl');
+                header.style.backgroundColor = 'rgba(19, 19, 19, 0.95)';
+            } else {
+                header.classList.remove('shadow-2xl');
+                header.style.backgroundColor = 'rgba(19, 19, 19, 0.8)';
+            }
+        });
+    </script>
+</body></html>

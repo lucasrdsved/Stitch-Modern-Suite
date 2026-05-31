@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>TRAINFLOW | Nova Avaliação Física</title>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#fefdff",
+                    "on-tertiary-fixed-variant": "#274b5f",
+                    "surface-container-highest": "#353534",
+                    "primary-fixed-dim": "#aed50d",
+                    "on-primary-container": "#566c00",
+                    "on-error-container": "#ffdad6",
+                    "secondary": "#c8c6c5",
+                    "surface-variant": "#353534",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "outline": "#8f937b",
+                    "on-tertiary-container": "#45687d",
+                    "primary": "#ffffef",
+                    "surface": "#131313",
+                    "on-primary-fixed-variant": "#3d4d00",
+                    "inverse-surface": "#e5e2e1",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-bright": "#3a3939",
+                    "error-container": "#93000a",
+                    "secondary-container": "#474746",
+                    "inverse-on-surface": "#313030",
+                    "on-error": "#690005",
+                    "tertiary-container": "#c2e6ff",
+                    "on-secondary-fixed-variant": "#474746",
+                    "tertiary-fixed-dim": "#a8cbe4",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-dim": "#131313",
+                    "pure-black": "#000000",
+                    "on-surface": "#e5e2e1",
+                    "outline-variant": "#444934",
+                    "text-muted": "#888888",
+                    "primary-fixed": "#c9f236",
+                    "tertiary-fixed": "#c5e7ff",
+                    "primary-container": "#c8f135",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "surface-tint": "#aed50d",
+                    "on-tertiary-fixed": "#001e2d",
+                    "inverse-primary": "#526600",
+                    "background": "#131313",
+                    "on-tertiary": "#0c3447",
+                    "on-secondary": "#313030",
+                    "on-primary-fixed": "#171e00",
+                    "on-primary": "#293500",
+                    "status-warning": "#FFB800",
+                    "error": "#ffb4ab",
+                    "surface-container": "#201f1f",
+                    "on-surface-variant": "#c5c9ae",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-background": "#e5e2e1",
+                    "surface-container-lowest": "#0e0e0e",
+                    "border-subtle": "#333333",
+                    "surface-container-low": "#1c1b1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "1rem",
+                    "button-height-heavy": "5rem",
+                    "touch-target-min": "2.75rem",
+                    "button-height-standard": "3.5rem",
+                    "stack-gap-lg": "2rem",
+                    "container-margin": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Bebas Neue"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Bebas Neue"],
+                    "body-md": ["Inter"],
+                    "display-giant": ["Bebas Neue"],
+                    "headline-lg": ["Bebas Neue"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-card {
+        background: rgba(26, 26, 26, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid #333333;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      input:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #c9f236;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333333;
+        border-radius: 10px;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-background min-h-screen font-body-md pb-32 bg-pure-black">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-pure-black/90 backdrop-blur-xl border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="fitness_center">fitness_center</span>
+<h1 class="font-display-lg text-display-lg text-primary-fixed tracking-tighter">TRAINFLOW</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Trainer Profile" class="w-full h-full object-cover" data-alt="A professional male fitness trainer with a sharp jawline and athletic build, wearing a sleek black compression shirt. He is in a modern high-end gym setting with moody cinematic lighting, featuring deep shadows and electric lime accents. The style is sharp, clean, and professional, emphasizing high-performance coaching and expertise." src="https://lh3.googleusercontent.com/aida/ADBb0uhWO8SaIRTJQeFwOMC-VQqH7oehEHR1ugGm9V8V0kwEKN08Vf0A793jvLSjZS4c155lB8RhzRxxjFeW_rQ9LVTUnrWMSbAytzVmmVFfrwdyc5EgbNXzJc7rdJOooPFKYNqZPrXnbroHIqLXuV5t3JjJ9OzHxrITjLR7QtAOBrdQPUfP7eTalEHY6ftmZKbxZK302Fiezx6d9YJfQ_4He2YqXq9kPQibcu6paeRTNS1ZUSqtvwWIbLs7iCQ"/>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="mt-20 px-gutter max-w-2xl mx-auto space-y-stack-gap-lg">
+<!-- Page Title -->
+<section class="pt-6"><h2 class="font-display-lg text-display-lg text-primary-fixed uppercase italic leading-none">Nova Avaliação Física</h2><div class="flex items-center gap-2 mt-2"><span class="w-2 h-2 rounded-full bg-primary-fixed"></span><p class="text-on-surface-variant font-label-md tracking-wider uppercase">Protocolo Pollock 7 Dobras • v2.4</p></div></section>
+<!-- Identification Section -->
+<section class="bg-surface-container-lowest/50 border border-border-subtle rounded-2xl p-6"><div class="flex items-center gap-3 border-b border-border-subtle/30 pb-4 mb-6"><span class="material-symbols-outlined text-primary-fixed text-3xl">straighten</span><h3 class="font-headline-md text-headline-md uppercase tracking-tight">Biometria Básica</h3></div><div class="grid grid-cols-2 gap-4"><div class="flex flex-col gap-2 p-4 bg-pure-black rounded-xl border border-border-subtle"><label class="font-label-sm text-text-muted uppercase text-center">Peso Corporal (kg)</label><input class="bg-transparent border-none p-0 text-display-lg font-display-lg text-primary-fixed text-center focus:ring-0" id="input-weight" placeholder="00.0" step="0.1" type="number"/></div><div class="flex flex-col gap-2 p-4 bg-pure-black rounded-xl border border-border-subtle"><label class="font-label-sm text-text-muted uppercase text-center">Estatura (cm)</label><input class="bg-transparent border-none p-0 text-display-lg font-display-lg text-primary-fixed text-center focus:ring-0" id="input-height" placeholder="000" type="number"/></div></div></section>
+<!-- Basic Data Section -->
+<section class="bg-surface-container-lowest/50 border border-border-subtle rounded-2xl p-6"><div class="flex items-center gap-3 border-b border-border-subtle/30 pb-4 mb-6"><span class="material-symbols-outlined text-primary-fixed text-3xl">architecture</span><h3 class="font-headline-md text-headline-md uppercase tracking-tight">Composição: Dobras (mm)</h3></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">{[ "Peitoral", "Axilar Média", "Tríceps", "Subescapular", "Abdominal", "Suprailíaca", "Coxa" ].map(fold =&gt; `<div class="flex items-center justify-between bg-pure-black p-4 rounded-xl border border-border-subtle hover:border-primary-fixed/30 transition-colors"><span class="font-label-md uppercase text-on-surface-variant">${fold}</span><input class="skinfold-input w-20 bg-surface-container-lowest border-none rounded-lg text-right font-headline-md text-primary-fixed focus:ring-1 focus:ring-primary-fixed" type="number" value="0"/></div>`).join('')}</div></section>
+<!-- Skinfolds Section (Pollock 7) -->
+<section class="glass-card rounded-xl p-6">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="architecture">architecture</span>
+<h3 class="font-headline-md text-headline-md uppercase">Dobras Cutâneas (mm)</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-border-subtle">
+<span class="font-label-md uppercase">Peitoral</span>
+<input class="skinfold-input w-20 bg-pure-black border-none rounded text-right font-headline-md text-primary-fixed focus:ring-1 focus:ring-primary-fixed" type="number" value="0"/>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-border-subtle">
+<span class="font-label-md uppercase">Axilar Média</span>
+<input class="skinfold-input w-20 bg-pure-black border-none rounded text-right font-headline-md text-primary-fixed focus:ring-1 focus:ring-primary-fixed" type="number" value="0"/>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-border-subtle">
+<span class="font-label-md uppercase">Tríceps</span>
+<input class="skinfold-input w-20 bg-pure-black border-none rounded text-right font-headline-md text-primary-fixed focus:ring-1 focus:ring-primary-fixed" type="number" value="0"/>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-border-subtle">
+<span class="font-label-md uppercase">Subescapular</span>
+<input class="skinfold-input w-20 bg-pure-black border-none rounded text-right font-headline-md text-primary-fixed focus:ring-1 focus:ring-primary-fixed" type="number" value="0"/>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-border-subtle">
+<span class="font-label-md uppercase">Abdominal</span>
+<input class="skinfold-input w-20 bg-pure-black border-none rounded text-right font-headline-md text-primary-fixed focus:ring-1 focus:ring-primary-fixed" type="number" value="0"/>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-border-subtle">
+<span class="font-label-md uppercase">Suprailíaca</span>
+<input class="skinfold-input w-20 bg-pure-black border-none rounded text-right font-headline-md text-primary-fixed focus:ring-1 focus:ring-primary-fixed" type="number" value="0"/>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-border-subtle sm:col-span-2">
+<span class="font-label-md uppercase">Coxa</span>
+<input class="skinfold-input w-20 bg-pure-black border-none rounded text-right font-headline-md text-primary-fixed focus:ring-1 focus:ring-primary-fixed" type="number" value="0"/>
+</div>
+</div>
+</section>
+<!-- Preview de Resultados Card -->
+<section class="relative overflow-hidden bg-pure-black border-2 border-primary-fixed rounded-3xl p-8 text-on-surface shadow-[0_0_40px_rgba(201,242,54,0.15)]"><div class="relative z-10 flex flex-col gap-8"><div class="flex justify-between items-center"><div class="flex flex-col"><h3 class="font-display-lg text-4xl uppercase italic text-primary-fixed">Preview Analítico</h3><p class="text-xs uppercase tracking-[0.2em] text-primary-fixed/60">Processamento em Tempo Real</p></div><div class="flex items-center gap-2 bg-primary-fixed/10 border border-primary-fixed/20 px-3 py-1.5 rounded-full"><span class="w-2 h-2 bg-primary-fixed rounded-full animate-pulse"></span><span class="text-primary-fixed font-label-sm uppercase">Live Data</span></div></div><div class="grid grid-cols-3 gap-6 divide-x divide-border-subtle"><div class="flex flex-col items-center"><span class="font-label-sm uppercase text-text-muted mb-1">IMC</span><span class="font-display-lg text-5xl text-primary-fixed" id="result-imc">--</span></div><div class="flex flex-col items-center px-4"><span class="font-label-sm uppercase text-text-muted mb-1">% Gordura</span><span class="font-display-lg text-5xl text-primary-fixed" id="result-bf">--%</span></div><div class="flex flex-col items-center"><span class="font-label-sm uppercase text-text-muted mb-1">Somatotipo</span><span class="font-headline-md text-2xl uppercase mt-2 text-on-surface" id="result-somatotipo">---</span></div></div><div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden"><div class="h-full bg-primary-fixed w-[45%] shadow-[0_0_10px_#c9f236]"></div></div></div></section>
+<!-- Final Action -->
+<div class="pt-4 flex flex-col gap-4">
+<button class="w-full h-16 bg-primary-fixed text-on-primary-fixed font-headline-md text-headline-md rounded-full shadow-lg shadow-primary-fixed/20 flex items-center justify-center gap-3 active:scale-95 transition-all hover:brightness-110">
+                SALVAR E ENVIAR CONVITE
+                <span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+<button class="w-full h-12 border border-border-subtle text-on-surface-variant font-label-md rounded-full hover:bg-surface-variant/20 transition-colors uppercase">
+                Descartar Rascunho
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 bg-pure-black/80 backdrop-blur-3xl border-t border-border-subtle h-button-height-standard md:hidden">
+<div class="flex justify-around items-center h-full px-gutter max-w-md mx-auto">
+<div class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary-fixed font-bold bg-surface-variant/30 rounded-full px-4 py-1 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-sm text-label-sm">Workout</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</div>
+</nav>
+<script>
+        // Simple Interaction and Calculation Logic
+        const weightInput = document.getElementById('input-weight');
+        const heightInput = document.getElementById('input-height');
+        const skinfoldInputs = document.querySelectorAll('.skinfold-input');
+        
+        const imcEl = document.getElementById('result-imc');
+        const bfEl = document.getElementById('result-bf');
+        const somatotipoEl = document.getElementById('result-somatotipo');
+
+        function updateResults() {
+            const weight = parseFloat(weightInput.value) || 0;
+            const height = parseFloat(heightInput.value) / 100 || 0;
+            
+            // IMC
+            if (weight > 0 && height > 0) {
+                const imc = (weight / (height * height)).toFixed(1);
+                imcEl.textContent = imc;
+            } else {
+                imcEl.textContent = '--';
+            }
+
+            // BF Pollock 7 (Mock simplified formula for real-time visual effect)
+            let sum = 0;
+            skinfoldInputs.forEach(input => sum += parseFloat(input.value) || 0);
+            
+            if (sum > 0) {
+                // Simplified visualization of body fat based on sum
+                const bf = (sum * 0.15 + 5).toFixed(1); 
+                bfEl.textContent = bf + '%';
+                
+                // Mock Somatotype logic
+                if (sum < 50) somatotipoEl.textContent = 'Ectomorfo';
+                else if (sum < 100) somatotipoEl.textContent = 'Mesomorfo';
+                else somatotipoEl.textContent = 'Endomorfo';
+            } else {
+                bfEl.textContent = '--%';
+                somatotipoEl.textContent = '---';
+            }
+        }
+
+        weightInput.addEventListener('input', updateResults);
+        heightInput.addEventListener('input', updateResults);
+        skinfoldInputs.forEach(input => input.addEventListener('input', updateResults));
+
+        // Initial trigger
+        updateResults();
+
+        // Add visual feedback on input
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.02]');
+                input.parentElement.style.transition = 'all 0.2s ease';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.02]');
+            });
+        });
+    </script>
+</body></html>

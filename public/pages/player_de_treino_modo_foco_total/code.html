@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TRAINFLOW | Foco Total</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "on-background": "#e5e2e1",
+                    "surface-tint": "#aed50d",
+                    "surface": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "on-error-container": "#ffdad6",
+                    "inverse-surface": "#e5e2e1",
+                    "on-tertiary-fixed": "#001e2d",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "surface-bright": "#3a3939",
+                    "on-primary-fixed-variant": "#3d4d00",
+                    "surface-container-highest": "#353534",
+                    "background": "#131313",
+                    "primary-fixed-dim": "#aed50d",
+                    "on-primary-fixed": "#171e00",
+                    "secondary-fixed": "#e5e2e1",
+                    "inverse-primary": "#526600",
+                    "on-primary-container": "#566c00",
+                    "on-primary": "#293500",
+                    "on-surface": "#e5e2e1",
+                    "on-secondary-container": "#b7b5b4",
+                    "text-muted": "#888888",
+                    "border-subtle": "#333333",
+                    "on-tertiary-fixed-variant": "#274b5f",
+                    "status-warning": "#FFB800",
+                    "surface-container": "#201f1f",
+                    "tertiary": "#fefdff",
+                    "on-secondary-fixed-variant": "#474746",
+                    "surface-variant": "#353534",
+                    "tertiary-fixed": "#c5e7ff",
+                    "outline-variant": "#444934",
+                    "surface-container-lowest": "#0e0e0e",
+                    "primary": "#ffffef",
+                    "on-surface-variant": "#c5c9ae",
+                    "surface-dim": "#131313",
+                    "primary-container": "#c8f135",
+                    "inverse-on-surface": "#313030",
+                    "tertiary-container": "#c2e6ff",
+                    "on-secondary": "#313030",
+                    "secondary": "#c8c6c5",
+                    "tertiary-fixed-dim": "#a8cbe4",
+                    "secondary-container": "#474746",
+                    "surface-container-low": "#1c1b1b",
+                    "pure-black": "#000000",
+                    "on-tertiary": "#0c3447",
+                    "error": "#ffb4ab",
+                    "outline": "#8f937b",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "error-container": "#93000a",
+                    "primary-fixed": "#c9f236",
+                    "on-tertiary-container": "#45687d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "1rem",
+                    "button-height-standard": "3.5rem",
+                    "stack-gap-lg": "2rem",
+                    "touch-target-min": "2.75rem",
+                    "container-margin": "1.5rem",
+                    "button-height-heavy": "5rem"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Bebas Neue"],
+                    "display-lg": ["Bebas Neue"],
+                    "display-giant": ["Bebas Neue"],
+                    "headline-lg": ["Bebas Neue"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .electric-glow {
+            box-shadow: 0 0 25px rgba(201, 242, 54, 0.3);
+        }
+
+        .progress-bar-fill {
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes pulse-intense {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+        }
+
+        .pulse-active {
+            animation: pulse-intense 2s infinite ease-in-out;
+        }
+
+        .bebas { font-family: 'Bebas Neue', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- Top Navigation (Shell Implementation) -->
+<header class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-fixed active:scale-95 transition-transform cursor-pointer">arrow_back</span>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary-fixed tracking-tighter uppercase">TRAINFLOW</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border-subtle flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhuFX4_AYk1YzBQuMlRvVUZ1ti216AHHYAgRbWHswupiPZta3YXxupKFuUxA7ljgzt7N5oMS36PgakgFYLlawq00457HlJKNMr5r76rA89xnx36mZE4qOCGBXoNBAv46L5J2QArNbO5gQDy8FUCTwuwCuSR0YvAy3L1waRSA1fzD1LiTE0y79TI-g0Kwx0b0c-A_rcI3IZO31MP1DDF06K_OQ_Hk8ISkdHJrMP3hjge-sHpMPONcFrJ42A"/>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity cursor-pointer">notifications</span>
+</div>
+</header>
+<!-- Main Workout Player -->
+<main class="flex-1 flex flex-col pt-24 pb-32 px-container-margin max-w-lg mx-auto w-full gap-stack-gap-lg">
+<!-- Exercise Status Header -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-primary-fixed font-label-md tracking-widest uppercase">Série 3 de 4</span>
+<div class="flex items-center gap-1 text-status-warning">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-sm">RP ATUAL: 140KG</span>
+</div>
+</div>
+<h2 class="font-headline-lg text-headline-lg leading-none uppercase tracking-tight">LEVANTAMENTO TERRA</h2>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden mt-2">
+<div class="progress-bar-fill h-full bg-primary-fixed" style="width: 75%"></div>
+</div>
+</div>
+<!-- Immersive Exercise Visual/Background -->
+<div class="relative w-full aspect-video rounded-xl overflow-hidden glass-panel group">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" data-alt="A gritty, high-contrast black and white photograph of a powerful muscular athlete performing a heavy deadlift in a dark industrial gym. Intense green neon light strips on the background wall create a geometric pattern that slices through the shadows. The atmosphere is aggressive and focused, with sweat glistening on the athlete's skin under dramatic overhead spotlighting. Professional sports photography style." src="https://lh3.googleusercontent.com/aida/ADBb0ujM4KsUtW9C1r04X4keyb9b82DdU9vWNalEzWcfmPPaHiJJm_Z7b9VO8JOy9LKqd96Hx_qFmNzHxHY1pIv5HPCFxsDZmD_5YAFNUcvA5Ml1Jog4mWJ4JpSYmc5qk12HZUEj6bbyndzwwVHQMFOL5y6pruso78YUAMlFZwFdowUIBCirqmuv-s0vVyKB0WCmBqCksaCvqi_Ig-fRycx4RfTcubmUm-uuuAB0bLZUM-Vw7XzDIeEOOkUjIIU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-pure-black via-transparent to-transparent"></div>
+<!-- Intensity Indicator Overlay -->
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div class="flex flex-col">
+<p class="font-label-sm text-primary-fixed-dim opacity-70">INTENSIDADE ATUAL</p>
+<p class="font-headline-md text-primary-fixed">92% RPE 9</p>
+</div>
+<div class="flex gap-2">
+<div class="w-2 h-8 bg-primary-fixed/20 rounded-full flex flex-col justify-end">
+<div class="w-full h-4/5 bg-primary-fixed rounded-full"></div>
+</div>
+<div class="w-2 h-8 bg-primary-fixed/20 rounded-full flex flex-col justify-end">
+<div class="w-full h-full bg-primary-fixed rounded-full"></div>
+</div>
+<div class="w-2 h-8 bg-primary-fixed/20 rounded-full flex flex-col justify-end">
+<div class="w-full h-2/3 bg-primary-fixed rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Central Action Area: Rest Timer -->
+<div class="flex flex-col items-center justify-center py-8 relative">
+<div class="absolute inset-0 flex items-center justify-center opacity-10">
+<span class="font-display-giant text-display-giant select-none">FOCUS</span>
+</div>
+<p class="font-label-md text-primary-fixed tracking-[0.3em] uppercase mb-2">TEMPO DE DESCANSO</p>
+<div class="font-display-giant text-display-giant leading-none tracking-tighter text-on-background pulse-active" id="rest-timer">
+                01:28
+            </div>
+<div class="flex gap-4 mt-8">
+<button class="w-14 h-14 rounded-full border border-border-subtle flex items-center justify-center active:scale-90 transition-transform" onclick="adjustTime(-15)">
+<span class="material-symbols-outlined text-on-surface">15mp</span>
+</button>
+<button class="px-8 h-14 rounded-full bg-primary-fixed text-pure-black font-bold flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all electric-glow" id="timer-toggle" onclick="toggleTimer()">
+<span class="material-symbols-outlined" id="timer-icon">pause</span>
+<span class="font-label-md">PULAR DESCANSO</span>
+</button>
+<button class="w-14 h-14 rounded-full border border-border-subtle flex items-center justify-center active:scale-90 transition-transform" onclick="adjustTime(15)">
+<span class="material-symbols-outlined text-on-surface">15mp</span>
+</button>
+</div>
+</div>
+<!-- Metric Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-panel p-container-margin rounded-xl flex flex-col gap-1 border-l-4 border-l-primary-fixed">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-widest">Peso</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-headline-lg">120</span>
+<span class="font-headline-md text-on-surface-variant">KG</span>
+</div>
+</div>
+<div class="glass-panel p-container-margin rounded-xl flex flex-col gap-1 border-l-4 border-l-primary-fixed">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-widest">Reps</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-headline-lg">08</span>
+<span class="font-headline-md text-on-surface-variant">TARGET</span>
+</div>
+</div>
+</div>
+<!-- Media Controls Integrated -->
+<div class="glass-panel px-6 py-4 rounded-full flex items-center justify-between border border-border-subtle mt-4">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex-shrink-0 overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Abstract music album art with dark moody textures, electric lime geometric accents and liquid glitch effects. High-end modern music player aesthetic, professional lighting, cinematic vibe." src="https://lh3.googleusercontent.com/aida/ADBb0ug7nIBSx6GC35dm-oxihMG0UOm1BTX5IP1FTtnUP8m9hRW4U9ubHcva1rV29hYGZQe_Aqh2ULj9AAqWmxnENoMnYQPUEot4hAXcm18zW12LIW2v6cpFOiu9khDQCHjxGDSlIPs65w3fg8r8HkxHqFQaoqfr9hzKr40SJS4lgW5wIG0S6kifB0BMbGquhzFhqXbUPJg1sOASGGSef8LlyQ04Agj-yIBAM30fAebq3lzidQmpoCW5SzxUGg"/>
+</div>
+<div class="flex flex-col truncate">
+<span class="font-label-md text-on-surface truncate">PHONK FOCUS - VOLUME 1</span>
+<span class="text-[10px] text-primary-fixed opacity-80 uppercase tracking-tighter">SPOTIFY CONNECTED</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer active:scale-90 transition-transform">skip_previous</span>
+<div class="w-10 h-10 rounded-full bg-on-surface text-pure-black flex items-center justify-center cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer active:scale-90 transition-transform">skip_next</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-pure-black/80 dark:bg-pure-black/80 backdrop-blur-3xl border-t border-border-subtle">
+<div class="flex justify-around items-center h-button-height-standard px-gutter w-full max-w-md mx-auto">
+<div class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary-fixed font-bold bg-surface-variant/30 rounded-full px-4 py-1 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="font-label-sm text-label-sm">Workout</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</div>
+</nav>
+<script>
+        let seconds = 88; // 01:28
+        let isRunning = true;
+        const timerDisplay = document.getElementById('rest-timer');
+        const timerIcon = document.getElementById('timer-icon');
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            
+            if (seconds <= 10) {
+                timerDisplay.classList.add('text-status-warning');
+            } else {
+                timerDisplay.classList.remove('text-status-warning');
+            }
+        }
+
+        function toggleTimer() {
+            isRunning = !isRunning;
+            timerIcon.textContent = isRunning ? 'pause' : 'play_arrow';
+            if(isRunning) {
+                timerDisplay.classList.add('pulse-active');
+            } else {
+                timerDisplay.classList.remove('pulse-active');
+            }
+        }
+
+        function adjustTime(val) {
+            seconds = Math.max(0, seconds + val);
+            updateTimerDisplay();
+        }
+
+        setInterval(() => {
+            if (isRunning && seconds > 0) {
+                seconds--;
+                updateTimerDisplay();
+            }
+        }, 1000);
+
+        // Haptic feedback simulation
+        document.querySelectorAll('button, .material-symbols-outlined').forEach(el => {
+            el.addEventListener('click', () => {
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(10);
+                }
+            });
+        });
+    </script>
+</body></html>
