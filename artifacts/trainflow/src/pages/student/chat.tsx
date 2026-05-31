@@ -1,15 +1,9 @@
-import { useListConversations } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
-import { MOCK_CONVERSATIONS } from "@/lib/mock-data";
+import { listConversations } from "@/lib/mock-store";
 
 export default function StudentChat() {
-  const { data: conversationsResponse, isLoading } = useListConversations();
-  const conversations = conversationsResponse || MOCK_CONVERSATIONS;
-
-  if (isLoading) {
-    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
-  }
+  const conversations = listConversations();
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">

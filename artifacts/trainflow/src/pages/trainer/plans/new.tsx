@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useCreatePlan } from "@workspace/api-client-react";
 import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { MOCK_EXERCISES } from "@/lib/mock-data";
+import { createPlan, listExercises } from "@/lib/mock-store";
 
 export default function TrainerNewPlan() {
   const [, setLocation] = useLocation();
@@ -11,6 +10,7 @@ export default function TrainerNewPlan() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [selectedExercises, setSelectedExercises] = useState<any[]>([]);
+  const exercises = listExercises();
 
   const handleAddExercise = (ex: any) => {
     if (selectedExercises.find(e => e.id === ex.id)) return;
@@ -27,15 +27,34 @@ export default function TrainerNewPlan() {
       return;
     }
     
+    const plan = createPlan({
+      name,
+      description,
+      studentId: 1,
+      days: [
+        {
+          id: 1,
+          name: "Dia A",
+          exercises: selectedExercises.map((ex, idx) => ({
+            id: idx + 1,
+            exerciseName: ex.name,
+            sets: ex.sets,
+            reps: ex.reps,
+            restSeconds: ex.rest,
+          })),
+        },
+      ],
+    });
+
     toast({ title: "Sucesso!", description: "Plano de treino criado." });
-    setLocation("/dashboard");
+    setLocation(`/t/plans/${plan.id}`);
   };
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-6 selection:bg-primary selection:text-black">
       <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-6 h-16">
         <div className="flex items-center gap-4">
-          <Link href="/dashboard" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors text-white">
+          <Link href="/t/dashboard" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors text-white">
             <span className="material-symbols-outlined text-2xl">arrow_back</span>
           </Link>
           <h1 className="font-display text-primary tracking-widest text-3xl mt-1 uppercase">BUILDER</h1>
@@ -73,10 +92,10 @@ export default function TrainerNewPlan() {
            <section className="flex flex-col gap-6">
               <div className="flex items-center justify-between px-1">
                  <h3 className="text-[11px] text-[#888888] uppercase tracking-[0.3em] font-black">Biblioteca</h3>
-                 <span className="text-[10px] text-[#444] font-bold uppercase">{MOCK_EXERCISES.length} ITENS</span>
+                 <span className="text-[10px] text-[#444] font-bold uppercase">{exercises.length} ITENS</span>
               </div>
               <div className="space-y-3">
-                 {MOCK_EXERCISES.map(ex => (
+                 {exercises.map((ex: any) => (
                    <div key={ex.id} className="bg-[#1A1A1A] border border-white/5 rounded-2xl p-4 flex items-center justify-between group hover:border-white/10 transition-all">
                       <div className="flex items-center gap-4">
                          <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center text-[#222]">

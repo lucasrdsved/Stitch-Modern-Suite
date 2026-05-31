@@ -1,22 +1,18 @@
 import { useState } from "react";
-import { useTrainerLogin } from "@workspace/api-client-react";
 import { useLocation, Link } from "wouter";
-import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/lib/auth";
 
 export default function TrainerLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const login = useTrainerLogin();
   const [, setLocation] = useLocation();
-  const queryClient = useQueryClient();
-  const { toast } = useToast();
+  const { loginAsTrainer } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Bypassing validation for any input
+    loginAsTrainer({ email: email || "trainer@trainflow.app" });
     setLocation("/t/dashboard");
   };
 
@@ -65,16 +61,19 @@ export default function TrainerLogin() {
           <Button 
             type="submit" 
             className="w-full h-14 bg-primary text-black font-display text-2xl rounded-full flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all duration-200 mt-4 electric-glow tracking-wide"
-            disabled={login.isPending}
+            disabled={false}
           >
-            {login.isPending ? "CARREGANDO..." : "ACESSAR"}
-            {!login.isPending && <span className="material-symbols-outlined text-[28px]">arrow_forward</span>}
+            ACESSAR
+            <span className="material-symbols-outlined text-[28px]">arrow_forward</span>
           </Button>
 
           <Button
             type="button"
             variant="outline"
-            onClick={() => setLocation("/t/dashboard")}
+            onClick={() => {
+              loginAsTrainer({ email: email || "trainer@trainflow.app" });
+              setLocation("/t/dashboard");
+            }}
             className="w-full h-14 bg-transparent border-primary/30 text-primary font-display text-xl rounded-full hover:bg-primary/10 transition-all duration-200"
           >
             ACESSO RÁPIDO (PREVIEW)

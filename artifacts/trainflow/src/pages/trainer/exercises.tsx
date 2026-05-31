@@ -1,15 +1,16 @@
-import { useListExercises } from "@workspace/api-client-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { TrainerBottomNav } from "@/components/trainer-bottom-nav";
-import { MOCK_EXERCISES } from "@/lib/mock-data";
+import { listExercises } from "@/lib/mock-store";
 
 export default function TrainerExercises() {
   const [search, setSearch] = useState("");
-  const { data: exercisesResponse, isLoading, isError } = useListExercises({ search });
-  const exercises = exercisesResponse || (isError || !exercisesResponse ? MOCK_EXERCISES : undefined);
+  const allExercises = listExercises();
+  const exercises = search
+    ? allExercises.filter((ex: any) => ex.name.toLowerCase().includes(search.toLowerCase()))
+    : allExercises;
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">
@@ -37,12 +38,8 @@ export default function TrainerExercises() {
         </section>
 
         <div className="grid grid-cols-1 gap-3">
-          {isLoading ? (
-            Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="bg-[#1A1A1A] rounded-2xl p-4 h-20 border border-[#333333] animate-pulse" />
-            ))
-          ) : exercises?.length ? (
-            exercises.map((ex) => (
+          {exercises?.length ? (
+            exercises.map((ex: any) => (
               <div key={ex.id} className="bg-[#1A1A1A]/60 backdrop-blur-xl border border-[#333333] p-4 rounded-xl flex items-center gap-4 hover:border-primary transition-colors group">
                 <div className="w-14 h-14 bg-[#222222] rounded-xl flex items-center justify-center shrink-0 overflow-hidden border border-[#333333]">
                   {ex.gifUrl ? (

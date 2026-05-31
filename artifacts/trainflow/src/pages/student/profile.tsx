@@ -1,15 +1,13 @@
 import { useAuth } from "@/lib/auth";
-import { useGetMyLatestAssessment } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
 import { motion } from "framer-motion";
-import { MOCK_ASSESSMENT } from "@/lib/mock-data";
+import { getLatestAssessment } from "@/lib/mock-store";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 
 export default function StudentProfile() {
   const { user, logout } = useAuth();
-  const { data: assessmentResponse, isLoading } = useGetMyLatestAssessment();
-  const assessment = assessmentResponse || MOCK_ASSESSMENT;
+  const assessment = getLatestAssessment();
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">

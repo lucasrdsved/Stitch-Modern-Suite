@@ -1,23 +1,25 @@
 import { useState } from "react";
-import { useStudentMagicLogin } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
-import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
+import { useAuth } from "@/lib/auth";
+import { isStudentOnboarded, setStudentOnboarded } from "@/lib/mock-store";
 
 export default function StudentLogin() {
   const [token, setToken] = useState("");
-  const login = useStudentMagicLogin();
   const [, setLocation] = useLocation();
-  const queryClient = useQueryClient();
-  const { toast } = useToast();
+  const { loginAsStudent } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Bypassing validation for any input
-    setLocation("/home");
+    loginAsStudent();
+    if (isStudentOnboarded()) {
+      setLocation("/home");
+      return;
+    }
+    setStudentOnboarded();
+    setLocation("/welcome");
   };
 
   return (
@@ -55,17 +57,20 @@ export default function StudentLogin() {
           <Button
             type="submit"
             className="w-full h-14 bg-primary text-black font-display text-2xl rounded-full flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all duration-200 mt-4 electric-glow tracking-wide"
-            disabled={login.isPending}
+            disabled={false}
             data-testid="button-submit"
           >
-            {login.isPending ? "VERIFICANDO..." : "ENTRAR"}
-            {!login.isPending && <span className="material-symbols-outlined text-[28px]">arrow_forward</span>}
+            ENTRAR
+            <span className="material-symbols-outlined text-[28px]">arrow_forward</span>
           </Button>
 
           <Button
             type="button"
             variant="outline"
-            onClick={() => setLocation("/home")}
+            onClick={() => {
+              loginAsStudent();
+              setLocation("/home");
+            }}
             className="w-full h-14 bg-transparent border-primary/30 text-primary font-display text-xl rounded-full hover:bg-primary/10 transition-all duration-200"
           >
             ACESSO RÁPIDO (PREVIEW)

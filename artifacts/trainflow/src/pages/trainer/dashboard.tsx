@@ -1,18 +1,16 @@
 import { useAuth } from "@/lib/auth";
-import { useGetTrainerDashboard } from "@workspace/api-client-react";
 import { Link } from "wouter";
-import { MOCK_TRAINER_DASHBOARD } from "@/lib/mock-data";
 import { motion } from "framer-motion";
+import { getTrainerDashboard, listStudents } from "@/lib/mock-store";
 
 export default function TrainerDashboard() {
   const { user } = useAuth();
-  const { data: dashboardResponse, isLoading } = useGetTrainerDashboard();
-  
-  const dashboard = dashboardResponse || MOCK_TRAINER_DASHBOARD;
-
-  if (isLoading) {
-    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
-  }
+  const base = getTrainerDashboard() as any;
+  const students = listStudents();
+  const dashboard = {
+    ...base,
+    activeStudents: students.filter((s: any) => s.status === "active").length,
+  };
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-6 selection:bg-primary selection:text-black">
@@ -68,7 +66,7 @@ export default function TrainerDashboard() {
 
         {/* Action Grid */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-           <Link href="/students" className="bg-primary hover:bg-primary/90 text-black rounded-[32px] p-8 flex flex-col gap-4 group transition-all active:scale-[0.98] shadow-2xl electric-glow">
+           <Link href="/t/students" className="bg-primary hover:bg-primary/90 text-black rounded-[32px] p-8 flex flex-col gap-4 group transition-all active:scale-[0.98] shadow-2xl electric-glow">
               <span className="material-symbols-outlined text-5xl font-bold group-hover:scale-110 transition-transform">group</span>
               <div>
                  <h3 className="font-display text-3xl uppercase leading-none mb-1">Gerenciar Alunos</h3>
@@ -76,7 +74,7 @@ export default function TrainerDashboard() {
               </div>
            </Link>
            <div className="grid grid-cols-1 gap-4">
-              <Link href="/assessments/new" className="bg-[#1A1A1A] border border-white/5 hover:border-primary/30 rounded-[32px] p-6 flex items-center justify-between group transition-all">
+              <Link href="/t/assessments/new" className="bg-[#1A1A1A] border border-white/5 hover:border-primary/30 rounded-[32px] p-6 flex items-center justify-between group transition-all">
                  <div className="flex items-center gap-5">
                     <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                        <span className="material-symbols-outlined">analytics</span>
@@ -88,7 +86,7 @@ export default function TrainerDashboard() {
                  </div>
                  <span className="material-symbols-outlined text-white/10 group-hover:text-primary transition-colors">arrow_forward</span>
               </Link>
-              <Link href="/plans/new" className="bg-[#1A1A1A] border border-white/5 hover:border-primary/30 rounded-[32px] p-6 flex items-center justify-between group transition-all">
+              <Link href="/t/plans/new" className="bg-[#1A1A1A] border border-white/5 hover:border-primary/30 rounded-[32px] p-6 flex items-center justify-between group transition-all">
                  <div className="flex items-center gap-5">
                     <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                        <span className="material-symbols-outlined">fitness_center</span>
@@ -111,7 +109,7 @@ export default function TrainerDashboard() {
            </div>
 
            <div className="bg-[#1A1A1A] border border-white/5 rounded-[32px] overflow-hidden">
-              {dashboard.recentActivity.map((activity, idx) => (
+              {dashboard.recentActivity.map((activity: any, idx: number) => (
                 <div key={activity.id} className={`p-5 flex items-center gap-4 hover:bg-white/5 transition-colors ${idx !== dashboard.recentActivity.length - 1 ? 'border-b border-white/5' : ''}`}>
                    <div className="w-10 h-10 rounded-full bg-black border border-white/10 flex items-center justify-center shrink-0">
                       <span className="material-symbols-outlined text-primary text-xl">notifications</span>

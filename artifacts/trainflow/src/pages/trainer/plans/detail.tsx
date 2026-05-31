@@ -1,11 +1,10 @@
 import { useParams, Link } from "wouter";
-import { useGetPlan, useAddPlanDay, useAddExerciseToDay, useListExercises } from "@workspace/api-client-react";
 import { Button } from "@/components/ui/button";
 import { Plus, Search, X, Dumbbell } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { MOCK_PLAN, MOCK_EXERCISES } from "@/lib/mock-data";
+import { getPlanById, listExercises, updatePlan } from "@/lib/mock-store";
 
 type Exercise = {
   id: number;
@@ -30,12 +29,9 @@ function ExercisePicker({
   const [sets, setSets] = useState("3");
   const [reps, setReps] = useState("12");
   const [rest, setRest] = useState("60");
-
-  const { data: exercisesResponse, isError } = useListExercises(
-    { search: search || undefined },
-    { query: { enabled: open, queryKey: ["exercises", search] } }
-  );
-  const exercises = exercisesResponse || (isError || !exercisesResponse ? MOCK_EXERCISES : []);
+  const exercises = search
+    ? listExercises().filter((ex: any) => ex.name.toLowerCase().includes(search.toLowerCase()))
+    : listExercises();
 
   const handleClose = () => {
     setSearch("");
@@ -175,49 +171,43 @@ function ExercisePicker({
 export default function TrainerPlanDetail() {
   const { id } = useParams();
   const planId = Number(id);
-  const { data: planResponse, isLoading, refetch, isError } = useGetPlan(planId, { query: { enabled: !!planId, queryKey: ["getPlan", planId] } });
-  const plan = planResponse || (isError || !planResponse ? MOCK_PLAN : undefined);
-  const addDay = useAddPlanDay();
-  const addExercise = useAddExerciseToDay();
+  const plan = getPlanById(planId);
   const [activeTab, setActiveTab] = useState(0);
   const [pickerOpen, setPickerOpen] = useState(false);
-
-  if (isLoading) {
-    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
-  }
 
   if (!plan) return <div className="p-6 bg-black text-white">Plano não encontrado</div>;
 
   const currentDay = plan.days?.[activeTab];
 
   const handleAddDay = () => {
-    addDay.mutate(
-      { data: { name: `Dia ${String.fromCharCode(65 + (plan.days?.length || 0))}`, dayOrder: (plan.days?.length || 0) + 1 }, planId },
-      { onSuccess: () => refetch() }
-    );
+    const nextName = `Dia ${String.fromCharCode(65 + (plan.days?.length || 0))}`;
+    updatePlan(planId, (p) => {
+      const nextDayId = Math.max(0, ...(p.days || []).map((d: any) => d.id || 0)) + 1;
+      const nextDay = { id: nextDayId, name: nextName, exercises: [] };
+      return { ...p, days: [...(p.days || []), nextDay] };
+    });
+    setActiveTab(plan.days?.length || 0);
   };
 
   const handleAddExercise = (exerciseId: number, sets: number, reps: number, restSeconds: number) => {
     if (!currentDay) return;
-    addExercise.mutate(
-      {
-        planId,
-        dayId: currentDay.id,
-        data: {
-          exerciseId,
+    const exercise = listExercises().find((e: any) => e.id === exerciseId);
+    updatePlan(planId, (p) => {
+      const days = (p.days || []).map((d: any) => {
+        if (d.id !== currentDay.id) return d;
+        const nextExId = Math.max(0, ...(d.exercises || []).map((e: any) => e.id || 0)) + 1;
+        const nextExercise = {
+          id: nextExId,
+          exerciseName: exercise?.name || `Exercício #${exerciseId}`,
           sets,
           reps: String(reps),
           restSeconds,
-          exerciseOrder: (currentDay.exercises?.length || 0) + 1,
-        },
-      },
-      {
-        onSuccess: () => {
-          refetch();
-          setPickerOpen(false);
-        },
-      }
-    );
+        };
+        return { ...d, exercises: [...(d.exercises || []), nextExercise] };
+      });
+      return { ...p, days };
+    });
+    setPickerOpen(false);
   };
 
   return (
@@ -264,7 +254,7 @@ export default function TrainerPlanDetail() {
           ))}
           <button
             onClick={handleAddDay}
-            disabled={addDay.isPending}
+            disabled={false}
             className="ml-1 px-4 py-2 text-primary font-bold inline-flex items-center gap-1 shrink-0 rounded-full border border-primary/30 bg-primary/10 hover:bg-primary/15 transition disabled:opacity-50"
           >
             <Plus className="w-4 h-4" /> NOVO DIA
@@ -316,7 +306,7 @@ export default function TrainerPlanDetail() {
         open={pickerOpen}
         onClose={() => setPickerOpen(false)}
         onAdd={handleAddExercise}
-        isPending={addExercise.isPending}
+        isPending={false}
       />
     </div>
   );

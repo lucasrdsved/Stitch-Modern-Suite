@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { useListMessages, useSendMessage } from "@workspace/api-client-react";
 import { useRoute, Link } from "wouter";
 import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
-import { MOCK_MESSAGES } from "@/lib/mock-data";
 import { motion, AnimatePresence } from "framer-motion";
+import { appendMessage, listMessages } from "@/lib/mock-store";
 
 export default function StudentConversation() {
   const [, params] = useRoute("/chat/:id");
@@ -12,11 +11,7 @@ export default function StudentConversation() {
   const { user } = useAuth();
   const [content, setContent] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const { data: messagesResponse, isLoading } = useListMessages({ conversationId });
-  const sendMessage = useSendMessage();
-
-  const messages = messagesResponse || MOCK_MESSAGES;
+  const [messages, setMessages] = useState(() => listMessages(conversationId));
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -27,16 +22,21 @@ export default function StudentConversation() {
   const handleSend = async () => {
     if (!content.trim()) return;
     try {
-      await sendMessage.mutateAsync({ conversationId, content });
+      const sentAt = new Date().toISOString();
+      const message = {
+        id: Date.now(),
+        content,
+        senderId: user?.id || 0,
+        senderName: user?.fullName || "Você",
+        sentAt,
+      };
+      const next = appendMessage(conversationId, message);
+      setMessages(next);
       setContent("");
     } catch (error) {
       console.error("Failed to send message", error);
     }
   };
-
-  if (isLoading) {
-    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
-  }
 
   return (
     <div className="bg-black text-white font-sans h-[100dvh] flex flex-col selection:bg-primary selection:text-black overflow-hidden">

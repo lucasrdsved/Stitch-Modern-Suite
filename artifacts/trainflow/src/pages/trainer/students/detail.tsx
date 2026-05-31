@@ -1,26 +1,30 @@
-import { useGetStudent, useListStudentAssessments } from "@workspace/api-client-react";
 import { useRoute, Link } from "wouter";
 import { MOCK_STUDENT_DETAIL } from "@/lib/mock-data";
-import { Button } from "@/components/ui/button";
+import { getLatestAssessment, getSessions, getStudentById, listPlans } from "@/lib/mock-store";
 
 export default function TrainerStudentDetail() {
-  const [, params] = useRoute("/students/:id");
+  const [, params] = useRoute("/t/students/:id");
   const studentId = parseInt(params?.id || "0");
 
-  const { data: studentResponse, isLoading } = useGetStudent({ id: studentId });
-  const { data: assessments } = useListStudentAssessments({ studentId });
+  const baseStudent = getStudentById(studentId);
+  const assessment = getLatestAssessment();
+  const sessions = getSessions();
+  const plans = listPlans().filter((p: any) => p.studentId === studentId);
+  const plan = plans[0] || null;
 
-  const student = studentResponse || MOCK_STUDENT_DETAIL;
-
-  if (isLoading) {
-    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
-  }
+  const student = {
+    ...MOCK_STUDENT_DETAIL,
+    ...baseStudent,
+    totalSessions: sessions.length,
+    latestAssessment: assessment,
+    activePlan: plan ? { id: plan.id, name: plan.name } : (MOCK_STUDENT_DETAIL as any).activePlan,
+  };
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-6 selection:bg-primary selection:text-black">
       <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-6 h-16">
         <div className="flex items-center gap-4">
-          <Link href="/students" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors text-white">
+          <Link href="/t/students" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors text-white">
             <span className="material-symbols-outlined text-2xl">arrow_back</span>
           </Link>
           <h1 className="font-display text-primary tracking-widest text-3xl mt-1 uppercase">DETALHE</h1>
@@ -78,7 +82,7 @@ export default function TrainerStudentDetail() {
            <div className="bg-[#1A1A1A] border border-white/5 rounded-[32px] p-6 md:col-span-2">
               <div className="flex items-center justify-between mb-6">
                  <span className="text-[10px] text-[#888888] uppercase font-black tracking-widest">Plano de Treino Ativo</span>
-                 <Link href="/plans/new" className="text-[10px] text-primary font-black uppercase tracking-widest hover:underline">Alterar Plano</Link>
+                 <Link href="/t/plans/new" className="text-[10px] text-primary font-black uppercase tracking-widest hover:underline">Alterar Plano</Link>
               </div>
               <div className="flex flex-col gap-4">
                  <h3 className="font-display text-4xl text-white uppercase italic tracking-tighter leading-none">
@@ -94,14 +98,14 @@ export default function TrainerStudentDetail() {
 
         {/* Assessment & History Links */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-           <Link href="/assessments/new" className="h-20 bg-primary hover:bg-primary/90 text-black rounded-3xl flex items-center justify-between px-8 group transition-all active:scale-[0.98]">
+           <Link href="/t/assessments/new" className="h-20 bg-primary hover:bg-primary/90 text-black rounded-3xl flex items-center justify-between px-8 group transition-all active:scale-[0.98]">
               <div className="flex items-center gap-4">
                  <span className="material-symbols-outlined text-3xl font-bold">analytics</span>
                  <span className="font-display text-2xl uppercase tracking-wider">Nova Avaliação</span>
               </div>
               <span className="material-symbols-outlined font-bold">arrow_forward</span>
            </Link>
-           <Link href={`/chat/${studentId}`} className="h-20 bg-[#1A1A1A] border border-white/5 hover:border-primary/30 text-white rounded-3xl flex items-center justify-between px-8 group transition-all active:scale-[0.98]">
+           <Link href="/t/students" className="h-20 bg-[#1A1A1A] border border-white/5 hover:border-primary/30 text-white rounded-3xl flex items-center justify-between px-8 group transition-all active:scale-[0.98]">
               <div className="flex items-center gap-4">
                  <span className="material-symbols-outlined text-3xl text-primary group-hover:scale-110 transition-transform">forum</span>
                  <span className="font-display text-2xl uppercase tracking-wider">Abrir Chat</span>

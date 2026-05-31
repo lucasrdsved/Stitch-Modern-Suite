@@ -1,17 +1,11 @@
-import { useGetMyLatestAssessment } from "@workspace/api-client-react";
 import { useAuth } from "@/lib/auth";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { MOCK_ASSESSMENT } from "@/lib/mock-data";
+import { getLatestAssessment } from "@/lib/mock-store";
 
 export default function StudentWelcome() {
-  const { data: assessmentResponse, isLoading, isError } = useGetMyLatestAssessment();
-  const assessment = assessmentResponse || (isError || !assessmentResponse ? MOCK_ASSESSMENT : undefined);
+  const assessment = getLatestAssessment();
   const { user } = useAuth();
-
-  if (isLoading) {
-    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
-  }
 
   const firstName = user?.fullName?.split(" ")[0] || "ALUNO";
 

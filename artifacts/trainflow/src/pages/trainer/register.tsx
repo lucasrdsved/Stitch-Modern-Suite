@@ -1,33 +1,28 @@
 import { useState } from "react";
-import { useTrainerRegister } from "@workspace/api-client-react";
 import { useLocation, Link } from "wouter";
-import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/lib/auth";
 
 export default function TrainerRegister() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const register = useTrainerRegister();
   const [, setLocation] = useLocation();
-  const queryClient = useQueryClient();
   const { toast } = useToast();
+  const { loginAsTrainer } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password || !fullName) return;
 
-    register.mutate({ data: { fullName, email, password } }, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["auth/me"] });
-        setLocation("/t/dashboard");
-      },
-      onError: () => {
-        toast({ title: "Erro", description: "Não foi possível criar a conta.", variant: "destructive" });
-      }
-    });
+    try {
+      loginAsTrainer({ fullName, email });
+      setLocation("/t/dashboard");
+    } catch {
+      toast({ title: "Erro", description: "Não foi possível criar a conta.", variant: "destructive" });
+    }
   };
 
   return (
@@ -85,10 +80,10 @@ export default function TrainerRegister() {
           <Button 
             type="submit" 
             className="w-full h-14 bg-primary text-black font-display text-2xl rounded-full flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all duration-200 mt-4 electric-glow tracking-wide"
-            disabled={register.isPending}
+            disabled={false}
           >
-            {register.isPending ? "CRIANDO..." : "CRIAR CONTA"}
-            {!register.isPending && <span className="material-symbols-outlined text-[28px]">arrow_forward</span>}
+            CRIAR CONTA
+            <span className="material-symbols-outlined text-[28px]">arrow_forward</span>
           </Button>
         </form>
       </main>

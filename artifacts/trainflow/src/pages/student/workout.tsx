@@ -1,22 +1,15 @@
 import { useState } from "react";
-import { useGetStudentToday, useListMySessions } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
 import { Button } from "@/components/ui/button";
-import { MOCK_STUDENT_TODAY, MOCK_SESSIONS } from "@/lib/mock-data";
+import { addSession, getSessions, getStudentToday } from "@/lib/mock-store";
 
 export default function StudentWorkout() {
-  const { data: todayResponse, isLoading: loadingToday } = useGetStudentToday();
-  const { data: sessionsResponse, isLoading: loadingSessions } = useListMySessions();
   const [isActiveMode, setIsActiveMode] = useState(false);
 
-  const today = todayResponse || MOCK_STUDENT_TODAY;
-  const sessions = sessionsResponse || MOCK_SESSIONS;
+  const today = getStudentToday();
+  const sessions = getSessions();
   const todayWorkout = today?.todayWorkout;
-
-  if (loadingToday || loadingSessions) {
-    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
-  }
 
   if (isActiveMode && todayWorkout) {
     return (
@@ -66,7 +59,24 @@ export default function StudentWorkout() {
             ))}
           </div>
           
-          <Button onClick={() => setIsActiveMode(false)} className="w-full h-16 bg-primary text-black rounded-full font-display text-2xl tracking-widest electric-glow hover:brightness-110 active:scale-95 transition-all mt-4 mb-8">
+          <Button
+            onClick={() => {
+              if (todayWorkout) {
+                addSession({
+                  id: Date.now(),
+                  planDayName: todayWorkout.name,
+                  startedAt: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
+                  finishedAt: new Date().toISOString(),
+                  durationMinutes: todayWorkout.estimatedMinutes || 45,
+                  totalVolumeKg: 4200,
+                  totalSets: todayWorkout.exercises?.reduce((acc: number, ex: any) => acc + (ex.sets || 0), 0) || 0,
+                  status: "HOJE",
+                });
+              }
+              setIsActiveMode(false);
+            }}
+            className="w-full h-16 bg-primary text-black rounded-full font-display text-2xl tracking-widest electric-glow hover:brightness-110 active:scale-95 transition-all mt-4 mb-8"
+          >
              CONCLUIR TREINO
           </Button>
         </main>

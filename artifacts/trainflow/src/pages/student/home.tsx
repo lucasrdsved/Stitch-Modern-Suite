@@ -1,23 +1,16 @@
 import { useAuth } from "@/lib/auth";
-import { useGetStudentToday, useListConversations } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
-import { MOCK_STUDENT_TODAY, MOCK_SESSIONS, MOCK_CONVERSATIONS } from "@/lib/mock-data";
+import { getSessions, getStudentToday, listConversations } from "@/lib/mock-store";
 
 export default function StudentHome() {
   const { user } = useAuth();
-  const { data: todayResponse, isLoading } = useGetStudentToday();
-  const { data: conversationsResponse } = useListConversations();
   
-  const today = todayResponse || MOCK_STUDENT_TODAY;
-  const sessions = MOCK_SESSIONS; // Using sessions from mock-data
-  const conversations = conversationsResponse || MOCK_CONVERSATIONS;
+  const today = getStudentToday();
+  const sessions = getSessions();
+  const conversations = listConversations();
   const lastConversation = conversations[0];
-
-  if (isLoading) {
-    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
-  }
 
   const firstName = user?.fullName?.split(" ")[0] || "ALUNO";
   const todayWorkout = today?.todayWorkout;
@@ -76,7 +69,7 @@ export default function StudentHome() {
               <div className="bg-black/40 border border-white/5 rounded-xl p-3 flex flex-col">
                 <span className="text-[10px] text-[#888888] uppercase font-bold tracking-wider">Duração Est.</span>
                 <div className="flex items-baseline gap-1 mt-1">
-                  <span className="font-display text-white text-2xl">{todayWorkout.estimatedMinutes || 45}</span>
+                  <span className="font-display text-white text-2xl">{(todayWorkout as any).estimatedMinutes || 45}</span>
                   <span className="text-[10px] text-[#888888] font-bold">MIN</span>
                 </div>
               </div>

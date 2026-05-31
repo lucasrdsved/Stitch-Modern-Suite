@@ -20,6 +20,7 @@ import TrainerDashboard from "@/pages/trainer/dashboard";
 import TrainerStudentList from "@/pages/trainer/students/list";
 import TrainerStudentDetail from "@/pages/trainer/students/detail";
 import TrainerExercises from "@/pages/trainer/exercises";
+import TrainerNewAssessment from "@/pages/trainer/assessments/new";
 import TrainerPlanDetail from "@/pages/trainer/plans/detail";
 import TrainerNewPlan from "@/pages/trainer/plans/new";
 
@@ -88,6 +89,7 @@ function Router() {
       <Route path="/t/students">{(params) => <ProtectedRoute component={TrainerStudentList} role="trainer" {...params} />}</Route>
       <Route path="/t/students/:id">{(params) => <ProtectedRoute component={TrainerStudentDetail} role="trainer" {...params} />}</Route>
       <Route path="/t/exercises">{(params) => <ProtectedRoute component={TrainerExercises} role="trainer" {...params} />}</Route>
+      <Route path="/t/assessments/new">{(params) => <ProtectedRoute component={TrainerNewAssessment} role="trainer" {...params} />}</Route>
       <Route path="/t/plans/new">{(params) => <ProtectedRoute component={TrainerNewPlan} role="trainer" {...params} />}</Route>
       <Route path="/t/plans/:id">{(params) => <ProtectedRoute component={TrainerPlanDetail} role="trainer" {...params} />}</Route>
 

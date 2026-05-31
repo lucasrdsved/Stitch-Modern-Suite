@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { useCreateAssessment } from "@workspace/api-client-react";
 import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { setLatestAssessment } from "@/lib/mock-store";
 
 export default function TrainerNewAssessment() {
   const [step, setStep] = useState(1);
   const [, setLocation] = useLocation();
   const { toast } = useToast();
-  const createAssessment = useCreateAssessment();
 
   const [formData, setFormData] = useState({
     weightKg: "",
@@ -34,12 +33,35 @@ export default function TrainerNewAssessment() {
 
   const handleSubmit = async () => {
     try {
-      // In a real app, we would calculate bodyFat here or send to API
+      setLatestAssessment({
+        id: Date.now(),
+        weightKg: Number(formData.weightKg) || 82.5,
+        bodyFatPct: 14.2,
+        muscleMassKg: 40.1,
+        leanMassKg: 70.8,
+        somatotype: "Mesomorfo",
+        createdAt: new Date().toISOString(),
+        history: [
+          { date: "Jan", weight: 85, fat: 16 },
+          { date: "Fev", weight: 84, fat: 15.5 },
+          { date: "Mar", weight: 83.5, fat: 15 },
+          { date: "Abr", weight: Number(formData.weightKg) || 82.5, fat: 14.2 },
+        ],
+        measurements: {
+          chest: Number(formData.chest) || 102,
+          waist: Number(formData.waist) || 84,
+          hips: Number(formData.hips) || 98,
+          thigh: Number(formData.thigh) || 62,
+          biceps: Number(formData.biceps) || 38,
+          neck: 40,
+          shoulders: 120,
+        },
+      });
       toast({
         title: "Sucesso!",
         description: "Avaliação física salva com sucesso.",
       });
-      setLocation("/dashboard");
+      setLocation("/t/dashboard");
     } catch (error) {
       toast({
         title: "Erro",
@@ -53,7 +75,7 @@ export default function TrainerNewAssessment() {
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-6 selection:bg-primary selection:text-black">
       <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-6 h-16">
         <div className="flex items-center gap-4">
-          <Link href="/dashboard" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors text-white">
+          <Link href="/t/dashboard" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors text-white">
             <span className="material-symbols-outlined text-2xl">arrow_back</span>
           </Link>
           <h1 className="font-display text-primary tracking-widest text-3xl mt-1 uppercase">AVALIAÇÃO</h1>
