@@ -1,78 +1,84 @@
 import { useAuth } from "@/lib/auth";
 import { useGetMyLatestAssessment } from "@workspace/api-client-react";
 import { Link } from "wouter";
-import { User } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { StudentBottomNav } from "@/components/student-bottom-nav";
 
 export default function StudentProfile() {
   const { user, logout } = useAuth();
   const { data: assessment, isLoading } = useGetMyLatestAssessment();
 
   return (
-    <div className="min-h-[100dvh] pb-24 bg-background text-foreground p-6">
-      <header className="mb-8 flex items-center justify-between">
-        <h1 className="font-display text-4xl">PERFIL</h1>
-        <Button variant="outline" onClick={logout} className="border-border text-muted-foreground hover:text-white">SAIR</Button>
+    <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">
+      {/* TopAppBar */}
+      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-[#333333] flex items-center justify-between px-6 h-14">
+        <div className="flex items-center gap-3">
+          <Link href="/home" className="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity active:scale-95 text-white">
+            <span className="material-symbols-outlined">arrow_back</span>
+          </Link>
+          <h1 className="font-display text-primary tracking-tighter text-3xl leading-none mt-1">PERFIL</h1>
+        </div>
+        <button 
+          onClick={logout}
+          className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors active:scale-95 text-white"
+        >
+          <span className="material-symbols-outlined">logout</span>
+        </button>
       </header>
 
-      <div className="flex flex-col items-center mb-8">
-        <div className="w-24 h-24 bg-card rounded-full flex items-center justify-center text-muted-foreground mb-4">
-          {user?.avatarUrl ? <img src={user.avatarUrl} alt="" className="w-full h-full rounded-full object-cover" /> : <User className="w-12 h-12" />}
-        </div>
-        <h2 className="font-bold text-2xl">{user?.fullName}</h2>
-        <p className="text-muted-foreground">{user?.email}</p>
-      </div>
+      <main className="flex-1 pt-24 px-6 flex flex-col gap-8 max-w-2xl mx-auto w-full">
+        <section className="flex flex-col items-center mb-2">
+          <div className="w-24 h-24 rounded-full overflow-hidden bg-[#1A1A1A] border-2 border-primary shrink-0 flex items-center justify-center mb-4">
+            {user?.avatarUrl ? (
+              <img src={user.avatarUrl} alt="" className="w-full h-full object-cover" />
+            ) : (
+              <span className="material-symbols-outlined text-white/70 text-4xl">person</span>
+            )}
+          </div>
+          <h2 className="font-display text-white text-[32px] uppercase tracking-wider leading-none mb-1">{user?.fullName}</h2>
+          <p className="text-[#888888] text-sm">{user?.email}</p>
+        </section>
 
-      <div className="space-y-6">
-        <h3 className="font-display text-2xl text-muted-foreground">MÉTRICAS ATUAIS</h3>
-        
-        {isLoading ? (
-          <div className="bg-card rounded-[32px] p-6 h-32 animate-pulse" />
-        ) : assessment ? (
-          <div className="bg-card border border-border rounded-[32px] p-6 space-y-6">
-            <div className="flex justify-between items-end border-b border-border pb-4">
-              <div>
-                <div className="text-sm text-muted-foreground mb-1">Somatotipo</div>
-                <div className="font-display text-2xl text-primary">{assessment.somatotype || 'N/A'}</div>
+        <section className="space-y-4">
+          <h3 className="text-sm text-[#888888] uppercase tracking-wider font-bold">MÉTRICAS ATUAIS</h3>
+          
+          {isLoading ? (
+            <div className="bg-[#1A1A1A] rounded-2xl border border-[#333333] p-6 h-48 animate-pulse" />
+          ) : assessment ? (
+            <div className="bg-[#1A1A1A] border border-[#333333] rounded-2xl p-6 space-y-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                <span className="material-symbols-outlined text-8xl text-white">accessibility_new</span>
               </div>
-              <div className="text-right">
-                <div className="text-sm text-muted-foreground mb-1">Gordura</div>
-                <div className="font-display text-2xl">{assessment.bodyFatPct ? `${assessment.bodyFatPct}%` : '--'}</div>
+              
+              <div className="relative z-10 flex justify-between items-end border-b border-[#333333]/50 pb-4">
+                <div>
+                  <div className="text-[10px] text-[#888888] uppercase font-medium mb-1">Somatotipo</div>
+                  <div className="font-display text-3xl text-primary">{assessment.somatotype || 'N/A'}</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] text-[#888888] uppercase font-medium mb-1">Gordura</div>
+                  <div className="font-display text-3xl text-white">{assessment.bodyFatPct ? `${assessment.bodyFatPct}%` : '--'}</div>
+                </div>
+              </div>
+              <div className="relative z-10 flex justify-between items-end">
+                <div>
+                  <div className="text-[10px] text-[#888888] uppercase font-medium mb-1">Peso</div>
+                  <div className="font-display text-3xl text-white">{assessment.weightKg}kg</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] text-[#888888] uppercase font-medium mb-1">Massa Magra</div>
+                  <div className="font-display text-3xl text-white">{assessment.leanMassKg ? `${assessment.leanMassKg}kg` : '--'}</div>
+                </div>
               </div>
             </div>
-            <div className="flex justify-between items-end">
-              <div>
-                <div className="text-sm text-muted-foreground mb-1">Peso</div>
-                <div className="font-display text-2xl">{assessment.weightKg}kg</div>
-              </div>
-              <div className="text-right">
-                <div className="text-sm text-muted-foreground mb-1">Massa Magra</div>
-                <div className="font-display text-2xl">{assessment.leanMassKg ? `${assessment.leanMassKg}kg` : '--'}</div>
-              </div>
+          ) : (
+            <div className="bg-[#1A1A1A] border border-[#333333] rounded-2xl p-6 text-center text-[#888888]">
+              Sem avaliação física registrada.
             </div>
-          </div>
-        ) : (
-          <div className="bg-card rounded-[32px] p-6 text-center text-muted-foreground">
-            Sem avaliação física.
-          </div>
-        )}
-      </div>
+          )}
+        </section>
+      </main>
 
-      {/* Bottom Nav */}
-      <div className="fixed bottom-0 left-0 right-0 h-20 bg-background/80 backdrop-blur-md border-t border-border flex items-center justify-around px-6">
-        <Link href="/home" className="flex flex-col items-center text-muted-foreground">
-          <span className="text-xs font-medium">Home</span>
-        </Link>
-        <Link href="/treinos" className="flex flex-col items-center text-muted-foreground">
-          <span className="text-xs font-medium">Treino</span>
-        </Link>
-        <Link href="/chat" className="flex flex-col items-center text-muted-foreground">
-          <span className="text-xs font-medium">Chat</span>
-        </Link>
-        <Link href="/profile" className="flex flex-col items-center text-primary">
-          <span className="text-xs font-medium">Perfil</span>
-        </Link>
-      </div>
+      <StudentBottomNav />
     </div>
   );
 }
