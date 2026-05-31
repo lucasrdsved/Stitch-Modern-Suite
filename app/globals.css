@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Globals - Tailwind é carregado via CDN nas páginas HTML */
 
 :root {
   --font-inter: 'Inter', sans-serif;
