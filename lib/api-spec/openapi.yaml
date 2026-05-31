@@ -3,20 +3,36 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: TrainFlow API — fitness app for personal trainers and students
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: auth
+    description: Authentication
+  - name: trainers
+    description: Trainer operations
+  - name: students
+    description: Student operations
+  - name: assessments
+    description: Physical assessments
+  - name: exercises
+    description: Exercise library
+  - name: plans
+    description: Training plans
+  - name: workouts
+    description: Workout sessions
+  - name: chat
+    description: Messaging
+
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,6 +40,621 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  # ─── AUTH ───────────────────────────────────────────────────────────────────
+  /auth/trainer/login:
+    post:
+      operationId: trainerLogin
+      tags: [auth]
+      summary: Trainer login with email + password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrainerLoginInput"
+      responses:
+        "200":
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResult"
+        "401":
+          description: Invalid credentials
+
+  /auth/trainer/register:
+    post:
+      operationId: trainerRegister
+      tags: [auth]
+      summary: Register new trainer account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrainerRegisterInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResult"
+
+  /auth/student/magic:
+    post:
+      operationId: studentMagicLogin
+      tags: [auth]
+      summary: Student validates magic link token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MagicTokenInput"
+      responses:
+        "200":
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResult"
+        "401":
+          description: Invalid or expired token
+
+  /auth/me:
+    get:
+      operationId: getMe
+      tags: [auth]
+      summary: Get current authenticated user
+      responses:
+        "200":
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+        "401":
+          description: Not authenticated
+
+  /auth/logout:
+    post:
+      operationId: logout
+      tags: [auth]
+      summary: Logout current user
+      responses:
+        "200":
+          description: Logged out
+
+  # ─── TRAINER DASHBOARD ───────────────────────────────────────────────────────
+  /trainer/dashboard:
+    get:
+      operationId: getTrainerDashboard
+      tags: [trainers]
+      summary: Trainer dashboard summary
+      responses:
+        "200":
+          description: Dashboard stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrainerDashboard"
+
+  # ─── STUDENTS ────────────────────────────────────────────────────────────────
+  /trainer/students:
+    get:
+      operationId: listStudents
+      tags: [students]
+      summary: List trainer's students
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [invited, active, inactive]
+      responses:
+        "200":
+          description: Student list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StudentSummary"
+
+  /trainer/students/{studentId}:
+    get:
+      operationId: getStudent
+      tags: [students]
+      summary: Get student detail
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Student detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentDetail"
+
+  # ─── PHYSICAL ASSESSMENTS ────────────────────────────────────────────────────
+  /trainer/assessments:
+    post:
+      operationId: createAssessment
+      tags: [assessments]
+      summary: Create assessment (creates student account if new)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssessmentInput"
+      responses:
+        "201":
+          description: Assessment created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssessmentResult"
+
+  /trainer/students/{studentId}/assessments:
+    get:
+      operationId: listStudentAssessments
+      tags: [assessments]
+      summary: List all assessments for a student
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Assessment history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assessment"
+
+  /student/assessments/latest:
+    get:
+      operationId: getMyLatestAssessment
+      tags: [assessments]
+      summary: Student's latest physical assessment
+      responses:
+        "200":
+          description: Latest assessment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Assessment"
+
+  /student/assessments:
+    get:
+      operationId: listMyAssessments
+      tags: [assessments]
+      summary: Student's full assessment history
+      responses:
+        "200":
+          description: All assessments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assessment"
+
+  # ─── EXERCISES ───────────────────────────────────────────────────────────────
+  /exercises:
+    get:
+      operationId: listExercises
+      tags: [exercises]
+      summary: List exercises (global + trainer's own)
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: muscleGroup
+          in: query
+          schema:
+            type: string
+        - name: scope
+          in: query
+          schema:
+            type: string
+            enum: [all, global, mine]
+      responses:
+        "200":
+          description: Exercise list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Exercise"
+    post:
+      operationId: createExercise
+      tags: [exercises]
+      summary: Create custom exercise
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExerciseInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exercise"
+
+  /exercises/{exerciseId}:
+    get:
+      operationId: getExercise
+      tags: [exercises]
+      summary: Get exercise detail
+      parameters:
+        - name: exerciseId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Exercise
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exercise"
+
+  # ─── TRAINING PLANS ──────────────────────────────────────────────────────────
+  /trainer/plans:
+    get:
+      operationId: listTrainerPlans
+      tags: [plans]
+      summary: List trainer's training plans
+      responses:
+        "200":
+          description: Plans list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TrainingPlan"
+    post:
+      operationId: createPlan
+      tags: [plans]
+      summary: Create new training plan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlanInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrainingPlan"
+
+  /trainer/plans/{planId}:
+    get:
+      operationId: getPlan
+      tags: [plans]
+      summary: Get full training plan with days and exercises
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Full plan
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrainingPlanFull"
+    patch:
+      operationId: updatePlan
+      tags: [plans]
+      summary: Update plan metadata
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlanUpdate"
+      responses:
+        "200":
+          description: Updated plan
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrainingPlan"
+
+  /trainer/plans/{planId}/days:
+    post:
+      operationId: addPlanDay
+      tags: [plans]
+      summary: Add day to training plan
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlanDayInput"
+      responses:
+        "201":
+          description: Day added
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlanDay"
+
+  /trainer/plans/{planId}/days/{dayId}/exercises:
+    post:
+      operationId: addExerciseToDay
+      tags: [plans]
+      summary: Add exercise to a plan day
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: dayId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DayExerciseInput"
+      responses:
+        "201":
+          description: Exercise added
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DayExercise"
+
+  # ─── STUDENT WORKOUT ─────────────────────────────────────────────────────────
+  /student/today:
+    get:
+      operationId: getStudentToday
+      tags: [workouts]
+      summary: Student home — today's workout + recent activity
+      responses:
+        "200":
+          description: Today data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentToday"
+
+  /student/workout/active-plan:
+    get:
+      operationId: getActivePlan
+      tags: [workouts]
+      summary: Student's active training plan full detail
+      responses:
+        "200":
+          description: Active plan
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrainingPlanFull"
+
+  /student/sessions:
+    get:
+      operationId: listMySessions
+      tags: [workouts]
+      summary: List student's workout sessions
+      responses:
+        "200":
+          description: Session history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WorkoutSession"
+    post:
+      operationId: startSession
+      tags: [workouts]
+      summary: Start a new workout session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SessionInput"
+      responses:
+        "201":
+          description: Session started
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkoutSession"
+
+  /student/sessions/{sessionId}:
+    get:
+      operationId: getSession
+      tags: [workouts]
+      summary: Get session with sets
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Session detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkoutSessionFull"
+    patch:
+      operationId: finishSession
+      tags: [workouts]
+      summary: Finish a workout session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SessionFinish"
+      responses:
+        "200":
+          description: Session finished
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkoutSession"
+
+  /student/sessions/{sessionId}/sets:
+    post:
+      operationId: logSet
+      tags: [workouts]
+      summary: Log a set during workout
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetLogInput"
+      responses:
+        "201":
+          description: Set logged
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionSet"
+
+  # ─── CHAT ────────────────────────────────────────────────────────────────────
+  /conversations:
+    get:
+      operationId: listConversations
+      tags: [chat]
+      summary: List all conversations for current user
+      responses:
+        "200":
+          description: Conversations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Conversation"
+    post:
+      operationId: createConversation
+      tags: [chat]
+      summary: Create direct conversation (trainer with student)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationInput"
+      responses:
+        "201":
+          description: Conversation created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Conversation"
+
+  /conversations/{conversationId}/messages:
+    get:
+      operationId: listMessages
+      tags: [chat]
+      summary: List messages in a conversation
+      parameters:
+        - name: conversationId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Message"
+    post:
+      operationId: sendMessage
+      tags: [chat]
+      summary: Send a message
+      parameters:
+        - name: conversationId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageInput"
+      responses:
+        "201":
+          description: Message sent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+
+# ─── COMPONENTS ────────────────────────────────────────────────────────────────
 components:
   schemas:
     HealthStatus:
@@ -34,3 +665,606 @@ components:
       required:
         - status
 
+    # Auth
+    TrainerLoginInput:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    TrainerRegisterInput:
+      type: object
+      required: [fullName, email, password]
+      properties:
+        fullName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    MagicTokenInput:
+      type: object
+      required: [token]
+      properties:
+        token:
+          type: string
+
+    AuthResult:
+      type: object
+      required: [user, role]
+      properties:
+        user:
+          $ref: "#/components/schemas/Profile"
+        role:
+          type: string
+          enum: [trainer, student]
+        isFirstLogin:
+          type: boolean
+
+    Profile:
+      type: object
+      required: [id, role, fullName, email]
+      properties:
+        id:
+          type: integer
+        role:
+          type: string
+          enum: [trainer, student]
+        fullName:
+          type: string
+        email:
+          type: string
+        avatarUrl:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+
+    # Trainer Dashboard
+    TrainerDashboard:
+      type: object
+      required: [totalStudents, activeStudents, sessionsToday, unreadMessages, recentActivity]
+      properties:
+        totalStudents:
+          type: integer
+        activeStudents:
+          type: integer
+        sessionsToday:
+          type: integer
+        unreadMessages:
+          type: integer
+        recentActivity:
+          type: array
+          items:
+            $ref: "#/components/schemas/ActivityItem"
+
+    ActivityItem:
+      type: object
+      required: [type, studentName, description, timestamp]
+      properties:
+        type:
+          type: string
+          enum: [session_completed, assessment_done, message_received]
+        studentName:
+          type: string
+        description:
+          type: string
+        timestamp:
+          type: string
+
+    # Students
+    StudentSummary:
+      type: object
+      required: [id, fullName, email, status]
+      properties:
+        id:
+          type: integer
+        fullName:
+          type: string
+        email:
+          type: string
+        avatarUrl:
+          type: ["string", "null"]
+        status:
+          type: string
+          enum: [invited, active, inactive]
+        lastSessionAt:
+          type: ["string", "null"]
+        somatotype:
+          type: ["string", "null"]
+        bodyFatPct:
+          type: ["number", "null"]
+
+    StudentDetail:
+      type: object
+      required: [id, fullName, email, status]
+      properties:
+        id:
+          type: integer
+        fullName:
+          type: string
+        email:
+          type: string
+        avatarUrl:
+          type: ["string", "null"]
+        status:
+          type: string
+        activePlan:
+          $ref: "#/components/schemas/TrainingPlan"
+        latestAssessment:
+          $ref: "#/components/schemas/Assessment"
+        recentSessions:
+          type: array
+          items:
+            $ref: "#/components/schemas/WorkoutSession"
+        totalSessions:
+          type: integer
+
+    # Assessments
+    AssessmentInput:
+      type: object
+      required: [fullName, email, sex, birthDate, weightKg, heightCm]
+      properties:
+        fullName:
+          type: string
+        email:
+          type: string
+        sex:
+          type: string
+          enum: [M, F]
+        birthDate:
+          type: string
+        weightKg:
+          type: number
+        heightCm:
+          type: number
+        skinfoldChest:
+          type: ["number", "null"]
+        skinfoldAbdomen:
+          type: ["number", "null"]
+        skinfoldThigh:
+          type: ["number", "null"]
+        skinfoldTriceps:
+          type: ["number", "null"]
+        skinfoldSubscapular:
+          type: ["number", "null"]
+        skinfoldSuprailiac:
+          type: ["number", "null"]
+        skinfoldMidaxillary:
+          type: ["number", "null"]
+        circWaist:
+          type: ["number", "null"]
+        circHip:
+          type: ["number", "null"]
+        circChest:
+          type: ["number", "null"]
+        circArmRelaxed:
+          type: ["number", "null"]
+        circArmContracted:
+          type: ["number", "null"]
+        circThigh:
+          type: ["number", "null"]
+        circCalf:
+          type: ["number", "null"]
+        notes:
+          type: ["string", "null"]
+
+    AssessmentResult:
+      type: object
+      required: [assessment, studentId, isNewStudent]
+      properties:
+        assessment:
+          $ref: "#/components/schemas/Assessment"
+        studentId:
+          type: integer
+        isNewStudent:
+          type: boolean
+
+    Assessment:
+      type: object
+      required: [id, studentId, trainerId, assessedAt, age, sex, weightKg, heightCm]
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: integer
+        trainerId:
+          type: integer
+        assessedAt:
+          type: string
+        age:
+          type: integer
+        sex:
+          type: string
+        weightKg:
+          type: number
+        heightCm:
+          type: number
+        bmi:
+          type: ["number", "null"]
+        bodyFatPct:
+          type: ["number", "null"]
+        fatMassKg:
+          type: ["number", "null"]
+        leanMassKg:
+          type: ["number", "null"]
+        waistHipRatio:
+          type: ["number", "null"]
+        somatotype:
+          type: ["string", "null"]
+        trainingOrientation:
+          type: ["object", "null"]
+          additionalProperties: true
+        skinfoldChest:
+          type: ["number", "null"]
+        skinfoldAbdomen:
+          type: ["number", "null"]
+        skinfoldThigh:
+          type: ["number", "null"]
+        skinfoldTriceps:
+          type: ["number", "null"]
+        skinfoldSubscapular:
+          type: ["number", "null"]
+        skinfoldSuprailiac:
+          type: ["number", "null"]
+        skinfoldMidaxillary:
+          type: ["number", "null"]
+        circWaist:
+          type: ["number", "null"]
+        circHip:
+          type: ["number", "null"]
+        notes:
+          type: ["string", "null"]
+
+    # Exercises
+    ExerciseInput:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        description:
+          type: ["string", "null"]
+        muscleGroup:
+          type: ["string", "null"]
+        equipment:
+          type: ["string", "null"]
+        gifUrl:
+          type: ["string", "null"]
+
+    Exercise:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: ["string", "null"]
+        muscleGroup:
+          type: ["string", "null"]
+        equipment:
+          type: ["string", "null"]
+        gifUrl:
+          type: ["string", "null"]
+        isGlobal:
+          type: boolean
+        trainerId:
+          type: ["integer", "null"]
+
+    # Training Plans
+    PlanInput:
+      type: object
+      required: [name, studentId]
+      properties:
+        name:
+          type: string
+        studentId:
+          type: integer
+
+    PlanUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        isActive:
+          type: boolean
+
+    TrainingPlan:
+      type: object
+      required: [id, trainerId, studentId, name, isActive, createdAt]
+      properties:
+        id:
+          type: integer
+        trainerId:
+          type: integer
+        studentId:
+          type: integer
+        studentName:
+          type: string
+        name:
+          type: string
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+
+    TrainingPlanFull:
+      type: object
+      required: [id, trainerId, studentId, name, isActive, createdAt, days]
+      properties:
+        id:
+          type: integer
+        trainerId:
+          type: integer
+        studentId:
+          type: integer
+        studentName:
+          type: string
+        name:
+          type: string
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+        days:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlanDayFull"
+
+    PlanDayInput:
+      type: object
+      required: [name, dayOrder]
+      properties:
+        name:
+          type: string
+        dayOrder:
+          type: integer
+
+    PlanDay:
+      type: object
+      required: [id, planId, name, dayOrder]
+      properties:
+        id:
+          type: integer
+        planId:
+          type: integer
+        name:
+          type: string
+        dayOrder:
+          type: integer
+
+    PlanDayFull:
+      type: object
+      required: [id, planId, name, dayOrder, exercises]
+      properties:
+        id:
+          type: integer
+        planId:
+          type: integer
+        name:
+          type: string
+        dayOrder:
+          type: integer
+        exercises:
+          type: array
+          items:
+            $ref: "#/components/schemas/DayExercise"
+
+    DayExerciseInput:
+      type: object
+      required: [exerciseId, exerciseOrder]
+      properties:
+        exerciseId:
+          type: integer
+        sets:
+          type: ["integer", "null"]
+        reps:
+          type: ["string", "null"]
+        restSeconds:
+          type: ["integer", "null"]
+        notes:
+          type: ["string", "null"]
+        exerciseOrder:
+          type: integer
+
+    DayExercise:
+      type: object
+      required: [id, dayId, exerciseId, exerciseOrder]
+      properties:
+        id:
+          type: integer
+        dayId:
+          type: integer
+        exerciseId:
+          type: integer
+        exerciseName:
+          type: string
+        exerciseGifUrl:
+          type: ["string", "null"]
+        muscleGroup:
+          type: ["string", "null"]
+        sets:
+          type: ["integer", "null"]
+        reps:
+          type: ["string", "null"]
+        restSeconds:
+          type: integer
+        notes:
+          type: ["string", "null"]
+        exerciseOrder:
+          type: integer
+
+    # Workouts
+    StudentToday:
+      type: object
+      required: [studentName, recentSessions, unreadMessages]
+      properties:
+        studentName:
+          type: string
+        todayWorkout:
+          $ref: "#/components/schemas/PlanDayFull"
+        recentSessions:
+          type: array
+          items:
+            $ref: "#/components/schemas/WorkoutSession"
+        unreadMessages:
+          type: integer
+        latestAssessment:
+          $ref: "#/components/schemas/Assessment"
+
+    SessionInput:
+      type: object
+      required: [planDayId]
+      properties:
+        planDayId:
+          type: integer
+
+    SessionFinish:
+      type: object
+      required: [finishedAt]
+      properties:
+        finishedAt:
+          type: string
+
+    WorkoutSession:
+      type: object
+      required: [id, studentId, startedAt]
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: integer
+        planDayId:
+          type: ["integer", "null"]
+        planDayName:
+          type: ["string", "null"]
+        startedAt:
+          type: string
+        finishedAt:
+          type: ["string", "null"]
+        totalSets:
+          type: integer
+        totalVolumeKg:
+          type: number
+        durationMinutes:
+          type: ["integer", "null"]
+
+    WorkoutSessionFull:
+      type: object
+      required: [id, studentId, startedAt, sets]
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: integer
+        planDayId:
+          type: ["integer", "null"]
+        planDayName:
+          type: ["string", "null"]
+        startedAt:
+          type: string
+        finishedAt:
+          type: ["string", "null"]
+        sets:
+          type: array
+          items:
+            $ref: "#/components/schemas/SessionSet"
+
+    SetLogInput:
+      type: object
+      required: [dayExerciseId, setNumber, repsDone, weightKg]
+      properties:
+        dayExerciseId:
+          type: integer
+        setNumber:
+          type: integer
+        repsDone:
+          type: integer
+        weightKg:
+          type: number
+
+    SessionSet:
+      type: object
+      required: [id, sessionId, dayExerciseId, setNumber, repsDone, weightKg, recordedAt]
+      properties:
+        id:
+          type: integer
+        sessionId:
+          type: integer
+        dayExerciseId:
+          type: integer
+        exerciseName:
+          type: string
+        setNumber:
+          type: integer
+        repsDone:
+          type: integer
+        weightKg:
+          type: number
+        recordedAt:
+          type: string
+
+    # Chat
+    ConversationInput:
+      type: object
+      required: [studentId]
+      properties:
+        studentId:
+          type: integer
+
+    Conversation:
+      type: object
+      required: [id, type, trainerId, createdAt, unreadCount]
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          enum: [direct]
+        name:
+          type: ["string", "null"]
+        trainerId:
+          type: integer
+        otherUserName:
+          type: string
+        otherUserAvatarUrl:
+          type: ["string", "null"]
+        lastMessage:
+          type: ["string", "null"]
+        lastMessageAt:
+          type: ["string", "null"]
+        unreadCount:
+          type: integer
+        createdAt:
+          type: string
+
+    MessageInput:
+      type: object
+      required: [content]
+      properties:
+        content:
+          type: string
+
+    Message:
+      type: object
+      required: [id, conversationId, senderId, content, sentAt]
+      properties:
+        id:
+          type: integer
+        conversationId:
+          type: integer
+        senderId:
+          type: integer
+        senderName:
+          type: string
+        content:
+          type: string
+        sentAt:
+          type: string
+        readAt:
+          type: ["string", "null"]

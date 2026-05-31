@@ -1,0 +1,3 @@
+- [TrainFlow auth setup](trainflow-auth.md) — session-based auth with express-session; trainer=email+password (Node crypto scrypt), student=magic token 7-day expiry
+- [TrainFlow CSS rules](trainflow-css.md) — Google Fonts @import url() MUST be first line of index.css before @import "tailwindcss" or PostCSS fails silently
+- [TrainFlow db exports](trainflow-db.md) — run pnpm run typecheck:libs before artifact typecheck to generate .d.ts for @workspace/db; bcrypt requires pnpm approve-builds, use Node crypto instead
