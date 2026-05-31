@@ -1,6 +1,5 @@
 import { createContext, useContext, ReactNode } from "react";
 import { useGetMe, useLogout } from "@workspace/api-client-react";
-import { useLocation } from "wouter";
 
 type User = {
   id: number;
@@ -25,7 +24,6 @@ const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { data: user, isLoading, error } = useGetMe({ query: { retry: false, queryKey: ["auth/me"] } });
   const logoutMutation = useLogout();
-  const [, setLocation] = useLocation();
 
   const handleLogout = () => {
     logoutMutation.mutate(undefined, {

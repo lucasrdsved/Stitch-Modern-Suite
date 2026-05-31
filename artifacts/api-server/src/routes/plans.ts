@@ -75,20 +75,25 @@ router.post("/trainer/plans", requireTrainer, async (req, res) => {
 
 // GET /api/trainer/plans/:planId
 router.get("/trainer/plans/:planId", requireTrainer, async (req, res) => {
-  const full = await getPlanFull(parseInt(req.params.planId));
+  const trainerId = req.session.userId!;
+  const planId = parseInt(req.params.planId);
+  const [existing] = await db.select().from(trainingPlansTable).where(and(eq(trainingPlansTable.id, planId), eq(trainingPlansTable.trainerId, trainerId)));
+  if (!existing) return res.status(404).json({ error: "Plano não encontrado" });
+  const full = await getPlanFull(planId);
   if (!full) return res.status(404).json({ error: "Plano não encontrado" });
   return res.json(full);
 });
 
 // PATCH /api/trainer/plans/:planId
 router.patch("/trainer/plans/:planId", requireTrainer, async (req, res) => {
+  const trainerId = req.session.userId!;
   const planId = parseInt(req.params.planId);
   const { name, isActive } = req.body;
   const update: any = {};
   if (name !== undefined) update.name = name;
   if (isActive !== undefined) update.isActive = isActive;
 
-  const [plan] = await db.update(trainingPlansTable).set(update).where(eq(trainingPlansTable.id, planId)).returning();
+  const [plan] = await db.update(trainingPlansTable).set(update).where(and(eq(trainingPlansTable.id, planId), eq(trainingPlansTable.trainerId, trainerId))).returning();
   if (!plan) return res.status(404).json({ error: "Plano não encontrado" });
   const [student] = await db.select().from(profilesTable).where(eq(profilesTable.id, plan.studentId));
   return res.json({ id: plan.id, trainerId: plan.trainerId, studentId: plan.studentId, studentName: student?.fullName ?? "", name: plan.name, isActive: plan.isActive, createdAt: plan.createdAt.toISOString() });
@@ -96,9 +101,13 @@ router.patch("/trainer/plans/:planId", requireTrainer, async (req, res) => {
 
 // POST /api/trainer/plans/:planId/days
 router.post("/trainer/plans/:planId/days", requireTrainer, async (req, res) => {
+  const trainerId = req.session.userId!;
   const planId = parseInt(req.params.planId);
   const { name, dayOrder } = req.body;
   if (!name || dayOrder === undefined) return res.status(400).json({ error: "name e dayOrder obrigatórios" });
+
+  const [owned] = await db.select().from(trainingPlansTable).where(and(eq(trainingPlansTable.id, planId), eq(trainingPlansTable.trainerId, trainerId)));
+  if (!owned) return res.status(404).json({ error: "Plano não encontrado" });
 
   const [day] = await db.insert(planDaysTable).values({ planId, name, dayOrder }).returning();
   return res.status(201).json({ id: day.id, planId: day.planId, name: day.name, dayOrder: day.dayOrder });
@@ -106,9 +115,14 @@ router.post("/trainer/plans/:planId/days", requireTrainer, async (req, res) => {
 
 // POST /api/trainer/plans/:planId/days/:dayId/exercises
 router.post("/trainer/plans/:planId/days/:dayId/exercises", requireTrainer, async (req, res) => {
+  const trainerId = req.session.userId!;
+  const planId = parseInt(req.params.planId);
   const dayId = parseInt(req.params.dayId);
   const { exerciseId, sets, reps, restSeconds, notes, exerciseOrder } = req.body;
   if (!exerciseId || exerciseOrder === undefined) return res.status(400).json({ error: "exerciseId e exerciseOrder obrigatórios" });
+
+  const [owned] = await db.select().from(trainingPlansTable).where(and(eq(trainingPlansTable.id, planId), eq(trainingPlansTable.trainerId, trainerId)));
+  if (!owned) return res.status(404).json({ error: "Plano não encontrado" });
 
   const [de] = await db.insert(dayExercisesTable).values({ dayId, exerciseId, sets: sets ?? null, reps: reps ?? null, restSeconds: restSeconds ?? 60, notes: notes ?? null, exerciseOrder }).returning();
   const [ex] = await db.select().from(exercisesTable).where(eq(exercisesTable.id, exerciseId));

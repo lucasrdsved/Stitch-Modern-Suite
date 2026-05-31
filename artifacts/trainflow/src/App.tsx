@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/lib/auth";
 import NotFound from "@/pages/not-found";
+import { useEffect } from "react";
 
 import StudentLogin from "@/pages/student/login";
 import StudentHome from "@/pages/student/home";
@@ -19,6 +20,7 @@ import TrainerStudentList from "@/pages/trainer/students/list";
 import TrainerStudentDetail from "@/pages/trainer/students/detail";
 import TrainerExercises from "@/pages/trainer/exercises";
 import TrainerPlanDetail from "@/pages/trainer/plans/detail";
+import TrainerNewPlan from "@/pages/trainer/plans/new";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,22 +35,20 @@ function ProtectedRoute({ component: Component, role, ...rest }: any) {
   const { user, isLoading } = useAuth();
   const [, setLocation] = useLocation();
 
+  useEffect(() => {
+    if (isLoading) return;
+    if (!user) {
+      setLocation(role === "trainer" ? "/t/login" : "/login");
+    } else if (user.role !== role) {
+      setLocation(user.role === "trainer" ? "/t/dashboard" : "/home");
+    }
+  }, [user, isLoading, role, setLocation]);
+
   if (isLoading) {
     return <div className="min-h-[100dvh] flex items-center justify-center bg-background"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
   }
 
-  if (!user) {
-    const target = role === "trainer" ? "/t/login" : "/login";
-    // Use replace to avoid adding to history stack
-    queueMicrotask(() => setLocation(target));
-    return null;
-  }
-
-  if (user.role !== role) {
-    const target = user.role === "trainer" ? "/t/dashboard" : "/home";
-    queueMicrotask(() => setLocation(target));
-    return null;
-  }
+  if (!user || user.role !== role) return null;
 
   return <Component {...rest} />;
 }
@@ -57,11 +57,12 @@ function RootRedirect() {
   const { user, isLoading } = useAuth();
   const [, setLocation] = useLocation();
 
-  if (!isLoading) {
+  useEffect(() => {
+    if (isLoading) return;
     if (user?.role === "trainer") setLocation("/t/dashboard");
     else if (user?.role === "student") setLocation("/home");
     else setLocation("/login");
-  }
+  }, [user, isLoading, setLocation]);
 
   return null;
 }
@@ -85,6 +86,7 @@ function Router() {
       <Route path="/t/students">{(params) => <ProtectedRoute component={TrainerStudentList} role="trainer" {...params} />}</Route>
       <Route path="/t/students/:id">{(params) => <ProtectedRoute component={TrainerStudentDetail} role="trainer" {...params} />}</Route>
       <Route path="/t/exercises">{(params) => <ProtectedRoute component={TrainerExercises} role="trainer" {...params} />}</Route>
+      <Route path="/t/plans/new">{(params) => <ProtectedRoute component={TrainerNewPlan} role="trainer" {...params} />}</Route>
       <Route path="/t/plans/:id">{(params) => <ProtectedRoute component={TrainerPlanDetail} role="trainer" {...params} />}</Route>
 
       <Route path="/" component={RootRedirect} />

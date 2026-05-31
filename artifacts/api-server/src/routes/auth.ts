@@ -119,8 +119,13 @@ router.get("/auth/me", async (req, res) => {
 
 // POST /api/auth/logout
 router.post("/auth/logout", (req, res) => {
-  req.session.destroy(() => {});
-  return res.json({ ok: true });
+  req.session.destroy((err) => {
+    if (err) {
+      req.log.error({ err }, "session destroy failed");
+    }
+    res.clearCookie("connect.sid");
+    return res.json({ ok: true });
+  });
 });
 
 export default router;
