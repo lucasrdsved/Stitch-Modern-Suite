@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Workout Player</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a8cbe4",
+                        "surface-dim": "#131313",
+                        "on-secondary-container": "#b7b5b4",
+                        "tertiary-container": "#c2e6ff",
+                        "primary-fixed": "#c9f236",
+                        "background": "#131313",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "surface-container-highest": "#353534",
+                        "on-surface-variant": "#c5c9ae",
+                        "error": "#ffb4ab",
+                        "pure-black": "#000000",
+                        "on-tertiary-fixed": "#001e2d",
+                        "on-background": "#e5e2e1",
+                        "outline": "#8f937b",
+                        "status-warning": "#FFB800",
+                        "surface-container-low": "#1c1b1b",
+                        "outline-variant": "#444934",
+                        "secondary": "#c8c6c5",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "inverse-primary": "#526600",
+                        "tertiary": "#fefdff",
+                        "on-tertiary-fixed-variant": "#274b5f",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#3d4d00",
+                        "primary-fixed-dim": "#aed50d",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#313030",
+                        "primary-container": "#c8f135",
+                        "tertiary-fixed": "#c5e7ff",
+                        "secondary-container": "#474746",
+                        "text-muted": "#888888",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed": "#171e00",
+                        "on-tertiary": "#0c3447",
+                        "primary": "#ffffef",
+                        "border-subtle": "#333333",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary-container": "#45687d",
+                        "on-primary-container": "#566c00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary": "#293500",
+                        "surface-bright": "#3a3939",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface-tint": "#aed50d",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "button-height-heavy": "5rem",
+                        "gutter": "1rem",
+                        "container-margin": "1.5rem",
+                        "button-height-standard": "3.5rem",
+                        "touch-target-min": "2.75rem",
+                        "stack-gap-lg": "2rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Bebas Neue"],
+                        "headline-md": ["Bebas Neue"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Bebas Neue"],
+                        "display-giant": ["Bebas Neue"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", { "lineHeight": "64px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-giant": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.pure-black');
+            color: theme('colors.on-background');
+        }
+        .glass-panel {
+            background-color: theme('colors.surface-dim');
+            border: 1px solid theme('colors.border-subtle');
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col overflow-hidden pb-8">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between px-container-margin h-button-height-standard w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border-subtle shrink-0">
+<button class="w-touch-target-min h-touch-target-min flex items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-on-background">3/8</span>
+<div class="relative w-8 h-8">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-surface-variant" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-primary-fixed" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="62.5" stroke-width="3"></circle>
+</svg>
+</div>
+</div>
+</header>
+<!-- Main Workout Area -->
+<main class="flex-1 flex flex-col px-gutter overflow-y-auto w-full max-w-md mx-auto no-scrollbar gap-stack-gap-lg pt-6">
+<!-- Exercise Media Placeholder -->
+<div class="w-full aspect-[4/3] glass-panel rounded-xl overflow-hidden relative shadow-lg">
+<img alt="Exercise Demo" class="w-full h-full object-cover opacity-80" data-alt="A powerful athlete performing a heavy barbell back squat in a dark, grimy industrial gym setting. The lighting is dramatic and moody, with high contrast highlighting the muscle definition and the chalk on the bar. The aesthetic is raw and energetic, with deep shadows and intense highlights fitting a high-performance fitness brand. The shot is dynamic, emphasizing strength and focus." src="https://lh3.googleusercontent.com/aida/ADBb0ugGCayf2R6meX7XkzQt_ul6hBHqvvoJqo9Gk8xbpAKWi7I54AdW6ockjD36od4x4x-DbQ_64qRrHDrmrfo68DZ3Ioprgv3IE4Fr-yWx9w2Bb2RgC6nbbp0XacVNrQ65aTmdNbaJmxXUMAprYjQWaZXPYSnbIq11I8StcgusGAgFgWBWMoUihjLuAEVHUkGJGyhh_h-epAYCcLUoW7H0AVfDry7fgt5vCkD1qDT_czXcELRlAd3kPdBDMZ0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-pure-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary-fixed uppercase leading-none mb-1">Barbell Back Squat</h1>
+<p class="font-label-md text-label-md text-secondary-fixed-dim">Legs • Quadriceps</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md text-primary-fixed">SET 3</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Target: 8-10 Reps</span>
+</div>
+</div>
+</div>
+<!-- Logger Section -->
+<div class="flex flex-col gap-4">
+<div class="flex gap-4">
+<div class="flex-1 glass-panel rounded-xl p-4 flex flex-col items-center justify-center relative focus-within:border-primary-fixed transition-colors">
+<label class="font-label-sm text-label-sm text-secondary-fixed-dim absolute top-3">KG</label>
+<input class="w-full h-20 bg-transparent text-center font-display-lg text-display-lg text-on-background focus:outline-none focus:ring-0 border-none mt-4 placeholder:text-surface-variant" placeholder="000" type="number" value="100"/>
+</div>
+<div class="flex-1 glass-panel rounded-xl p-4 flex flex-col items-center justify-center relative focus-within:border-primary-fixed transition-colors">
+<label class="font-label-sm text-label-sm text-secondary-fixed-dim absolute top-3">REPS</label>
+<input class="w-full h-20 bg-transparent text-center font-display-lg text-display-lg text-on-background focus:outline-none focus:ring-0 border-none mt-4 placeholder:text-surface-variant" placeholder="00" type="number" value="8"/>
+</div>
+</div>
+<button class="w-full h-button-height-standard bg-primary-fixed rounded-full flex items-center justify-center font-headline-md text-headline-md text-pure-black uppercase hover:opacity-90 active:scale-95 transition-all mt-2">
+                CONFIRMAR SÉRIE
+            </button>
+</div>
+<!-- Playback Controls -->
+<div class="mt-auto flex justify-center items-center gap-8 py-4">
+<button class="w-touch-target-min h-touch-target-min flex items-center justify-center text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">skip_previous</span>
+</button>
+<button class="w-16 h-16 rounded-full glass-panel flex items-center justify-center text-on-background hover:text-primary-fixed transition-colors border-primary-fixed/30 hover:border-primary-fixed">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="w-touch-target-min h-touch-target-min flex items-center justify-center text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">skip_next</span>
+</button>
+</div>
+</main>
+<!-- Navigation Suppressed intentionally for Workout Player mode -->
+</body></html>

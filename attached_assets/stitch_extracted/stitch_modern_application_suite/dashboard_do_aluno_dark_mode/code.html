@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trainflow - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a8cbe4",
+                        "surface-dim": "#0a0a0a",
+                        "on-secondary-container": "#b7b5b4",
+                        "tertiary-container": "#c2e6ff",
+                        "primary-fixed": "#c9f236",
+                        "background": "#000000",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-variant": "#1A1A1A",
+                        "surface-container-highest": "#1A1A1A",
+                        "on-surface-variant": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "pure-black": "#000000",
+                        "on-tertiary-fixed": "#001e2d",
+                        "on-background": "#ffffff",
+                        "outline": "#333333",
+                        "status-warning": "#FFB800",
+                        "surface-container-low": "#1A1A1A",
+                        "outline-variant": "#333333",
+                        "secondary": "#c8c6c5",
+                        "inverse-on-surface": "#000000",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "inverse-primary": "#526600",
+                        "tertiary": "#fefdff",
+                        "on-tertiary-fixed-variant": "#274b5f",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container": "#1A1A1A",
+                        "surface": "#000000",
+                        "on-primary-fixed-variant": "#3d4d00",
+                        "primary-fixed-dim": "#aed50d",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#c8f135",
+                        "tertiary-fixed": "#c5e7ff",
+                        "secondary-container": "#1A1A1A",
+                        "text-muted": "#888888",
+                        "surface-container-high": "#222222",
+                        "on-primary-fixed": "#000000",
+                        "on-tertiary": "#0c3447",
+                        "primary": "#ffffff",
+                        "border-subtle": "#333333",
+                        "on-surface": "#ffffff",
+                        "on-tertiary-container": "#45687d",
+                        "on-primary-container": "#000000",
+                        "surface-container-lowest": "#050505",
+                        "on-primary": "#000000",
+                        "surface-bright": "#1A1A1A",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface-tint": "#c9f236",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "button-height-heavy": "5rem",
+                        "gutter": "1rem",
+                        "container-margin": "1.5rem",
+                        "button-height-standard": "3.5rem",
+                        "touch-target-min": "2.75rem",
+                        "stack-gap-lg": "2rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Bebas Neue"],
+                        "headline-md": ["Bebas Neue"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Bebas Neue"],
+                        "display-giant": ["Bebas Neue"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", { "lineHeight": "64px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-giant": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant border border-border-subtle shrink-0">
+<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujQm-_qgfbXU2MxuX61F7AwOfz9JvgQeHE2YOEVZQR38r29DEWp3UdMh_umKRc2TTiJV_rqlS6dKNfNyHnSTNQ-1HpYPxjbfLM_0VcwRMOuytT34reAUd54titkRqKQr5K4-j5Bv7iD9qeciYwU-ZCNQ6oMRBxO7GOQkxd0rqFMjo0zittyIeZEUUuyuDZIIVIG4qXtKEaqV3c_2RqlaV3QX-kZv2Bm4MAZdeyRIaXRwTKIEsNkDPllB78"/>
+</div>
+<h1 class="font-display-lg text-primary-fixed tracking-tighter text-3xl leading-none">TRAINFLOW</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity active:scale-95 text-primary-fixed" data-icon="notifications">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 pt-24 px-container-margin flex flex-col gap-stack-gap-lg max-w-2xl mx-auto w-full">
+<!-- Greeting Section -->
+<section class="flex flex-col gap-1">
+<h2 class="font-headline-lg text-headline-lg text-white uppercase tracking-wider">OLÁ, JOÃO</h2>
+<p class="font-body-md text-text-muted">Pronto para destruir seus limites hoje?</p>
+</section>
+<!-- Active Workout Card -->
+<section class="bg-surface-variant border border-border-subtle rounded-xl p-container-margin flex flex-col gap-6 relative overflow-hidden shadow-2xl">
+<!-- Lime accent glow -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-fixed/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col gap-2 z-10">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-widest font-bold">Treino de Hoje</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-white leading-tight">HIPERTROFIA A<br/><span class="text-text-muted font-headline-md text-headline-md">PEITO E TRÍCEPS</span></h3>
+</div>
+<div class="grid grid-cols-2 gap-4 z-10">
+<div class="bg-black/40 border border-border-subtle rounded-lg p-3 flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Exercícios</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-white">06</span>
+</div>
+</div>
+<div class="bg-black/40 border border-border-subtle rounded-lg p-3 flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Duração Est.</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-white">45</span>
+<span class="font-label-sm text-text-muted">MIN</span>
+</div>
+</div>
+</div>
+<button class="w-full h-button-height-standard bg-primary-fixed text-pure-black rounded-full flex items-center justify-center gap-2 font-headline-md text-headline-md hover:brightness-110 transition-all active:scale-95 z-10 mt-2">
+                INICIAR TREINO
+                <span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">arrow_forward</span>
+</button>
+</section>
+<!-- Trainer Message Preview -->
+<section class="bg-surface-variant border border-border-subtle rounded-xl p-4 flex gap-4 items-center cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="relative shrink-0">
+<div class="w-12 h-12 rounded-full bg-black flex items-center justify-center overflow-hidden border border-border-subtle">
+<img alt="Trainer avatar" class="w-full h-full object-cover grayscale opacity-80" src="https://lh3.googleusercontent.com/aida/ADBb0uiFCs64zI_uNQHy2FNzHmWyFUH48bIeGS081yPktMb69_F_s-RrXVuFci6-l05rAuPsSTa-FIRpKOwe99Hkx23x4VakWnVwAHkodkVDJuKXCKmDePOCw9Sbu0PtlBIJbauvSa4kqkdiqpEalPaENKJnSyEY1hl90iaPRRIXFwHNmy48lyLQ0QVDrO7tAh7dhJ3FF-wWbIh-Fo2aFxNfKFjmtLHKG4Iw1uhKdTafK6LL5Wg5lTPvE-0MVMw"/>
+</div>
+<div class="absolute top-0 right-0 w-3 h-3 bg-primary-fixed rounded-full border-2 border-surface-variant"></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-white font-bold">Coach Marcos</span>
+<span class="font-label-sm text-label-sm text-text-muted">10:42</span>
+</div>
+<p class="font-body-sm text-sm text-text-muted truncate">Foca bem na fase excêntrica do supino hoje. Vai queimar!</p>
+</div>
+<span class="material-symbols-outlined text-border-subtle shrink-0">chevron_right</span>
+</section>
+<!-- Recent Sessions Horizontal Scroll -->
+<section class="flex flex-col gap-4 mb-8">
+<div class="flex items-center justify-between">
+<h3 class="font-label-md text-label-md text-text-muted uppercase tracking-wider font-bold">Últimas Sessões</h3>
+<button class="font-label-sm text-label-sm text-primary-fixed hover:underline">Ver Histórico</button>
+</div>
+<div class="flex overflow-x-auto gap-4 hide-scrollbar snap-x -mx-container-margin px-container-margin pb-4">
+<!-- Session Card 1 -->
+<div class="min-w-[220px] bg-surface-variant border border-border-subtle rounded-xl p-4 snap-center flex flex-col gap-3 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-white">Costas e Bíceps</span>
+<span class="font-label-sm text-label-sm text-primary-fixed bg-primary-fixed/10 px-2 py-0.5 rounded text-xs border border-primary-fixed/20">ONTEM</span>
+</div>
+<div class="flex gap-4 mt-2">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase text-[10px]">Tempo</span>
+<span class="font-headline-md text-xl text-white">52<span class="text-sm font-body-sm text-text-muted ml-0.5">m</span></span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase text-[10px]">Volume</span>
+<span class="font-headline-md text-xl text-white">4.2<span class="text-sm font-body-sm text-text-muted ml-0.5">k</span></span>
+</div>
+</div>
+</div>
+<!-- Session Card 2 -->
+<div class="min-w-[220px] bg-surface-variant border border-border-subtle rounded-xl p-4 snap-center flex flex-col gap-3 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-white">Pernas Completas</span>
+<span class="font-label-sm text-label-sm text-text-muted text-xs">24 OUT</span>
+</div>
+<div class="flex gap-4 mt-2">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase text-[10px]">Tempo</span>
+<span class="font-headline-md text-xl text-white">65<span class="text-sm font-body-sm text-text-muted ml-0.5">m</span></span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase text-[10px]">Volume</span>
+<span class="font-headline-md text-xl text-white">6.8<span class="text-sm font-body-sm text-text-muted ml-0.5">k</span></span>
+</div>
+</div>
+</div>
+<!-- Session Card 3 -->
+<div class="min-w-[220px] bg-surface-variant border border-border-subtle rounded-xl p-4 snap-center flex flex-col gap-3 relative overflow-hidden opacity-60">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-white">Peito e Ombros</span>
+<span class="font-label-sm text-label-sm text-text-muted text-xs">22 OUT</span>
+</div>
+<div class="flex gap-4 mt-2">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase text-[10px]">Tempo</span>
+<span class="font-headline-md text-xl text-white">48<span class="text-sm font-body-sm text-text-muted ml-0.5">m</span></span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase text-[10px]">Volume</span>
+<span class="font-headline-md text-xl text-white">3.9<span class="text-sm font-body-sm text-text-muted ml-0.5">k</span></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-black border-t border-border-subtle flex justify-around items-center h-button-height-standard px-gutter max-w-md mx-auto md:hidden pb-safe">
+<!-- Active Tab: Home -->
+<a class="flex flex-col items-center justify-center text-primary-fixed font-bold rounded-full px-4 py-1 active:scale-90 duration-200" data-icon="home" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</a>
+<!-- Inactive Tab: Workout -->
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed transition-colors active:scale-90 duration-200" data-icon="fitness_center" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-sm text-label-sm mt-0.5">Workout</span>
+</a>
+<!-- Inactive Tab: Chat -->
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed transition-colors active:scale-90 duration-200 relative" data-icon="chat_bubble" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm mt-0.5">Chat</span>
+<span class="absolute top-0 right-1 w-2 h-2 bg-primary-fixed rounded-full"></span>
+</a>
+<!-- Inactive Tab: Profile -->
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed transition-colors active:scale-90 duration-200" data-icon="person" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Profile</span>
+</a>
+</nav>
+</body></html>

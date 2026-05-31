@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#c2e6ff",
+                    "on-primary": "#293500",
+                    "inverse-on-surface": "#313030",
+                    "primary-fixed": "#c9f236",
+                    "on-background": "#e5e2e1",
+                    "on-tertiary-container": "#45687d",
+                    "on-error-container": "#ffdad6",
+                    "text-muted": "#888888",
+                    "error-container": "#93000a",
+                    "surface-container": "#201f1f",
+                    "pure-black": "#000000",
+                    "on-secondary-fixed-variant": "#474746",
+                    "primary-container": "#c8f135",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-primary-fixed": "#171e00",
+                    "on-tertiary-fixed-variant": "#274b5f",
+                    "tertiary-fixed-dim": "#a8cbe4",
+                    "outline": "#8f937b",
+                    "primary": "#ffffef",
+                    "secondary": "#c8c6c5",
+                    "on-primary-container": "#566c00",
+                    "tertiary": "#fefdff",
+                    "primary-fixed-dim": "#aed50d",
+                    "surface-variant": "#353534",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#c5e7ff",
+                    "on-surface": "#e5e2e1",
+                    "on-primary-fixed-variant": "#3d4d00",
+                    "background": "#131313",
+                    "surface-container-low": "#1c1b1b",
+                    "on-secondary": "#313030",
+                    "border-subtle": "#333333",
+                    "on-surface-variant": "#c5c9ae",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "surface": "#131313",
+                    "secondary-container": "#474746",
+                    "surface-tint": "#aed50d",
+                    "inverse-primary": "#526600",
+                    "surface-container-highest": "#353534",
+                    "on-tertiary": "#0c3447",
+                    "outline-variant": "#444934",
+                    "inverse-surface": "#e5e2e1",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-tertiary-fixed": "#001e2d",
+                    "on-error": "#690005",
+                    "surface-dim": "#131313",
+                    "surface-bright": "#3a3939",
+                    "status-warning": "#FFB800",
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#b7b5b4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target-min": "2.75rem",
+                    "button-height-standard": "3.5rem",
+                    "gutter": "1rem",
+                    "button-height-heavy": "5rem",
+                    "stack-gap-lg": "2rem",
+                    "container-margin": "1.5rem"
+            },
+            "fontFamily": {
+                    "display-lg": ["Bebas Neue"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Bebas Neue"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Bebas Neue"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-giant": ["Bebas Neue"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid #333333;
+        }
+        .chart-bar {
+            transition: height 1s ease-out;
+        }
+        .heat-cell {
+            transition: opacity 0.3s ease;
+        }
+        .heat-cell:hover {
+            filter: brightness(1.5);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="pb-24">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-display-lg text-[32px] text-primary-fixed tracking-tighter uppercase">RELATÓRIOS</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity" data-icon="filter_list">filter_list</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary-fixed">
+<img alt="Profile" data-alt="A close-up professional portrait of a fitness coach with an intense and focused expression. The lighting is dramatic, high-contrast chiaroscuro style, emphasizing athletic features against a deep black background. The overall aesthetic is professional, sharp, and mirrors a high-end athletic brand identity with subtle green rim lighting." src="https://lh3.googleusercontent.com/aida/ADBb0uiwwJdD2LlZzmolbrBeF9RGo1FS1B4NMcw1x9AHtI7VhzEL4tB35gt3IAT77__EZRurjBh-VKkLZSbsb40wQZL9IqUUindD1P9dHFVPOW_lHnq7ZY8CGBC8FkzsjgQstoL6VxL1-xSQ0nbIIOs7dwjXv2XQt1NNU98nCI_vIgi_Fj3AK0ihjBGYK0dnop_mIpyBhzK134h2M2E0EqQENW6E0Lefa4wcsvMTsCumq5TtgEMcEX6i2YmgfxU"/>
+</div>
+</div>
+</header>
+<main class="mt-20 px-container-margin space-y-6">
+<!-- Quick Stats Bento Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Retention Card -->
+<div class="glass-card p-4 rounded-xl flex flex-col justify-between aspect-square">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-widest">Retenção</span>
+<div class="space-y-1">
+<span class="font-display-lg text-4xl text-primary-fixed block">94%</span>
+<span class="font-label-sm text-status-warning">+2.4% este mês</span>
+</div>
+</div>
+<!-- Active Growth Card -->
+<div class="glass-card p-4 rounded-xl flex flex-col justify-between aspect-square">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-widest">Alunos Ativos</span>
+<div class="flex items-end gap-1 h-12">
+<div class="bg-surface-variant w-full h-[40%] rounded-t-sm"></div>
+<div class="bg-surface-variant w-full h-[60%] rounded-t-sm"></div>
+<div class="bg-primary-fixed w-full h-[90%] rounded-t-sm"></div>
+<div class="bg-primary-fixed w-full h-[100%] rounded-t-sm"></div>
+</div>
+<span class="font-display-lg text-4xl text-primary-fixed">128</span>
+</div>
+<!-- MRR Trend (Financial - Discreet) -->
+<div class="glass-card p-4 rounded-xl flex flex-col justify-between col-span-2">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-widest">Receita Mensal (MRR)</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="visibility_off">visibility_off</span>
+</div>
+<div class="flex items-center gap-6">
+<div>
+<span class="font-display-lg text-4xl text-on-surface">R$ --.---</span>
+<div class="flex items-center gap-1 text-primary-fixed font-label-sm mt-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+<span>Em crescimento</span>
+</div>
+</div>
+<div class="flex-grow h-16 flex items-end gap-2 px-2">
+<!-- Tiny Sparkline -->
+<div class="h-1/3 w-full bg-border-subtle rounded-full"></div>
+<div class="h-1/2 w-full bg-border-subtle rounded-full"></div>
+<div class="h-3/4 w-full bg-primary-fixed opacity-50 rounded-full"></div>
+<div class="h-2/3 w-full bg-primary-fixed opacity-50 rounded-full"></div>
+<div class="h-full w-full bg-primary-fixed rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Engagement Heatmap Section -->
+<section class="space-y-4">
+<h2 class="font-headline-md text-on-surface">MAPA DE CALOR: COMPLETOS</h2>
+<div class="glass-card p-6 rounded-xl">
+<div class="grid grid-cols-7 gap-2">
+<!-- Days Labels -->
+<div class="text-center font-label-sm text-on-surface-variant">SEG</div>
+<div class="text-center font-label-sm text-on-surface-variant">TER</div>
+<div class="text-center font-label-sm text-on-surface-variant">QUA</div>
+<div class="text-center font-label-sm text-on-surface-variant">QUI</div>
+<div class="text-center font-label-sm text-on-surface-variant">SEX</div>
+<div class="text-center font-label-sm text-on-surface-variant">SAB</div>
+<div class="text-center font-label-sm text-on-surface-variant">DOM</div>
+<!-- Week Rows (Mock Data) -->
+<!-- Row 1 -->
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-20 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-40 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-90 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-60 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-100 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-30 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-10 heat-cell"></div>
+<!-- Row 2 -->
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-40 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-80 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-100 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-70 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-90 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-20 heat-cell"></div>
+<div class="aspect-square rounded-sm bg-primary-fixed opacity-0 heat-cell border border-border-subtle"></div>
+</div>
+<div class="mt-4 flex justify-between items-center">
+<span class="font-label-sm text-on-surface-variant">Pico de atividade: Sexta-feira</span>
+<div class="flex items-center gap-1">
+<span class="text-[10px] text-on-surface-variant">Menos</span>
+<div class="w-3 h-3 bg-primary-fixed opacity-20 rounded-sm"></div>
+<div class="w-3 h-3 bg-primary-fixed opacity-60 rounded-sm"></div>
+<div class="w-3 h-3 bg-primary-fixed opacity-100 rounded-sm"></div>
+<span class="text-[10px] text-on-surface-variant">Mais</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Most Executed Workouts -->
+<section class="space-y-4">
+<h2 class="font-headline-md text-on-surface">TREINOS MAIS EXECUTADOS</h2>
+<div class="space-y-3">
+<div class="glass-card flex items-center p-4 rounded-xl gap-4 group hover:bg-surface-variant/40 transition-colors">
+<div class="w-12 h-12 bg-primary-fixed text-pure-black flex items-center justify-center rounded-lg font-display-lg text-2xl">
+                        A
+                    </div>
+<div class="flex-grow">
+<h3 class="font-body-lg font-bold">HIPERTROFIA: PUSH DAY</h3>
+<p class="font-label-sm text-on-surface-variant">248 execuções este mês</p>
+</div>
+<div class="text-right">
+<span class="font-display-lg text-2xl text-primary-fixed">#1</span>
+</div>
+</div>
+<div class="glass-card flex items-center p-4 rounded-xl gap-4 opacity-80">
+<div class="w-12 h-12 border border-border-subtle flex items-center justify-center rounded-lg font-display-lg text-2xl">
+                        B
+                    </div>
+<div class="flex-grow">
+<h3 class="font-body-lg font-bold">LEG DAY: POWER FOCUS</h3>
+<p class="font-label-sm text-on-surface-variant">192 execuções este mês</p>
+</div>
+<div class="text-right">
+<span class="font-display-lg text-2xl text-secondary">#2</span>
+</div>
+</div>
+<div class="glass-card flex items-center p-4 rounded-xl gap-4 opacity-60">
+<div class="w-12 h-12 border border-border-subtle flex items-center justify-center rounded-lg font-display-lg text-2xl">
+                        C
+                    </div>
+<div class="flex-grow">
+<h3 class="font-body-lg font-bold">UPPER BODY STRENGTH</h3>
+<p class="font-label-sm text-on-surface-variant">156 execuções este mês</p>
+</div>
+<div class="text-right">
+<span class="font-display-lg text-2xl text-secondary">#3</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Student Ranking -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-md text-on-surface">RANKING DE CONSISTÊNCIA</h2>
+<span class="font-label-sm text-primary-fixed border-b border-primary-fixed uppercase mb-1">Ver todos</span>
+</div>
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="flex items-center p-4 border-b border-border-subtle gap-4">
+<span class="font-display-lg text-3xl text-primary-fixed w-6 text-center">1</span>
+<img alt="Top Student" class="w-10 h-10 rounded-full object-cover" data-alt="A muscular woman working out in a dark, atmospheric high-performance gym. Strong rim lighting separates her silhouette from the black background, emphasizing her sweat and intensity. High-end athletic aesthetic with professional photography feel." src="https://lh3.googleusercontent.com/aida/ADBb0uirvMJN57f5nWLdqP0Xuc2SjG4_8EAnUGHGM3pgHnxw_1700gmbV_xJz4CiMAfMhatB4gQPthQkMdXnGs7flj2Qo8D4AdZnHT9agJWzzIjeV-Tu48Ax9hunN7DrTVQLAU7fOyKPR1ZTCf43Wl0xaKHXaq5yeHKv4SIJygibA20VAqfQyKwDyIIIKXe2hU8IKBP9LJWGO7f7vQbdOo502jTbgyqjerdjgUYpbjOJldOpGnukOHB1sfTlXgI"/>
+<div class="flex-grow">
+<p class="font-body-md font-bold">Mariana Costa</p>
+<div class="flex gap-1 mt-1">
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-primary-fixed font-bold">28/30 DIAS</span>
+</div>
+</div>
+<div class="flex items-center p-4 border-b border-border-subtle gap-4">
+<span class="font-display-lg text-3xl text-on-surface-variant w-6 text-center">2</span>
+<img alt="Student" class="w-10 h-10 rounded-full object-cover" data-alt="Close up portrait of a male athlete in a dark training environment. Hard directional lighting highlights muscle definition and grit. The background is pitch black, giving a dramatic and elite sports performance vibe." src="https://lh3.googleusercontent.com/aida/ADBb0uheH273Rf5UZWL3e8D8jnFR_soHum36SvVOQZQeTssXs-bQxIngUsGCeFPkNyEuI-HPVdFfYRciICH7-jIDeS_2MA1AU7nIituTt9fxIH_OSaIZOGrS-TYiuMqCpDopAVGusCNbtGqNIViLd1xjcg_eFpaS96SoKxf2S6NvNlVcHCdWaRbW3XkiTDlGfDIoAASL0gBBL6P1OvqgVxj5FnCjEgNJsAxBpSkaxYoO6ZU0OqGK7Ttc4_GhSg"/>
+<div class="flex-grow">
+<p class="font-body-md font-bold">Ricardo Alvez</p>
+<div class="flex gap-1 mt-1">
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+<div class="h-1 w-8 bg-border-subtle rounded-full"></div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-on-surface-variant">25/30 DIAS</span>
+</div>
+</div>
+<div class="flex items-center p-4 gap-4">
+<span class="font-display-lg text-3xl text-on-surface-variant w-6 text-center">3</span>
+<img alt="Student" class="w-10 h-10 rounded-full object-cover" data-alt="An athlete focused on training in a low-light gym. Moody atmosphere with a pure black background and sharp electric lime green highlights reflecting off the gear. Visual style is professional, energetic, and clean." src="https://lh3.googleusercontent.com/aida/ADBb0ugNaBBDk6pImKviGW3ZEH36wVjT4ctINjWd6ZJcTDOxhAN9M-jHFS7ZP9KUE-tNJLToFewHtlUTPAwjyJuZlceq9bRdR1Ym_TzPHHSPoBqqEcRFZi-Vsuk2aE31DMLemN0IfKVZazoPTeOZkpNbh1QCHuz-T2xm6Yf7AswYXVPaRW2xK8IDTqriN20Ho15kbM4abbkiyAC7qcAecEz_9pFofFs40DsjMHu7b6-OoaiTofwGNalYPJt0PAw"/>
+<div class="flex-grow">
+<p class="font-body-md font-bold">Juliana Mendes</p>
+<div class="flex gap-1 mt-1">
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+<div class="h-1 w-8 bg-primary-fixed rounded-full"></div>
+<div class="h-1 w-8 bg-border-subtle rounded-full"></div>
+<div class="h-1 w-8 bg-border-subtle rounded-full"></div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-on-surface-variant">22/30 DIAS</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-pure-black/80 backdrop-blur-3xl border-t border-border-subtle">
+<div class="flex justify-around items-center h-button-height-standard px-gutter w-full max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-sm text-label-sm">Workout</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-fixed font-bold bg-surface-variant/30 rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm">Relatórios</span>
+</a>
+</div>
+</nav>
+<!-- Floating Action Button Contextual (Export Report) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary-fixed text-pure-black rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform hover:shadow-[0_0_20px_rgba(201,242,54,0.4)]">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+</button>
+<script>
+        // Micro-interactions for chart bars
+        window.addEventListener('DOMContentLoaded', () => {
+            const cells = document.querySelectorAll('.heat-cell');
+            cells.forEach((cell, index) => {
+                setTimeout(() => {
+                    cell.style.transitionDelay = `${index * 20}ms`;
+                    cell.classList.add('opacity-100');
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

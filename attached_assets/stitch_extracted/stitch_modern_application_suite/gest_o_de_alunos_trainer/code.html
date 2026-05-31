@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>TRAINFLOW | Alunos</title>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#fefdff",
+                        "on-tertiary-fixed-variant": "#274b5f",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed-dim": "#aed50d",
+                        "on-primary-container": "#566c00",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#c8c6c5",
+                        "surface-variant": "#353534",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "outline": "#8f937b",
+                        "on-tertiary-container": "#45687d",
+                        "primary": "#ffffef",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#3d4d00",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "error-container": "#93000a",
+                        "secondary-container": "#474746",
+                        "inverse-on-surface": "#313030",
+                        "on-error": "#690005",
+                        "tertiary-container": "#c2e6ff",
+                        "on-secondary-fixed-variant": "#474746",
+                        "tertiary-fixed-dim": "#a8cbe4",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-dim": "#131313",
+                        "pure-black": "#000000",
+                        "on-surface": "#e5e2e1",
+                        "outline-variant": "#444934",
+                        "text-muted": "#888888",
+                        "primary-fixed": "#c9f236",
+                        "tertiary-fixed": "#c5e7ff",
+                        "primary-container": "#c8f135",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "surface-tint": "#aed50d",
+                        "on-tertiary-fixed": "#001e2d",
+                        "inverse-primary": "#526600",
+                        "background": "#131313",
+                        "on-tertiary": "#0c3447",
+                        "on-secondary": "#313030",
+                        "on-primary-fixed": "#171e00",
+                        "on-primary": "#293500",
+                        "status-warning": "#FFB800",
+                        "error": "#ffb4ab",
+                        "surface-container": "#201f1f",
+                        "on-surface-variant": "#c5c9ae",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-background": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "border-subtle": "#333333",
+                        "surface-container-low": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "1rem",
+                        "button-height-heavy": "5rem",
+                        "touch-target-min": "2.75rem",
+                        "button-height-standard": "3.5rem",
+                        "stack-gap-lg": "2rem",
+                        "container-margin": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Bebas Neue"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Bebas Neue"],
+                        "body-md": ["Inter"],
+                        "display-giant": ["Bebas Neue"],
+                        "headline-lg": ["Bebas Neue"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid #333333;
+        }
+        .active-filter {
+            background-color: #c9f236;
+            color: #000000;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard">
+<div class="flex items-center gap-2">
+<h1 class="font-display-lg text-[32px] text-primary-fixed tracking-tighter leading-none">TRAINFLOW</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform">notifications</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a fitness coach with a determined expression, captured in high-contrast cinematic lighting within a modern gym environment. The background shows blurred gym equipment and sleek dark walls, maintaining a sophisticated black-mode aesthetic. The lighting highlights sharp textures and professional attire, reflecting a high-performance athletic brand identity." src="https://lh3.googleusercontent.com/aida/ADBb0ugzOY_WvSFMN9zaqnq4vtfx-PV3krTeuBXlEnGHitJTW5HcoaWHNeL4t771bd0xWVoSZeofk-0oSsWVYisG3beZktEIDz5W698f_QKgD0ev0k0NcMzaBK8tGD6l77az1_pK595gqCnfi8BK30myzak4yPyVrsv0vOkXQk1TvVzj7iCFl6hMtqXseoaYm3r-nT1JFdyXZwZSB6a85yQCzkIWG2Y4Se7sk-NIYhD0M-aOLzWl5FZWGItwNAU"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-container-margin max-w-2xl mx-auto">
+<!-- Search & Filter Section -->
+<section class="mb-8 space-y-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-button-height-standard bg-surface-container-high border-none rounded-xl pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="Buscar aluno..." type="text"/>
+</div>
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-6 py-2 rounded-full font-label-md text-label-md active-filter transition-all whitespace-nowrap">Todos</button>
+<button class="px-6 py-2 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant border border-border-subtle hover:bg-surface-variant transition-all whitespace-nowrap">Ativos</button>
+<button class="px-6 py-2 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant border border-border-subtle hover:bg-surface-variant transition-all whitespace-nowrap">Convidados</button>
+</div>
+</section>
+<!-- Students Grid -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Student Card 1 -->
+<div class="glass-card rounded-2xl p-5 flex items-center justify-between group hover:border-primary-fixed transition-colors">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Student Profile" class="w-14 h-14 rounded-full object-cover border-2 border-primary-fixed" data-alt="A portrait of a male athlete in mid-workout, sweat glistening on his skin under intense gym lighting. The image captures a raw, powerful moment of physical exertion in a minimalist dark gym setting. Deep shadows and vibrant high-key accents create a professional and energetic atmosphere consistent with premium performance athletic gear aesthetics." src="https://lh3.googleusercontent.com/aida/ADBb0ujmKkJ6x3PgxG6DDT1zr07BMbaJPbz3HXxfhuVCOZ_qj2KTtCjeLNI9VbxhzUCi98ykBmfq1v3hi5pH8jltUzwzmoC1sKoPB0APVfTw_vTbPa3Kb95BepWh-JUWvroi_j53gdP90ktByUrNvS0rxA8mATzxIB7hNaGGm076fQGkYoYN1mAya-6OOvNipwRTBhMB7uXgup8jrhEsZKFeYHfJfbWuwQqsAtGjWkoMtt8gKLVCEX3moxflcGk"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary-fixed border-2 border-pure-black rounded-full"></span>
+</div>
+<div><h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed transition-colors">RICARDO SILVA</h3><div class="flex flex-wrap items-center gap-2 mt-1"><span class="font-label-sm text-label-sm text-primary-fixed bg-primary-fixed/10 px-2 py-0.5 rounded uppercase">Ativo</span><span class="font-label-sm text-label-sm text-on-surface-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">Ectomorfo</span><span class="font-label-sm text-label-sm text-on-surface-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">Hipertrofia</span></div><div class="mt-1"><p class="font-label-sm text-label-sm text-text-muted">Avaliação: 12 Out</p></div></div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-fixed transition-colors">chevron_right</button>
+</div>
+<!-- Student Card 2 -->
+<div class="glass-card rounded-2xl p-5 flex items-center justify-between group hover:border-primary-fixed transition-colors">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Student Profile" class="w-14 h-14 rounded-full object-cover border-2 border-border-subtle" data-alt="A professional photograph of a female athlete training intensely. The lighting is dramatic and low-key, emphasizing muscle definition and focus. The environment is a clean, modern gym with a dark color palette. The composition is dynamic and captures the essence of a high-performance fitness journey, aligning with the brand's energetic and professional personality." src="https://lh3.googleusercontent.com/aida/ADBb0ugB0QOTluoCmr9uej7xpqvs4j1I2HKcWQllYpafjJQNIHqCBRX_5B3RhyUdCx0qkY9u7W6LJV5Z0ALzru2QWw2O4ISzM_B-cqhJQq8jHM_y8QjOjiHfbLB-tVfsz4Z63-Bf5wEhBSU4v8mZferiGVXS2tr_fF5LYnQ1jS4epwUUyYRMcKcw5mdC6avgupSrCo3PloLly5SIvddXCU3x65fuypTPj9-6Kr8wkr3L6kD3Qp3RPLQCPaDyQew"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary-fixed border-2 border-pure-black rounded-full"></span>
+</div>
+<div><h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed transition-colors">BEATRIZ COSTA</h3><div class="flex flex-wrap items-center gap-2 mt-1"><span class="font-label-sm text-label-sm text-primary-fixed bg-primary-fixed/10 px-2 py-0.5 rounded uppercase">Ativo</span><span class="font-label-sm text-label-sm text-on-surface-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">Mesomorfo</span><span class="font-label-sm text-label-sm text-on-surface-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">Definição</span></div><div class="mt-1"><p class="font-label-sm text-label-sm text-text-muted">Avaliação: 28 Out</p></div></div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-fixed transition-colors">chevron_right</button>
+</div>
+<!-- Student Card 3 (Guest) -->
+<div class="glass-card rounded-2xl p-5 flex items-center justify-between opacity-70 group hover:opacity-100 hover:border-status-warning transition-all border-dashed border-outline-variant">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center border-2 border-border-subtle">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-status-warning border-2 border-pure-black rounded-full"></span>
+</div>
+<div><h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-status-warning transition-colors">MARCUS OLIVEIRA</h3><div class="flex flex-wrap items-center gap-2 mt-1"><span class="font-label-sm text-label-sm text-status-warning bg-status-warning/10 px-2 py-0.5 rounded uppercase">Convidado</span><span class="font-label-sm text-label-sm text-on-surface-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">Pendente</span></div><div class="mt-1"><p class="font-label-sm text-label-sm text-text-muted italic">Aguardando aceite do convite</p></div></div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant group-hover:text-status-warning transition-colors">mail</button>
+</div>
+<!-- Student Card 4 -->
+<div class="glass-card rounded-2xl p-5 flex items-center justify-between group hover:border-primary-fixed transition-colors">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Student Profile" class="w-14 h-14 rounded-full object-cover border-2 border-primary-fixed" data-alt="A gritty, high-detail portrait of a weightlifter in a dark, atmospheric training space. High-contrast lighting picks out the spray of water and chalk dust in the air. The mood is aggressive and focused, utilizing a deep black and electric lime accent palette to define the space and subject with a sense of high-performance intensity." src="https://lh3.googleusercontent.com/aida/ADBb0uiHL0w5AT5urkAB4ZlP6yhH3dIDwIFaTXpkM8s4ds6VkNmb5OPt5aZg8RYUrIWEzrj472xLgUtEKx3h3BmaA_XU0ZR1DnqAIaq6BWqP845f95qMMs1fbStRc5qA63iqim-PC6m74lDZN99ojNcA5Cbz-M5-sXNxI3AqQEqtavapuMrkQ8jdz7QeZupn3TGMxrC9P9lciK1xXmvmXgpuzBRWNtqTMQLlT_Apf_C0limKjkGIZTNqKG5DRc0"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary-fixed border-2 border-pure-black rounded-full"></span>
+</div>
+<div><h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed transition-colors">GABRIEL JUNIOR</h3><div class="flex flex-wrap items-center gap-2 mt-1"><span class="font-label-sm text-label-sm text-text-muted bg-surface-container-highest px-2 py-0.5 rounded uppercase">Inativo</span><span class="font-label-sm text-label-sm text-on-surface-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">Endomorfo</span><span class="font-label-sm text-label-sm text-on-surface-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">Performance</span></div><div class="mt-1"><p class="font-label-sm text-label-sm text-text-muted">Avaliação: 05 Nov</p></div></div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-fixed transition-colors">chevron_right</button>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<div class="fixed right-6 bottom-24 flex flex-col items-end gap-3 z-50"><button class="flex items-center gap-2 bg-surface-container-high border border-border-subtle text-on-surface px-4 py-2 rounded-full shadow-xl active:scale-95 transition-transform"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-md">Nova Avaliação</span></button><button class="w-16 h-16 bg-primary-fixed text-pure-black rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform duration-200"><span class="material-symbols-outlined font-bold text-[32px]">person_add</span></button></div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-pure-black/80 dark:bg-pure-black/80 backdrop-blur-3xl border-t border-border-subtle">
+<div class="flex justify-around items-center h-button-height-standard px-gutter w-full max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-sm text-label-sm">Workout</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-fixed font-bold bg-surface-variant/30 rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple Interaction logic
+        const filterButtons = document.querySelectorAll('button[class*="rounded-full"]');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('active-filter');
+                    b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                btn.classList.add('active-filter');
+                btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+            });
+        });
+
+        // Search highlight micro-interaction
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.02]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.02]');
+        });
+    </script>
+</body></html>

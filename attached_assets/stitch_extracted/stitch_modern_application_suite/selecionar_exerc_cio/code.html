@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container": "#201f1f",
+                    "background": "#131313",
+                    "secondary": "#c8c6c5",
+                    "surface": "#131313",
+                    "inverse-surface": "#e5e2e1",
+                    "border-subtle": "#333333",
+                    "on-background": "#e5e2e1",
+                    "on-tertiary-fixed-variant": "#274b5f",
+                    "on-surface": "#e5e2e1",
+                    "outline-variant": "#444934",
+                    "primary-fixed-dim": "#aed50d",
+                    "on-surface-variant": "#c5c9ae",
+                    "outline": "#8f937b",
+                    "on-tertiary": "#0c3447",
+                    "secondary-fixed": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "tertiary-fixed": "#c5e7ff",
+                    "surface-bright": "#3a3939",
+                    "on-error-container": "#ffdad6",
+                    "text-muted": "#888888",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-tertiary-container": "#45687d",
+                    "on-primary": "#293500",
+                    "tertiary": "#fefdff",
+                    "on-error": "#690005",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#001e2d",
+                    "on-primary-container": "#566c00",
+                    "surface-container-highest": "#353534",
+                    "pure-black": "#000000",
+                    "surface-container-low": "#1c1b1b",
+                    "on-primary-fixed": "#171e00",
+                    "tertiary-container": "#c2e6ff",
+                    "on-secondary": "#313030",
+                    "status-warning": "#FFB800",
+                    "secondary-container": "#474746",
+                    "surface-variant": "#353534",
+                    "surface-tint": "#aed50d",
+                    "on-secondary-fixed-variant": "#474746",
+                    "tertiary-fixed-dim": "#a8cbe4",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "surface-dim": "#131313",
+                    "primary-fixed": "#c9f236",
+                    "inverse-primary": "#526600",
+                    "on-primary-fixed-variant": "#3d4d00",
+                    "primary-container": "#c8f135",
+                    "surface-container-lowest": "#0e0e0e",
+                    "error-container": "#93000a",
+                    "primary": "#ffffef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target-min": "2.75rem",
+                    "container-margin": "1.5rem",
+                    "gutter": "1rem",
+                    "stack-gap-lg": "2rem",
+                    "button-height-heavy": "5rem",
+                    "button-height-standard": "3.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-giant": ["Bebas Neue"],
+                    "headline-lg": ["Bebas Neue"],
+                    "headline-md": ["Bebas Neue"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Bebas Neue"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-pure-black text-on-background min-h-screen font-body-md selection:bg-primary-container selection:text-on-primary">
+<!-- Header / TopAppBar -->
+<header class="bg-pure-black text-primary-container fixed top-0 w-full z-50 px-container-margin h-touch-target-min flex justify-between items-center">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg tracking-widest text-primary-container">TRAINFLOW</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container border border-border-subtle flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a determined professional athlete with subtle sweat on their face. The lighting is dramatic and high-contrast, typical of a high-end fitness brand, with deep blacks and sharp highlights. The overall mood is intense, focused, and professional, perfectly aligning with the dark, minimalist aesthetic of the workout platform." src="https://lh3.googleusercontent.com/aida/ADBb0ujmDUQKD6oPjhuCX9qdxENhnUpmbBfvCpp92aZgN7OF4j0z7iTZsfIaS3WdcX1U9uMl1mYmKRzXgWjpsZOsSWkCeP3K-OF3selcqRsDjnu7xWduKN8TtHsMxpIAiL4HBw-v2Hv1Eao4noaceudxoy0Mpim_-2BSt3cNUZsqM-vlPrBQx0keopOrsFwq7LLif85i3-AtLZfxJtXjZ3PJF1F4IqwwmmzhqFFXLQVUPEGg_Tqs9i80KStw8A"/>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="pt-20 pb-24 px-container-margin min-h-screen">
+<!-- Search and Context -->
+<section class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">ADICIONAR EXERCÍCIO</h2>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-primary-container transition-colors">search</span>
+<input class="w-full h-14 bg-surface-container border-border-subtle border rounded-xl pl-12 pr-4 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all outline-none font-body-md" placeholder="Buscar exercício..." type="text"/>
+</div>
+</section>
+<!-- Filters Bento -->
+<section class="mb-8">
+<div class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-md whitespace-nowrap active:scale-95 transition-transform">Todos</button>
+<button class="bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2 rounded-full font-label-md whitespace-nowrap active:scale-95 transition-transform">Peito</button>
+<button class="bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2 rounded-full font-label-md whitespace-nowrap active:scale-95 transition-transform">Costas</button>
+<button class="bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2 rounded-full font-label-md whitespace-nowrap active:scale-95 transition-transform">Pernas</button>
+<button class="bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2 rounded-full font-label-md whitespace-nowrap active:scale-95 transition-transform">Ombros</button>
+<button class="bg-surface-container-high border border-border-subtle text-on-surface px-6 py-2 rounded-full font-label-md whitespace-nowrap active:scale-95 transition-transform">Braços</button>
+</div>
+</section>
+<!-- Exercise List -->
+<div class="space-y-4">
+<!-- Exercise Item 1 -->
+<div class="bg-surface-container border border-border-subtle rounded-2xl p-4 flex items-center gap-4 hover:border-primary-container/50 transition-colors group">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A detailed shot of a person performing a bench press with a heavy barbell in a modern, dark, industrial gym setting. The lighting focuses on the muscle definition and the matte texture of the equipment. The visual style is aggressive and high-performance, using deep shadows and sharp, focused lighting to create a professional athletic atmosphere." src="https://lh3.googleusercontent.com/aida/ADBb0uhg96t4pBLfuJ7Qv9PTwcHlkoJfEatYuZv36eGx9ugilFJ1ZJXK6bdwWcXYsyg9Y1nPogNIVchHJRBxM-bb_tYsz6o01tl9UXQ7R3NeenJZB4bSidAUI5Wq4c6SrzsJs2evlbyVv1fSp8SRd4sjsn1AHYnaNC3p4dHTYYSTyezScx_ogEdbkAs9lZj2HE3O-0S80V9kWtQ3G3YX-Isch6cWqEFatKpJ6lQnh4LzJ-ILbroID4LFIz1tLqo"/>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-[18px] text-on-surface leading-tight">SUPINO RETO (BARRA)</h3>
+<p class="text-text-muted font-label-sm uppercase">Peito • Barra</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md font-bold active:scale-95 transition-transform">
+                    ADICIONAR
+                </button>
+</div>
+<!-- Exercise Item 2 -->
+<div class="bg-surface-container border border-border-subtle rounded-2xl p-4 flex items-center gap-4 hover:border-primary-container/50 transition-colors group">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="Close up of high-quality hexagonal dumbbells on a gym floor with a dark, textured surface. The scene is illuminated by moody, cinematic lighting that highlights the metallic grain and the intensity of a high-performance training environment. Deep blacks and subtle grey tones dominate the palette, creating a sense of grit and focus." src="https://lh3.googleusercontent.com/aida/ADBb0ujnZD7y025lQkfVr2FEYlOksvHOQW0VzLmauIRAfn9dUlz5uUhj_g1xlqvWABx02RORpnqfRlwlpQrTJlcftReYTLiRvHn4VxayqETrS1p4ubugXfXmokbOaPFHrmFE_NLxPXy0aQS-d16wzlQCKAGhB8vELYNR1M12woxuO5lcrrMZIo3N2JkOO9ZdbuAkCBgk1FvoLJSfEyThWFvFSivqX--Thna73srsQpGgsZeZPEx4Yn98TdO5-A8"/>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-[18px] text-on-surface leading-tight">CRUCIFIXO RETO</h3>
+<p class="text-text-muted font-label-sm uppercase">Peito • Halteres</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md font-bold active:scale-95 transition-transform">
+                    ADICIONAR
+                </button>
+</div>
+<!-- Exercise Item 3 -->
+<div class="bg-surface-container border border-border-subtle rounded-2xl p-4 flex items-center gap-4 hover:border-primary-container/50 transition-colors group">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A high-contrast photo of a pull-up bar station in a dark, atmospheric fitness studio. The steel of the equipment gleams under a single overhead spotlight, casting dramatic shadows. The aesthetic is industrial and high-end, focusing on the raw materials and the minimalist design of professional strength training equipment." src="https://lh3.googleusercontent.com/aida/ADBb0ugVslItCHFn52HSnZxFKpJDoJX5Nq6G8GMKRf-EcU7YO4MTUkx59mLHlkEfUhKgJFW7raTIPKml9VpGYiumAA3zrLUl1JeEPHNfZU741laOHmxLhqimbZ48bdz_soF9wrFXIyF6aURQyUJ9StCSxyv3ET4Co_Z9Ls56XMuwqI4eeMRO7RCP7kMAepDATv4wggM48KG-s09pxlzA2D4qI3kjMCdJ_A5c-qXxOKT08LfRHLlzKv0RvpCIAAg"/>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-[18px] text-on-surface leading-tight">PUXADA FRENTE</h3>
+<p class="text-text-muted font-label-sm uppercase">Costas • Máquina</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md font-bold active:scale-95 transition-transform">
+                    ADICIONAR
+                </button>
+</div>
+<!-- Exercise Item 4 -->
+<div class="bg-surface-container border border-border-subtle rounded-2xl p-4 flex items-center gap-4 hover:border-primary-container/50 transition-colors group">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="Detailed view of a squat rack with a loaded barbell in a high-intensity training facility. The lighting is low-key, emphasizing the heavy textures of the weights and the sleek, dark metal of the rack. The atmosphere is quiet but powerful, suggesting a moment of extreme physical effort and professional athletic discipline." src="https://lh3.googleusercontent.com/aida/ADBb0ujfAk_ZdW7-EuZL0-ozwxcBuQU1hCBG_Y73U7f3JIHx3bm4hjcN6iOc0cwJIyJBV0ozXaBZkLfXUxnNowMRQ2fjLM1zkGopZdjCQGx4cu13oNrYWX1P8GFLG-YL2wjHJMuAvOUEw2pHagLge3fhEuDCzYZ3lCAdCDEbzpqyU7KejlS5qciMnIEB681joe1FDzcp1vPRgZ-4DSN2z9moYdJHVyCaj8TU97bHK6pf91oba5ww9iIfOa_DFs4"/>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-[18px] text-on-surface leading-tight">AGACHAMENTO LIVRE</h3>
+<p class="text-text-muted font-label-sm uppercase">Pernas • Barra</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md font-bold active:scale-95 transition-transform">
+                    ADICIONAR
+                </button>
+</div>
+<!-- Exercise Item 5 -->
+<div class="bg-surface-container border border-border-subtle rounded-2xl p-4 flex items-center gap-4 hover:border-primary-container/50 transition-colors group">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="An athlete performing bicep curls with dumbbells in a studio with high-contrast, moody lighting. The focus is on the intense muscle contraction and the beads of sweat, captured in a sharp, cinematic style. The color palette is dominated by deep blacks and charcoal greys, creating a professional and focused athletic mood." src="https://lh3.googleusercontent.com/aida/ADBb0uh9QsZWWQ4GJgcYl9o5BnOuNb1DLA5JAkwgi0yZ8_A5cwGYj1zZkstQWMV_RXfNOgvJ0Cb3MS5m7BbLl3wJhDQS1443dIacPTEW_Prnt74NTWmwAjfm8GuTfTvtoRt2JoyWhiYm2VZWEQcVnTAR-BQnEIvVVQm8zkqAMCiYW7g2nZCw99C_r6I21rOcR2Mg8jOyo8FmaJ_AQ1sWxTApZIWRvJHDqEa6Wf6KRnAdhDqhLSAdjASjhxWreVg"/>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-[18px] text-on-surface leading-tight">ROSCA DIRETA</h3>
+<p class="text-text-muted font-label-sm uppercase">Bíceps • Halteres</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md font-bold active:scale-95 transition-transform">
+                    ADICIONAR
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-button-height-standard px-gutter pb-safe glass-panel border-t border-border-subtle">
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container font-bold scale-110 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="font-label-sm text-label-sm">Workout</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm">Students</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Selection Overlay Counter (Floating Toast) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 glass-panel border border-primary-container/30 rounded-full px-6 py-3 flex items-center gap-3 shadow-2xl transition-all translate-y-20 opacity-0" id="selection-counter">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-[12px] font-bold">1</div>
+<p class="font-label-md text-on-surface">Exercício selecionado</p>
+<button class="ml-4 font-bold text-primary-container hover:opacity-80">VER PLANO</button>
+</div>
+<script>
+        // Micro-interactions for exercise addition
+        const buttons = document.querySelectorAll('button');
+        const counter = document.getElementById('selection-counter');
+        let selectedCount = 0;
+
+        buttons.forEach(btn => {
+            if (btn.innerText === 'ADICIONAR') {
+                btn.addEventListener('click', () => {
+                    if (btn.innerText === 'ADICIONAR') {
+                        btn.innerText = 'REMOVER';
+                        btn.classList.remove('bg-primary-container', 'text-on-primary-container');
+                        btn.classList.add('bg-surface-container-highest', 'text-error');
+                        selectedCount++;
+                    } else {
+                        btn.innerText = 'ADICIONAR';
+                        btn.classList.add('bg-primary-container', 'text-on-primary-container');
+                        btn.classList.remove('bg-surface-container-highest', 'text-error');
+                        selectedCount--;
+                    }
+                    
+                    updateCounter();
+                });
+            }
+        });
+
+        function updateCounter() {
+            const countDisplay = counter.querySelector('div');
+            countDisplay.innerText = selectedCount;
+            
+            if (selectedCount > 0) {
+                counter.classList.remove('translate-y-20', 'opacity-0');
+            } else {
+                counter.classList.add('translate-y-20', 'opacity-0');
+            }
+        }
+    </script>
+</body></html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid #333333;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .message-gradient-in {
+            background: #1A1A1A;
+            border: 1px solid #333333;
+        }
+        .message-gradient-out {
+            background: #201f1f;
+            border: 1px solid #444934;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#fefdff",
+                      "on-tertiary-fixed-variant": "#274b5f",
+                      "surface-container-highest": "#353534",
+                      "primary-fixed-dim": "#aed50d",
+                      "on-primary-container": "#566c00",
+                      "on-error-container": "#ffdad6",
+                      "secondary": "#c8c6c5",
+                      "surface-variant": "#353534",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "outline": "#8f937b",
+                      "on-tertiary-container": "#45687d",
+                      "primary": "#ffffef",
+                      "surface": "#131313",
+                      "on-primary-fixed-variant": "#3d4d00",
+                      "inverse-surface": "#e5e2e1",
+                      "secondary-fixed": "#e5e2e1",
+                      "surface-bright": "#3a3939",
+                      "error-container": "#93000a",
+                      "secondary-container": "#474746",
+                      "inverse-on-surface": "#313030",
+                      "on-error": "#690005",
+                      "tertiary-container": "#c2e6ff",
+                      "on-secondary-fixed-variant": "#474746",
+                      "tertiary-fixed-dim": "#a8cbe4",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-dim": "#131313",
+                      "pure-black": "#000000",
+                      "on-surface": "#e5e2e1",
+                      "outline-variant": "#444934",
+                      "text-muted": "#888888",
+                      "primary-fixed": "#c9f236",
+                      "tertiary-fixed": "#c5e7ff",
+                      "primary-container": "#c8f135",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "surface-tint": "#aed50d",
+                      "on-tertiary-fixed": "#001e2d",
+                      "inverse-primary": "#526600",
+                      "background": "#131313",
+                      "on-tertiary": "#0c3447",
+                      "on-secondary": "#313030",
+                      "on-primary-fixed": "#171e00",
+                      "on-primary": "#293500",
+                      "status-warning": "#FFB800",
+                      "error": "#ffb4ab",
+                      "surface-container": "#201f1f",
+                      "on-surface-variant": "#c5c9ae",
+                      "on-secondary-container": "#b7b5b4",
+                      "on-background": "#e5e2e1",
+                      "surface-container-lowest": "#0e0e0e",
+                      "border-subtle": "#333333",
+                      "surface-container-low": "#1c1b1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "1rem",
+                      "button-height-heavy": "5rem",
+                      "touch-target-min": "2.75rem",
+                      "button-height-standard": "3.5rem",
+                      "stack-gap-lg": "2rem",
+                      "container-margin": "1.5rem"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-md": ["Bebas Neue"],
+                      "label-md": ["Inter"],
+                      "display-lg": ["Bebas Neue"],
+                      "body-md": ["Inter"],
+                      "display-giant": ["Bebas Neue"],
+                      "headline-lg": ["Bebas Neue"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col h-screen max-w-md mx-auto relative border-x border-border-subtle">
+<!-- Top Navigation Shell -->
+<header class="bg-background/80 dark:bg-background/80 backdrop-blur-xl text-primary-fixed dark:text-primary-fixed fixed top-0 w-full z-50 border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard max-w-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined hover:opacity-80 transition-opacity active:scale-95 transition-transform cursor-pointer" onclick="window.history.back()">arrow_back</span>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional portrait of a athletic man in his 30s wearing premium black training gear. He has a focused expression, looking directly at the camera with sharp, professional studio lighting highlighting his muscular physique against a dark, moody gym background. The aesthetic is high-contrast, aggressive, and modern, utilizing a palette of deep blacks and sharp greys." src="https://lh3.googleusercontent.com/aida/ADBb0uhKnkJvNaQel7wgC1bC5twtyhETGg5Vcsn44zM67A_z1qdv1erG4cwA_s7iDGnBmUa0MJYIqWGRHyn8iq_6W7PXvpm08ZsynH-OhX2ugI3zLXh2xV-k3eFmqReDT1NKug9akYAh9rFusg5amUYsyr0oaCWqIxzRVF6RTTT2Ofs9dDkVvJXpLmP1RHxuOdu90Lv4qxjtgImCDrvrfNJIScPUqg-on58zZfCgshi0VKU_2wb9eWEIrP44-Q"/>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none">MARCOS SILVA</h1>
+<span class="text-[10px] text-primary-fixed uppercase font-bold tracking-widest">Ativo Agora</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined hover:opacity-80 transition-opacity active:scale-95 transition-transform cursor-pointer">videocam</span>
+<span class="material-symbols-outlined hover:opacity-80 transition-opacity active:scale-95 transition-transform cursor-pointer">call</span>
+</div>
+</header>
+<!-- Main Content Canvas (Chat Interface) -->
+<main class="flex-1 overflow-y-auto pt-20 pb-[180px] px-container-margin scrollbar-hide space-y-6">
+<!-- Date Indicator -->
+<div class="flex justify-center">
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-4 py-1 rounded-full uppercase tracking-widest">Hoje</span>
+</div>
+<!-- Incoming Message -->
+<div class="flex flex-col items-start max-w-[85%] animate-fade-in">
+<div class="message-gradient-in p-4 rounded-2xl rounded-tl-none">
+<p class="font-body-md text-body-md text-on-surface">E aí, mestre! Acabei de finalizar o treino de pernas. Aquela última série de agachamento foi intensa, senti o quadríceps queimando legal. 💪</p>
+</div>
+<span class="text-[10px] text-text-muted mt-1 ml-1">09:42</span>
+</div>
+<!-- Outgoing Message -->
+<div class="flex flex-col items-end self-end max-w-[85%]">
+<div class="message-gradient-out p-4 rounded-2xl rounded-tr-none border-primary-fixed/20 bg-surface-container-high">
+<p class="font-body-md text-body-md text-on-surface">Excelente, Marcos! A intensidade é o segredo. Como ficou a execução do agachamento búlgaro? Conseguiu manter a cadência que combinamos?</p>
+</div>
+<div class="flex items-center gap-1 mt-1 mr-1">
+<span class="text-[10px] text-text-muted">09:45</span>
+<span class="material-symbols-outlined text-[14px] text-primary-fixed" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+<!-- Group Interaction Hint -->
+<div class="flex justify-center">
+<div class="bg-surface-container-highest/30 border border-border-subtle p-3 rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed">groups</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Compartilhado no grupo <span class="text-primary-fixed">ELITE SQUAD</span></p>
+</div>
+</div>
+<!-- Incoming Message with Image -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="message-gradient-in p-2 rounded-2xl rounded-tl-none space-y-2">
+<div class="rounded-lg overflow-hidden h-48 w-full border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A high-end, atmospheric shot of a professional squat rack in a dark, luxury gym setting. The lighting is dramatic, with a single Electric Lime neon light strip highlighting the chrome texture of the barbell and weights. The floor is black rubber, and the background is blurred to maintain focus on the workout equipment. The mood is powerful and focused." src="https://lh3.googleusercontent.com/aida/ADBb0ujhV1gSbIjjmPWS-siXxgI6qrKknCOQgKojzR2nhOu-mhZHTO0DCHwlaGNGm5RGkIJp8n7iIoAhhPS4mjCW0U262w8UDqV4oFhMUpo0Kj0BcI0iALNYneAWatK6-dNZ4DQ_qc4nIg7s8ArRCbV4uCHEW9_QDD7OT7Kx-YKzpT-Du6EKmC4qtQHxRDxzlfq_5iToVZbURec0tPjMLmdAbHShbid8UpyeNfcrNheEqP8NbWzn09eNHx7J4g"/>
+</div>
+<p class="font-body-md text-body-md text-on-surface px-2 pb-1">Consegui sim! Tive que reduzir 2kg pra manter a forma perfeita. O que acha dessa amplitude?</p>
+</div>
+<span class="text-[10px] text-text-muted mt-1 ml-1">09:48</span>
+</div>
+<!-- Outgoing Audio Message Simulation -->
+<div class="flex flex-col items-end self-end max-w-[70%]">
+<div class="message-gradient-out p-3 rounded-2xl rounded-tr-none w-full bg-primary-fixed/10 border-primary-fixed/30 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed">play_circle</span>
+<div class="flex-1 h-8 flex items-center gap-0.5">
+<div class="w-1 h-3 bg-primary-fixed rounded-full"></div>
+<div class="w-1 h-5 bg-primary-fixed rounded-full"></div>
+<div class="w-1 h-4 bg-primary-fixed rounded-full"></div>
+<div class="w-1 h-6 bg-primary-fixed rounded-full"></div>
+<div class="w-1 h-2 bg-primary-fixed rounded-full"></div>
+<div class="w-1 h-5 bg-primary-fixed rounded-full"></div>
+<div class="w-1 h-4 bg-primary-fixed rounded-full"></div>
+</div>
+<span class="font-label-sm text-label-sm text-primary-fixed">0:12</span>
+</div>
+<div class="flex items-center gap-1 mt-1 mr-1">
+<span class="text-[10px] text-text-muted">09:50</span>
+<span class="material-symbols-outlined text-[14px] text-primary-fixed" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+</main>
+<!-- Message Input & Keyboard Context Overlay -->
+<div class="fixed bottom-0 w-full max-w-md bg-pure-black/90 backdrop-blur-3xl z-50 border-t border-border-subtle p-container-margin pb-2 space-y-4">
+<!-- Input Bar -->
+<div class="flex items-center gap-3">
+<div class="flex-1 bg-surface-container rounded-full h-12 px-4 flex items-center gap-3 border border-border-subtle focus-within:border-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">mood</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-body-md w-full h-full placeholder:text-text-muted" placeholder="Mensagem..." type="text" value="Boa amplitude! Mantenha ess"/>
+<span class="material-symbols-outlined text-on-surface-variant">attach_file</span>
+</div>
+<button class="w-12 h-12 bg-primary-fixed rounded-full flex items-center justify-center text-on-primary-fixed active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+<!-- Simulated iOS/Android Style Keyboard -->
+<div class="grid grid-cols-10 gap-1.5 h-40">
+<!-- Row 1 -->
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">Q</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">W</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">E</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">R</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">T</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">Y</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">U</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">I</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">O</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">P</div>
+<!-- Row 2 -->
+<div class="col-start-2 bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">A</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">S</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">D</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">F</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">G</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">H</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">J</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">K</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">L</div>
+<!-- Row 3 -->
+<div class="bg-surface-variant/60 rounded py-2 flex justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">shift</span>
+</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">Z</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">X</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">C</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">V</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">B</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">N</div>
+<div class="bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-sm font-medium">M</div>
+<div class="col-span-2 bg-surface-variant/60 rounded py-2 flex justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">backspace</span>
+</div>
+<!-- Row 4 -->
+<div class="col-span-2 bg-surface-variant/60 rounded py-2 flex justify-center text-on-surface text-xs font-bold uppercase">123</div>
+<div class="col-span-6 bg-surface-variant/40 rounded py-2 flex justify-center text-on-surface text-xs font-medium uppercase">espaço</div>
+<div class="col-span-2 bg-surface-variant/60 rounded py-2 flex justify-center text-on-surface text-xs font-bold uppercase">Retorno</div>
+</div>
+<!-- Home Indicator -->
+<div class="w-32 h-1 bg-on-surface/20 mx-auto rounded-full mt-2"></div>
+</div>
+<!-- Bottom Navigation Shell (Secondary Context/Background visibility) -->
+<!-- Note: BottomNavBar is suppressed based on the Destination Rule for focused chat screens -->
+<script>
+        // Simple micro-interaction for messages
+        document.addEventListener('DOMContentLoaded', () => {
+            const messages = document.querySelectorAll('.animate-fade-in');
+            messages.forEach((msg, index) => {
+                msg.style.opacity = '0';
+                msg.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    msg.style.transition = 'all 0.4s ease-out';
+                    msg.style.opacity = '1';
+                    msg.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#526600",
+                    "tertiary": "#fefdff",
+                    "on-surface": "#e5e2e1",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#0e0e0e",
+                    "text-muted": "#888888",
+                    "pure-black": "#000000",
+                    "surface-variant": "#353534",
+                    "on-error-container": "#ffdad6",
+                    "primary": "#ffffef",
+                    "on-primary": "#293500",
+                    "outline-variant": "#444934",
+                    "on-tertiary-container": "#45687d",
+                    "surface-container-highest": "#353534",
+                    "secondary": "#c8c6c5",
+                    "on-secondary": "#313030",
+                    "tertiary-fixed-dim": "#a8cbe4",
+                    "on-primary-fixed": "#171e00",
+                    "on-primary-container": "#566c00",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "border-subtle": "#333333",
+                    "error": "#ffb4ab",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#474746",
+                    "surface": "#131313",
+                    "primary-fixed": "#c9f236",
+                    "on-error": "#690005",
+                    "on-surface-variant": "#c5c9ae",
+                    "secondary-container": "#474746",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-tint": "#aed50d",
+                    "on-primary-fixed-variant": "#3d4d00",
+                    "surface-bright": "#3a3939",
+                    "on-tertiary": "#0c3447",
+                    "primary-container": "#c8f135",
+                    "tertiary-container": "#c2e6ff",
+                    "primary-fixed-dim": "#aed50d",
+                    "surface-dim": "#131313",
+                    "surface-container": "#201f1f",
+                    "on-tertiary-fixed-variant": "#274b5f",
+                    "surface-container-low": "#1c1b1b",
+                    "outline": "#8f937b",
+                    "on-tertiary-fixed": "#001e2d",
+                    "on-background": "#e5e2e1",
+                    "surface-container-high": "#2a2a2a",
+                    "background": "#131313",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-secondary-container": "#b7b5b4",
+                    "tertiary-fixed": "#c5e7ff",
+                    "inverse-on-surface": "#313030",
+                    "status-warning": "#FFB800"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-gap-lg": "2rem",
+                    "button-height-heavy": "5rem",
+                    "button-height-standard": "3.5rem",
+                    "container-margin": "1.5rem",
+                    "touch-target-min": "2.75rem",
+                    "gutter": "1rem"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Bebas Neue"],
+                    "display-lg": ["Bebas Neue"],
+                    "display-giant": ["Bebas Neue"],
+                    "headline-lg": ["Bebas Neue"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid #333333;
+        }
+        .streak-glow {
+            text-shadow: 0 0 30px rgba(201, 242, 54, 0.4);
+        }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-pure-black text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-pure-black/80 backdrop-blur-xl border-b border-border-subtle flex justify-between items-center px-container-margin h-button-height-standard max-w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiDX--FWdPemlmlwImZV6_warXLVE4Be2-JXEnOqEJ5lln49VApEgkP-l-hmWSrwKJQMOOs_9Kcx3jDqBKkakE8nZU4Jks32iB99px468EqpfOwMZltyKfZItoGeDTvaAQcZcIQvWElxoIrsjJVSqmTgR8BY_o6rnwrEXK5z6M4aDplz31-Mn-n0PjuzewRxB2L6XkXmmKhlVrx3z1PcDSwlhNh96Zwc_tY-9thtUGWYhCxeraru2jQZb0"/>
+</div>
+<h1 class="font-display-lg text-headline-lg text-primary-fixed tracking-tight">TRAINFLOW</h1>
+</div>
+<button class="material-symbols-outlined text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 duration-150">notifications</button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-container-margin space-y-stack-gap-lg max-w-5xl mx-auto">
+<!-- Hero Streak Section -->
+<section class="relative overflow-hidden rounded-xl bg-surface-container-high p-8 flex flex-col items-center justify-center text-center">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary-fixed rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-primary-fixed rounded-full blur-[100px]"></div>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-fixed mb-2">Current Momentum</span>
+<div class="flex flex-col items-center relative z-10">
+<h2 class="font-display-giant text-display-giant text-primary-fixed streak-glow leading-none">15</h2>
+<h3 class="font-headline-lg text-headline-lg uppercase text-primary-fixed -mt-4">Day Streak</h3>
+</div>
+<p class="mt-4 font-body-md text-text-muted max-w-xs">You're in the top 2% of performers this month. Keep the heat!</p>
+</section>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Rank Card -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between h-full md:col-span-1">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm uppercase text-text-muted">Global Rank</span>
+<span class="material-symbols-outlined text-primary-fixed">public</span>
+</div>
+<div class="mt-8">
+<span class="font-headline-lg text-headline-lg text-primary-fixed">#124</span>
+<p class="font-body-md text-text-muted">Out of 12,402 athletes</p>
+</div>
+</div>
+<!-- Achievement Card -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between h-full md:col-span-1">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm uppercase text-text-muted">Total XP</span>
+<span class="material-symbols-outlined text-primary-fixed">bolt</span>
+</div>
+<div class="mt-8">
+<span class="font-headline-lg text-headline-lg text-primary-fixed">45,290</span>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-fixed h-full w-3/4 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Focus Card -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between h-full md:col-span-1">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm uppercase text-text-muted">Consistency</span>
+<span class="material-symbols-outlined text-primary-fixed">query_stats</span>
+</div>
+<div class="mt-8">
+<span class="font-headline-lg text-headline-lg text-primary-fixed">98%</span>
+<p class="font-body-md text-text-muted">Perfect attendance month</p>
+</div>
+</div>
+</section>
+<!-- Leaderboard & Badges Layout -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-stack-gap-lg">
+<!-- Leaderboard Column -->
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md uppercase text-primary-fixed">Top Performers</h2>
+<button class="text-label-md font-label-md text-primary-fixed uppercase tracking-wider">All-Time</button>
+</div>
+<div class="space-y-3">
+<!-- Top 3 with distinctive styling -->
+<div class="flex items-center gap-4 p-4 rounded-xl border border-primary-fixed/30 bg-primary-fixed/5">
+<span class="font-display-lg text-headline-lg text-primary-fixed w-8">1</span>
+<img alt="User 1" class="w-12 h-12 rounded-full border border-primary-fixed" src="https://lh3.googleusercontent.com/aida/ADBb0uje4hTLnR6-BfZRsrLZVpIZFj80bdSn7DEmlEO0n3yt3MkW7ufyGpkJ_9BozW9CXlvEBBRdO8MpH8wxHRx527YvOS_zRKPoRLeav4Kr5D7CFJfCyvZgPkZ-zKrNF6wGDCAfuDHE2bWLyhTc8CZmduAdi-WG5qMPC3TL8OLWP0IvBZeNuJJNS5snZaF-EKkvhXH46vYFzXG-CXTwy12U2Ho35KUa1XcpkvzdtFdsd4Ucisf4e56pfC2DcOo"/>
+<div class="flex-1">
+<h4 class="font-headline-md text-body-lg text-primary-fixed">Marcus 'Hulk' Chen</h4>
+<p class="text-label-sm font-label-sm text-text-muted">42 Day Streak</p>
+</div>
+<span class="material-symbols-outlined text-status-warning" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-xl glass-card">
+<span class="font-display-lg text-headline-lg text-on-surface-variant w-8">2</span>
+<img alt="User 2" class="w-12 h-12 rounded-full border border-border-subtle" src="https://lh3.googleusercontent.com/aida/ADBb0uh97HTdAytjEeuKkfgqiM_tPfvJ9mfoVlF_wgl70N-7SO4PHLociEKXyPkP132vzhKVCo334v34wraV_8Qm4cVXl4lLt2D-dcXZJsOirAahYBukTlGSyM43KhzSfPS0FrAnwcdYEp4C2v8kJRgZ7_qnZz6mwVgs5X8FQPPXlmcNICEe1WjMBkeLsTjgy_4Vjbpjz1IerpS6raBNuHikI7NiZglP9F2aWf4sdhUzyALR_lE-uzovONBBexY"/>
+<div class="flex-1">
+<h4 class="font-headline-md text-body-lg">Sara Jenkins</h4>
+<p class="text-label-sm font-label-sm text-text-muted">38 Day Streak</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-xl glass-card">
+<span class="font-display-lg text-headline-lg text-on-surface-variant w-8">3</span>
+<img alt="User 3" class="w-12 h-12 rounded-full border border-border-subtle" src="https://lh3.googleusercontent.com/aida/ADBb0uhrWjkjUvuZaWgZkvERjHjzA8REQP2iYqGVgamOkHjs5AeBP2H0YbWfQwkaUrHOVr9HUalEUod8mL38gIehNGyHpM9KywZjXamfEYyeN1Zu-wv4HZcMu7qMaLSC17Gge54TYVj6wP1f_XmnwQY3Mp3-tU6omj71_zYEsKvCq3K8kk24ktluiH3ncU5_1gTV-5pnScuH2RiI2gmdXgNQ26GYMB613jSiuMD8NKO_V1NeGBqRX9ySZNqOobU"/>
+<div class="flex-1">
+<h4 class="font-headline-md text-body-lg">Alex Volkov</h4>
+<p class="text-label-sm font-label-sm text-text-muted">35 Day Streak</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-xl glass-card opacity-60">
+<span class="font-display-lg text-headline-lg text-on-surface-variant w-8">124</span>
+<img alt="Me" class="w-12 h-12 rounded-full border border-primary-fixed/50" src="https://lh3.googleusercontent.com/aida/ADBb0uhj6gQhKb_DpPSbJPvNlmj52C4pWc-E8Es-6rI7bbfo9wgxwL27WyrHy396eUHgl_PbisLkVk9d5v2ipwxUKWkAdcTmYw2obs5i34bAR0Sgxb6E7MfudaTaW4-ikdeEACn-6Wc-zkT8aFJgSkZfULT8KGvWPTHAlP1VskOyCwMrc1Xs7c5TmiPkdxbCu7tydBtdaruEPIuxNqsWWplKe3b1IHMiJjIECiHsGKbpHymELRdQbR_N9bOPylg"/>
+<div class="flex-1">
+<h4 class="font-headline-md text-body-lg text-primary-fixed">You (Coach)</h4>
+<p class="text-label-sm font-label-sm text-text-muted">15 Day Streak</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Badges Column -->
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md uppercase text-primary-fixed">My Badges</h2>
+<span class="text-label-md font-label-md text-text-muted">8 / 24 UNLOCKED</span>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Badge Card -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center group cursor-pointer hover:border-primary-fixed transition-all duration-300">
+<div class="w-16 h-16 rounded-full bg-primary-fixed/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-fixed text-4xl" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+</div>
+<h4 class="font-headline-md text-body-lg uppercase mb-1">Early Bird</h4>
+<p class="text-label-sm font-label-sm text-text-muted">10 workouts before 7AM</p>
+</div>
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center group cursor-pointer hover:border-primary-fixed transition-all duration-300">
+<div class="w-16 h-16 rounded-full bg-primary-fixed/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-fixed text-4xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<h4 class="font-headline-md text-body-lg uppercase mb-1">Consistency King</h4>
+<p class="text-label-sm font-label-sm text-text-muted">30-day streak earned</p>
+</div>
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center group cursor-pointer hover:border-primary-fixed transition-all duration-300">
+<div class="w-16 h-16 rounded-full bg-primary-fixed/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-fixed text-4xl" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+</div>
+<h4 class="font-headline-md text-body-lg uppercase mb-1">Personal Record</h4>
+<p class="text-label-sm font-label-sm text-text-muted">5 new records this week</p>
+</div>
+<div class="border border-border-subtle bg-surface-container-lowest/50 p-6 rounded-xl flex flex-col items-center text-center opacity-40 grayscale">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl">lock</span>
+</div>
+<h4 class="font-headline-md text-body-lg uppercase mb-1">Century Club</h4>
+<p class="text-label-sm font-label-sm">Log 100 workouts</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-pure-black/90 backdrop-blur-2xl border-t border-border-subtle flex justify-around items-center h-button-height-standard px-gutter">
+<a class="flex flex-col items-center justify-center text-secondary-container hover:text-primary-fixed-dim transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest mt-1">Train</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container hover:text-primary-fixed-dim transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">straighten</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest mt-1">Assess</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-fixed scale-110 hover:text-primary-fixed-dim transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest mt-1">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container hover:text-primary-fixed-dim transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest mt-1">Social</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container hover:text-primary-fixed-dim transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+<!-- FAB for quick action -->
+<button class="fixed right-6 bottom-24 w-16 h-16 bg-primary-fixed text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform duration-150 z-40">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<script>
+        // Micro-interaction for rank highlighting
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.borderColor = '#c9f236';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.borderColor = '#333333';
+            });
+        });
+    </script>
+</body></html>

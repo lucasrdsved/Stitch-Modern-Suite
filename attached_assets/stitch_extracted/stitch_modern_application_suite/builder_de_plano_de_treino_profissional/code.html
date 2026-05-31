@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TRAINFLOW | Builder de Plano</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "status-warning": "#FFB800",
+                    "tertiary-fixed-dim": "#a8cbe4",
+                    "outline": "#8f937b",
+                    "error-container": "#93000a",
+                    "surface-container": "#1A1A1A",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-tint": "#c8f135",
+                    "tertiary-container": "#c2e6ff",
+                    "primary-fixed-dim": "#c8f135",
+                    "surface-container-highest": "#2a2a2a",
+                    "on-surface": "#e5e2e1",
+                    "pure-black": "#000000",
+                    "surface-bright": "#3a3939",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "surface-variant": "#1A1A1A",
+                    "primary-container": "#c8f135",
+                    "surface": "#000000",
+                    "secondary-container": "#474746",
+                    "primary-fixed": "#c8f135",
+                    "surface-dim": "#000000",
+                    "surface-container-low": "#0e0e0e",
+                    "on-secondary": "#313030",
+                    "on-tertiary-fixed": "#001e2d",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-primary": "#293500",
+                    "surface-container-high": "#242424",
+                    "on-background": "#e5e2e1",
+                    "inverse-primary": "#526600",
+                    "on-primary-container": "#171e00",
+                    "tertiary": "#fefdff",
+                    "outline-variant": "#444934",
+                    "primary": "#c8f135",
+                    "error": "#ffb4ab",
+                    "border-subtle": "#333333",
+                    "on-secondary-container": "#b7b5b4",
+                    "secondary": "#c8c6c5",
+                    "text-muted": "#888888",
+                    "on-tertiary-container": "#45687d",
+                    "on-surface-variant": "#c5c9ae",
+                    "background": "#000000",
+                    "on-primary-fixed": "#171e00",
+                    "on-tertiary": "#0c3447",
+                    "on-error": "#690005",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-container-lowest": "#000000",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3d4d00",
+                    "inverse-on-surface": "#313030",
+                    "on-tertiary-fixed-variant": "#274b5f",
+                    "tertiary-fixed": "#c5e7ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "button-height-standard": "3.5rem",
+                    "container-margin": "1.5rem",
+                    "gutter": "1rem",
+                    "stack-gap-lg": "2rem",
+                    "touch-target-min": "2.75rem",
+                    "button-height-heavy": "5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Bebas Neue"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-giant": ["Bebas Neue"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Bebas Neue"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Bebas Neue"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #000000; color: #e5e2e1; min-height: 100dvh; }
+        .glass-header { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); }
+        .active-tab { color: #c8f135; position: relative; }
+        .active-tab::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background-color: #c8f135; border-radius: 99px; }
+        .exercise-card { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease; }
+        .exercise-card:active { transform: scale(0.98); }
+        input:focus, textarea:focus { outline: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-body-md selection:bg-primary selection:text-on-primary-container pb-32">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 glass-header border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<h1 class="font-display-lg text-[24px] text-primary tracking-tighter uppercase leading-none">TRAINFLOW</h1>
+</div>
+<button class="bg-primary text-on-primary-container font-headline-md text-label-md px-6 h-10 rounded-full hover:brightness-110 transition-all active:scale-95 uppercase">
+            PUBLICAR
+        </button>
+</header>
+<main class="mt-20 px-container-margin max-w-2xl mx-auto">
+<!-- Plan Identity Section -->
+<section class="mb-8 mt-6">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-text-muted uppercase tracking-widest text-[10px]">Nome do Plano</label>
+<input class="bg-transparent border-none p-0 font-display-lg text-headline-lg text-on-surface focus:ring-0 w-full caret-primary placeholder:opacity-30" placeholder="Nome do Treino..." type="text" value="HYPERTROPHY PHASE 1.0"/>
+</div>
+<div class="flex items-center gap-2 mt-2 group cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-text-muted group-hover:text-primary transition-colors">person</span>
+<input class="bg-transparent border-none p-0 font-label-md text-on-surface focus:ring-0 w-full caret-primary" type="text" value="Aluno: João Silva"/>
+</div>
+</section>
+<!-- Day Tabs Section -->
+<section class="mb-8 border-b border-border-subtle sticky top-[3.5rem] bg-pure-black z-40 pt-2">
+<div class="flex items-center gap-6 overflow-x-auto no-scrollbar">
+<button class="font-headline-md text-headline-md py-3 active-tab whitespace-nowrap transition-all duration-300">DIA A</button>
+<button class="font-headline-md text-headline-md py-3 text-text-muted whitespace-nowrap hover:text-on-surface transition-all duration-300">DIA B</button>
+<button class="font-headline-md text-headline-md py-3 text-text-muted whitespace-nowrap hover:text-on-surface transition-all duration-300">DIA C</button>
+<button class="font-headline-md text-headline-md py-3 text-text-muted whitespace-nowrap hover:text-on-surface transition-all duration-300">DIA D</button>
+<button class="flex items-center justify-center p-3 text-primary hover:scale-110 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]">add_circle</span>
+</button>
+</div>
+</section>
+<!-- Exercises List -->
+<div class="flex flex-col gap-6">
+<!-- Exercise Item 1 -->
+<div class="exercise-card bg-surface-container border border-border-subtle rounded-xl p-5 overflow-hidden relative group">
+<div class="flex gap-4 items-start">
+<div class="w-20 h-20 rounded-lg bg-surface-container-highest flex-shrink-0 overflow-hidden border border-border-subtle">
+<img alt="Supino Reto" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0ujx4rP4KlpQjdtnA8-N7O0SgY-T3S3AEjuXGqEGyz-bdzxwAK73GP0bfJGuyo_hpE_m4xOTI4mcT7zVTV9IhUS_kTxlyGikAoPyLeRcLdzDE15pqCnDJWMN5uHGvJqC9sEtdlaWPpxBEnMb20kCyOEOvPKmmjUCPdB7U2IDkqT9jKN8Yk3S7F-lwZc55oh22qGswJStVHDjmxgo6Q8wzik1mwUOykOdojmnJzgXCYNWvBixseT_SLpQSQ"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<input class="bg-transparent border-none p-0 font-headline-md text-headline-md text-on-surface uppercase tracking-tight focus:ring-0 w-full" type="text" value="Supino Reto Barbell"/>
+<button class="text-text-muted hover:text-error transition-colors p-1 -mt-1 -mr-1">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<input class="bg-transparent border-none p-0 font-label-sm text-text-muted mt-1 uppercase focus:ring-0 w-full" type="text" value="Peitoral &amp; Tríceps"/>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mt-6">
+<div class="flex flex-col gap-1 bg-pure-black/60 p-3 rounded-lg border border-border-subtle focus-within:border-primary transition-colors">
+<span class="font-label-sm text-text-muted text-[10px] uppercase text-center">Séries</span>
+<input class="bg-transparent border-none p-0 font-headline-md text-headline-md text-primary focus:ring-0 w-full text-center" type="number" value="4"/>
+</div>
+<div class="flex flex-col gap-1 bg-pure-black/60 p-3 rounded-lg border border-border-subtle focus-within:border-primary transition-colors">
+<span class="font-label-sm text-text-muted text-[10px] uppercase text-center">Reps</span>
+<input class="bg-transparent border-none p-0 font-headline-md text-headline-md text-primary focus:ring-0 w-full text-center" type="text" value="8-12"/>
+</div>
+<div class="flex flex-col gap-1 bg-pure-black/60 p-3 rounded-lg border border-border-subtle focus-within:border-primary transition-colors">
+<span class="font-label-sm text-text-muted text-[10px] uppercase text-center">Descanso</span>
+<input class="bg-transparent border-none p-0 font-headline-md text-headline-md text-primary focus:ring-0 w-full text-center" type="text" value="90s"/>
+</div>
+</div>
+<div class="mt-5 pt-4 border-t border-border-subtle">
+<textarea class="w-full bg-transparent border-none p-0 text-label-md text-on-surface-variant placeholder:text-text-muted/50 resize-none focus:ring-0" placeholder="Adicionar observações técnicas..." rows="2"></textarea>
+</div>
+</div>
+<!-- Exercise Item 2 -->
+<div class="exercise-card bg-surface-container border border-border-subtle rounded-xl p-5 overflow-hidden relative group">
+<div class="flex gap-4 items-start">
+<div class="w-20 h-20 rounded-lg bg-surface-container-highest flex-shrink-0 overflow-hidden border border-border-subtle">
+<img alt="Elevação Lateral" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0ujXXA7Lh469TO0Y5pmMqoFzYv0ruozqgWhrX0mBYW96zW3d_kf2MR6Ywv_5lFLWbZ8J-DTOkndaa34e2YwtctWrWS2B_7jbah6boJeE4obENHaw445Uf7OAwURIl2N3Vo7Xaod2JlZAVAU_maJumOGsoTDHB-OSqDQUknWZpLTEq_sL1oGQ948dy9t6GZKqUlyvHiww5SpsdOpjMzCWjMGS2BIEMIQIpOuxZnk0EElOMSaCqfuEDJJGojk"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<input class="bg-transparent border-none p-0 font-headline-md text-headline-md text-on-surface uppercase tracking-tight focus:ring-0 w-full" type="text" value="Elevação Lateral"/>
+<button class="text-text-muted hover:text-error transition-colors p-1 -mt-1 -mr-1">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<input class="bg-transparent border-none p-0 font-label-sm text-text-muted mt-1 uppercase focus:ring-0 w-full" type="text" value="Deltoides Laterais"/>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mt-6">
+<div class="flex flex-col gap-1 bg-pure-black/60 p-3 rounded-lg border border-border-subtle focus-within:border-primary transition-colors">
+<span class="font-label-sm text-text-muted text-[10px] uppercase text-center">Séries</span>
+<input class="bg-transparent border-none p-0 font-headline-md text-headline-md text-primary focus:ring-0 w-full text-center" type="number" value="3"/>
+</div>
+<div class="flex flex-col gap-1 bg-pure-black/60 p-3 rounded-lg border border-border-subtle focus-within:border-primary transition-colors">
+<span class="font-label-sm text-text-muted text-[10px] uppercase text-center">Reps</span>
+<input class="bg-transparent border-none p-0 font-headline-md text-headline-md text-primary focus:ring-0 w-full text-center" type="text" value="15"/>
+</div>
+<div class="flex flex-col gap-1 bg-pure-black/60 p-3 rounded-lg border border-border-subtle focus-within:border-primary transition-colors">
+<span class="font-label-sm text-text-muted text-[10px] uppercase text-center">Descanso</span>
+<input class="bg-transparent border-none p-0 font-headline-md text-headline-md text-primary focus:ring-0 w-full text-center" type="text" value="60s"/>
+</div>
+</div>
+<div class="mt-5 pt-4 border-t border-border-subtle">
+<textarea class="w-full bg-transparent border-none p-0 text-label-md text-on-surface-variant placeholder:text-text-muted/50 resize-none focus:ring-0" placeholder="Adicionar observações técnicas..." rows="2"></textarea>
+</div>
+</div>
+<!-- Add Exercise Button -->
+<button class="w-full h-button-height-standard border-2 border-dashed border-border-subtle rounded-xl flex items-center justify-center gap-3 text-on-surface-variant hover:border-primary hover:text-primary transition-all duration-300 active:scale-95 group mb-8">
+<span class="material-symbols-outlined group-hover:rotate-90 transition-transform">add</span>
+<span class="font-headline-md text-label-md uppercase tracking-widest">Adicionar Exercício</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-pure-black/80 backdrop-blur-3xl border-t border-border-subtle h-20 flex justify-around items-center px-4">
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-label-sm text-[10px] mt-1 uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary relative group" href="#">
+<div class="absolute -top-1 w-8 h-1 bg-primary rounded-full group-hover:w-12 transition-all"></div>
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="font-label-sm text-[10px] mt-1 uppercase tracking-tighter">Workout</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">chat_bubble</span>
+<span class="font-label-sm text-[10px] mt-1 uppercase tracking-tighter">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="font-label-sm text-[10px] mt-1 uppercase tracking-tighter">Profile</span>
+</a>
+</nav>
+<script>
+        // Tab Interaction
+        const tabs = document.querySelectorAll('section button.font-headline-md');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('active-tab', 'text-on-surface');
+                    t.classList.add('text-text-muted');
+                });
+                tab.classList.add('active-tab', 'text-on-surface');
+                tab.classList.remove('text-text-muted');
+            });
+        });
+
+        // Dynamic Textarea Auto-expand
+        const textareas = document.querySelectorAll('textarea');
+        textareas.forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        });
+    </script>
+</body></html>

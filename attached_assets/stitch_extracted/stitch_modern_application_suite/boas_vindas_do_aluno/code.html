@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bem-vindo ao TRAINFLOW</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a8cbe4",
+                        "surface-dim": "#131313",
+                        "on-secondary-container": "#b7b5b4",
+                        "tertiary-container": "#c2e6ff",
+                        "primary-fixed": "#c9f236",
+                        "background": "#131313",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "surface-container-highest": "#353534",
+                        "on-surface-variant": "#c5c9ae",
+                        "error": "#ffb4ab",
+                        "pure-black": "#000000",
+                        "on-tertiary-fixed": "#001e2d",
+                        "on-background": "#e5e2e1",
+                        "outline": "#8f937b",
+                        "status-warning": "#FFB800",
+                        "surface-container-low": "#1c1b1b",
+                        "outline-variant": "#444934",
+                        "secondary": "#c8c6c5",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "inverse-primary": "#526600",
+                        "tertiary": "#fefdff",
+                        "on-tertiary-fixed-variant": "#274b5f",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#3d4d00",
+                        "primary-fixed-dim": "#aed50d",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#313030",
+                        "primary-container": "#c8f135",
+                        "tertiary-fixed": "#c5e7ff",
+                        "secondary-container": "#474746",
+                        "text-muted": "#888888",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed": "#171e00",
+                        "on-tertiary": "#0c3447",
+                        "primary": "#ffffef",
+                        "border-subtle": "#333333",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary-container": "#45687d",
+                        "on-primary-container": "#566c00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary": "#293500",
+                        "surface-bright": "#3a3939",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface-tint": "#aed50d",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "button-height-heavy": "5rem",
+                        "gutter": "1rem",
+                        "container-margin": "1.5rem",
+                        "button-height-standard": "3.5rem",
+                        "touch-target-min": "2.75rem",
+                        "stack-gap-lg": "2rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Bebas Neue"],
+                        "headline-md": ["Bebas Neue"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Bebas Neue"],
+                        "display-giant": ["Bebas Neue"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "64px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "28px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "36px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "display-giant": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(51, 51, 51, 0.6);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-pure-black text-on-surface antialiased min-h-screen flex flex-col pt-20 pb-28 relative">
+<!-- TopAppBar -->
+<header class="bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-border-subtle fixed top-0 w-full z-50">
+<div class="flex items-center justify-between px-container-margin h-button-height-standard max-w-7xl mx-auto w-full">
+<div class="flex items-center gap-3 active:scale-95 transition-transform cursor-pointer">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary-fixed tracking-tighter">TRAINFLOW</h1>
+<button aria-label="Notifications" class="w-8 h-8 flex items-center justify-center text-primary-fixed dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<main class="flex-grow w-full max-w-4xl mx-auto px-container-margin flex flex-col gap-stack-gap-lg">
+<!-- Welcome Header -->
+<section class="mt-8 animate-[fadeIn_0.5s_ease-out]">
+<h2 class="font-headline-md text-headline-md text-primary-fixed uppercase mb-1">BEM-VINDO AO NOVO NÍVEL</h2>
+<h3 class="font-display-lg text-display-lg text-on-surface">OLÁ, <span class="text-white">LUCAS</span></h3>
+<p class="font-body-md text-body-md text-secondary-fixed-dim mt-2 max-w-md">Analisamos seus dados. Seu plano foi construído para máxima eficiência baseada no seu perfil biológico.</p>
+</section>
+<!-- Somatotype Hero Card -->
+<section class="relative rounded-xl overflow-hidden glass-panel p-6 shadow-2xl animate-[slideUp_0.6s_ease-out_0.1s_both]">
+<div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">accessibility_new</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+<span class="font-label-md text-label-md text-primary-fixed tracking-widest uppercase">CLASSIFICAÇÃO</span>
+</div>
+<h4 class="font-headline-lg text-headline-lg text-white mb-2">ECTOMORFO</h4>
+<div class="flex flex-col gap-2 mt-4 max-w-lg">
+<p class="font-body-md text-body-md text-secondary-fixed-dim">
+                        Metabolismo acelerado com dificuldade em ganho de massa. Foco total em <strong class="text-white">hipertrofia</strong> com volume controlado e cargas elevadas.
+                    </p>
+<p class="font-body-md text-body-md text-secondary-fixed-dim">
+                        Seus treinos serão mais curtos (45-50 min), exigindo intensidade máxima em exercícios compostos para otimizar a resposta anabólica.
+                    </p>
+</div>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-surface-variant/50 rounded-full font-label-sm text-label-sm text-on-surface-variant border border-border-subtle">
+<span class="material-symbols-outlined text-[14px]">fitness_center</span> Carga Alta
+                    </span>
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-surface-variant/50 rounded-full font-label-sm text-label-sm text-on-surface-variant border border-border-subtle">
+<span class="material-symbols-outlined text-[14px]">timer</span> Volume Baixo
+                    </span>
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-surface-variant/50 rounded-full font-label-sm text-label-sm text-on-surface-variant border border-border-subtle">
+<span class="material-symbols-outlined text-[14px]">restaurant</span> Superávit Calórico
+                    </span>
+</div>
+</div>
+</section>
+<!-- Highlights Scroll -->
+<section class="animate-[slideUp_0.6s_ease-out_0.2s_both]">
+<h5 class="font-headline-md text-headline-md text-on-surface mb-4">DIRETRIZES DO TREINO</h5>
+<div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar -mx-container-margin px-container-margin snap-x">
+<!-- Highlight Card 1 -->
+<div class="min-w-[280px] bg-surface-container-low rounded-lg p-5 border border-border-subtle flex-shrink-0 snap-center hover:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary-fixed">vital_signs</span>
+</div>
+<h6 class="font-headline-md text-headline-md text-white text-[20px] mb-2 leading-tight">FALHA CONCÊNTRICA</h6>
+<p class="font-body-md text-body-md text-secondary-fixed-dim text-sm">
+                        Busque a falha real nas duas últimas séries de cada exercício. O estímulo precisa ser agressivo.
+                    </p>
+</div>
+<!-- Highlight Card 2 -->
+<div class="min-w-[280px] bg-surface-container-low rounded-lg p-5 border border-border-subtle flex-shrink-0 snap-center hover:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary-fixed">timer</span>
+</div>
+<h6 class="font-headline-md text-headline-md text-white text-[20px] mb-2 leading-tight">DESCANSO LONGO</h6>
+<p class="font-body-md text-body-md text-secondary-fixed-dim text-sm">
+                        Respeite os 90-120 segundos de descanso. A recuperação neural é crucial para a próxima série pesada.
+                    </p>
+</div>
+<!-- Highlight Card 3 -->
+<div class="min-w-[280px] bg-surface-container-low rounded-lg p-5 border border-border-subtle flex-shrink-0 snap-center hover:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary-fixed">trending_up</span>
+</div>
+<h6 class="font-headline-md text-headline-md text-white text-[20px] mb-2 leading-tight">PROGRESSÃO</h6>
+<p class="font-body-md text-body-md text-secondary-fixed-dim text-sm">
+                        Anote todas as cargas. O objetivo de cada semana é superar a carga ou as repetições da semana anterior.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Nutrition Note -->
+<section class="bg-[#1A1A1A] border-l-4 border-status-warning rounded-r-lg p-4 mb-4 animate-[slideUp_0.6s_ease-out_0.3s_both]">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-status-warning mt-1">warning</span>
+<div>
+<h6 class="font-label-md text-label-md font-bold text-white mb-1">Aviso Nutricional Crítico</h6>
+<p class="font-body-md text-body-md text-secondary-fixed-dim text-sm">
+                        Sem combustível, não há motor. Como Ectomorfo, pular refeições anulará o esforço do treino. Mantenha a ingestão de carboidratos alta pré e pós-treino.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Main CTA -->
+<div class="mt-auto pt-6 pb-4 animate-[slideUp_0.6s_ease-out_0.4s_both] sticky bottom-0 z-40 bg-gradient-to-t from-pure-black via-pure-black/90 to-transparent">
+<button class="w-full h-[56px] bg-primary-fixed text-pure-black rounded-full font-headline-md text-headline-md flex items-center justify-center gap-2 hover:bg-primary-fixed-dim active:scale-95 transition-all shadow-[0_0_20px_rgba(201,242,54,0.3)]">
+                ENTENDER MEU TREINO
+                <span class="material-symbols-outlined font-bold">arrow_forward</span>
+</button>
+</div>
+</main>
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body></html>
