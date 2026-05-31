@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTrainerRegister } from "@workspace/api-client-react";
 import { useLocation, Link } from "wouter";
+import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -11,6 +12,7 @@ export default function TrainerRegister() {
   const [password, setPassword] = useState("");
   const register = useTrainerRegister();
   const [, setLocation] = useLocation();
+  const queryClient = useQueryClient();
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -19,6 +21,7 @@ export default function TrainerRegister() {
 
     register.mutate({ data: { fullName, email, password } }, {
       onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["auth/me"] });
         setLocation("/t/dashboard");
       },
       onError: () => {

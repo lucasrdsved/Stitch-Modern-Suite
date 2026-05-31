@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useStudentMagicLogin } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
+import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -10,6 +11,7 @@ export default function StudentLogin() {
   const [token, setToken] = useState("");
   const login = useStudentMagicLogin();
   const [, setLocation] = useLocation();
+  const queryClient = useQueryClient();
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -19,6 +21,7 @@ export default function StudentLogin() {
 
     login.mutate({ data: { token: trimmedToken } }, {
       onSuccess: (data) => {
+        queryClient.invalidateQueries({ queryKey: ["auth/me"] });
         if (data.isFirstLogin) {
           setLocation("/welcome");
         } else {
