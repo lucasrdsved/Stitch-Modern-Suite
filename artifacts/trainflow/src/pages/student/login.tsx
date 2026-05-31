@@ -32,41 +32,55 @@ export default function StudentLogin() {
   };
 
   return (
-    <div className="min-h-[100dvh] flex flex-col items-center justify-center p-6 bg-background text-foreground" data-testid="page-student-login">
-      <div className="w-full max-w-sm space-y-12">
-        <div className="text-center space-y-2">
-          <h1 className="font-display text-primary tracking-widest text-4xl" data-testid="text-logo">TRAINFLOW</h1>
-          <h2 className="font-display text-5xl mt-8" data-testid="text-heading">BEM-VINDO</h2>
-          <p className="text-muted-foreground text-sm">Insira o código de acesso enviado pelo seu personal trainer.</p>
+    <div className="min-h-[100dvh] flex flex-col items-center justify-between p-6 bg-black text-foreground relative z-10" data-testid="page-student-login">
+      {/* Atmospheric Background */}
+      <div className="fixed inset-0 pointer-events-none z-[-1] bg-black"></div>
+      
+      {/* Top: Logo Anchor */}
+      <header className="w-full max-w-md pt-8 flex justify-center md:justify-start">
+        <h1 className="font-display text-primary tracking-widest text-2xl" data-testid="text-logo">TRAINFLOW</h1>
+      </header>
+
+      {/* Center: Primary Interaction Canvas */}
+      <main className="w-full max-w-md flex-1 flex flex-col justify-center animate-in fade-in duration-700">
+        <div className="mb-10 text-center md:text-left">
+          <h2 className="font-display text-[64px] leading-none text-primary mb-2 drop-shadow-[0_0_15px_rgba(201,242,54,0.15)]" data-testid="text-heading">
+            BEM-VINDO
+          </h2>
+          <p className="text-muted-foreground text-base">Insira o código de acesso enviado pelo seu personal.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <Input
-            type="text"
-            placeholder="Código de acesso"
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
-            className="h-14 bg-card border-none rounded-2xl px-6 focus-visible:ring-primary font-mono text-sm"
-            data-testid="input-token"
-            required
-          />
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="relative group">
+            <Input
+              type="text"
+              placeholder="Código de acesso"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              className="w-full h-14 bg-[#121212] border border-[#222222] rounded-xl px-4 py-2 text-base placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 group-hover:border-[#333333] font-mono"
+              data-testid="input-token"
+              required
+            />
+          </div>
 
           <Button
             type="submit"
-            className="w-full h-14 rounded-full bg-primary text-black font-bold text-lg hover:bg-primary/90"
+            className="w-full h-14 bg-primary text-black font-display text-2xl rounded-full flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all duration-200 mt-4 electric-glow tracking-wide"
             disabled={login.isPending}
             data-testid="button-submit"
           >
-            {login.isPending ? "VERIFICANDO..." : "ENTRAR →"}
+            {login.isPending ? "VERIFICANDO..." : "ENTRAR"}
+            {!login.isPending && <span className="material-symbols-outlined text-[28px]">arrow_forward</span>}
           </Button>
         </form>
+      </main>
 
-        <div className="text-center pt-8">
-          <Link href="/t/login" className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-trainer-login">
-            Sou Personal Trainer
-          </Link>
-        </div>
-      </div>
+      {/* Footer: Secondary Action */}
+      <footer className="w-full max-w-md pb-8 flex justify-center">
+        <Link href="/t/login" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 inline-block py-2 px-4 rounded-full hover:bg-[#121212]" data-testid="link-trainer-login">
+          Sou Personal Trainer
+        </Link>
+      </footer>
     </div>
   );
 }
