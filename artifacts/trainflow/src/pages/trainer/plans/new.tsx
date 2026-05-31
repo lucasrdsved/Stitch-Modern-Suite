@@ -1,94 +1,147 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
 import { useCreatePlan } from "@workspace/api-client-react";
+import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
+import { MOCK_EXERCISES } from "@/lib/mock-data";
 
 export default function TrainerNewPlan() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
-  const createPlan = useCreatePlan();
-
-  const searchParams = new URLSearchParams(window.location.search);
-  const studentId = Number(searchParams.get("studentId"));
-
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [selectedExercises, setSelectedExercises] = useState<any[]>([]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!studentId) {
-      toast({ title: "Erro", description: "Aluno não identificado.", variant: "destructive" });
+  const handleAddExercise = (ex: any) => {
+    if (selectedExercises.find(e => e.id === ex.id)) return;
+    setSelectedExercises([...selectedExercises, { ...ex, sets: 4, reps: "12", rest: 60 }]);
+  };
+
+  const handleRemoveExercise = (id: number) => {
+    setSelectedExercises(selectedExercises.filter(e => e.id !== id));
+  };
+
+  const handleSubmit = async () => {
+    if (!name || selectedExercises.length === 0) {
+      toast({ title: "Erro", description: "Nome e exercícios são obrigatórios.", variant: "destructive" });
       return;
     }
-
-    createPlan.mutate(
-      { data: { name, studentId } },
-      {
-        onSuccess: (plan) => {
-          setLocation(`/t/plans/${plan.id}`);
-        },
-        onError: () => {
-          toast({ title: "Erro", description: "Falha ao criar plano.", variant: "destructive" });
-        },
-      }
-    );
+    
+    toast({ title: "Sucesso!", description: "Plano de treino criado." });
+    setLocation("/dashboard");
   };
 
   return (
-    <div className="min-h-[100dvh] bg-black text-white pb-24 relative overflow-hidden">
-      <div className="pointer-events-none absolute -top-28 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_0%,rgba(201,242,54,0.10),transparent_60%)]" />
-      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-[#333333] flex items-center justify-between px-6 h-14">
-        <div className="flex items-center gap-3">
-          <Link href={studentId ? `/t/students/${studentId}` : "/t/students"} className="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity active:scale-95 text-white">
-            <span className="material-symbols-outlined">arrow_back</span>
+    <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-6 selection:bg-primary selection:text-black">
+      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-6 h-16">
+        <div className="flex items-center gap-4">
+          <Link href="/dashboard" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors text-white">
+            <span className="material-symbols-outlined text-2xl">arrow_back</span>
           </Link>
-          <h1 className="font-display text-primary tracking-tighter text-3xl leading-none mt-1">TRAINFLOW</h1>
+          <h1 className="font-display text-primary tracking-widest text-3xl mt-1 uppercase">BUILDER</h1>
         </div>
-        <div className="w-10" />
+        <Button onClick={handleSubmit} className="bg-primary text-black rounded-full h-10 px-6 font-display text-xl uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all">
+           SALVAR
+        </Button>
       </header>
 
-      <form onSubmit={handleSubmit} className="mt-20 px-6 max-w-2xl mx-auto pt-6 relative">
-        <section className="mb-10">
-          <div className="flex flex-col gap-1">
-            <div className="text-[10px] text-[#888888] uppercase tracking-[0.28em]">Builder Profissional</div>
-            <label className="text-[11px] text-[#888888] uppercase tracking-widest mt-4">Nome do Plano</label>
-            <Input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Nome do Treino..."
-              required
-              className="h-auto bg-transparent border-0 border-b border-[#333333] rounded-none px-0 py-2 font-display text-[38px] leading-none text-white shadow-none placeholder:text-white/20 focus-visible:ring-0 focus-visible:border-primary"
-            />
-          </div>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1.5">
-            <span className="material-symbols-outlined text-[18px] text-[#888888]">person</span>
-            <div className="text-sm text-white/90">{studentId ? `Aluno #${studentId}` : "Aluno não identificado"}</div>
-          </div>
+      <main className="flex-1 pt-24 px-6 flex flex-col gap-10 max-w-5xl mx-auto w-full">
+        {/* Info Section */}
+        <section className="flex flex-col gap-6 bg-[#1A1A1A] border border-white/5 rounded-[40px] p-8">
+           <div className="flex flex-col gap-2">
+              <label className="text-[10px] text-[#888888] font-black uppercase tracking-widest ml-1">Nome do Plano</label>
+              <input 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Ex: Hipertrofia Avançada A" 
+                className="bg-black/40 border border-white/10 rounded-2xl p-4 text-2xl font-display uppercase tracking-tight focus:border-primary/50 outline-none transition-all placeholder:text-[#222]" 
+              />
+           </div>
+           <div className="flex flex-col gap-2">
+              <label className="text-[10px] text-[#888888] font-black uppercase tracking-widest ml-1">Descrição / Observações</label>
+              <textarea 
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Focar na fase excêntrica..." 
+                className="bg-black/40 border border-white/10 rounded-2xl p-4 text-sm min-h-[100px] focus:border-primary/50 outline-none transition-all placeholder:text-[#222]" 
+              />
+           </div>
         </section>
 
-        <section className="glass-panel rounded-2xl p-6 mb-10 relative overflow-hidden">
-          <div className="pointer-events-none absolute -top-10 -right-12 h-40 w-40 bg-primary/10 blur-3xl" />
-          <div className="flex items-center gap-3 mb-4">
-            <span className="material-symbols-outlined text-primary">tips_and_updates</span>
-            <h2 className="font-display text-2xl uppercase">Builder Inicial</h2>
-          </div>
-          <p className="text-sm text-white/75 leading-6">
-            Crie a identidade do plano agora. Depois da criação, você entra no editor completo para adicionar dias,
-            exercícios, séries, repetições e descanso.
-          </p>
-        </section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+           {/* Library Section */}
+           <section className="flex flex-col gap-6">
+              <div className="flex items-center justify-between px-1">
+                 <h3 className="text-[11px] text-[#888888] uppercase tracking-[0.3em] font-black">Biblioteca</h3>
+                 <span className="text-[10px] text-[#444] font-bold uppercase">{MOCK_EXERCISES.length} ITENS</span>
+              </div>
+              <div className="space-y-3">
+                 {MOCK_EXERCISES.map(ex => (
+                   <div key={ex.id} className="bg-[#1A1A1A] border border-white/5 rounded-2xl p-4 flex items-center justify-between group hover:border-white/10 transition-all">
+                      <div className="flex items-center gap-4">
+                         <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center text-[#222]">
+                            <span className="material-symbols-outlined text-3xl">fitness_center</span>
+                         </div>
+                         <div>
+                            <p className="text-sm text-white font-bold">{ex.name}</p>
+                            <span className="text-[10px] text-[#888888] font-bold uppercase">{ex.muscleGroup}</span>
+                         </div>
+                      </div>
+                      <button 
+                        onClick={() => handleAddExercise(ex)}
+                        className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#444] hover:text-primary hover:border-primary/50 transition-all"
+                      >
+                         <span className="material-symbols-outlined">add</span>
+                      </button>
+                   </div>
+                 ))}
+              </div>
+           </section>
 
-        <Button
-          type="submit"
-          disabled={createPlan.isPending || !name.trim()}
-          className="w-full h-14 rounded-full bg-primary text-black font-display text-2xl tracking-wide electric-glow hover:brightness-110 active:scale-[0.99] transition disabled:opacity-50 disabled:shadow-none"
-        >
-          {createPlan.isPending ? "CRIANDO..." : "CRIAR PLANO"}
-        </Button>
-      </form>
+           {/* Selection Section */}
+           <section className="flex flex-col gap-6">
+              <div className="flex items-center justify-between px-1">
+                 <h3 className="text-[11px] text-[#888888] uppercase tracking-[0.3em] font-black">Selecionados</h3>
+                 <span className="text-[10px] text-primary font-bold uppercase">{selectedExercises.length} EXERCÍCIOS</span>
+              </div>
+              <div className="space-y-4">
+                 {selectedExercises.map((ex, idx) => (
+                   <div key={ex.id} className="bg-[#1A1A1A] border-l-4 border-primary rounded-2xl p-5 flex flex-col gap-4 shadow-xl">
+                      <div className="flex justify-between items-start">
+                         <div className="flex items-center gap-3">
+                            <span className="font-display text-xl text-primary">{(idx + 1).toString().padStart(2, '0')}</span>
+                            <h4 className="font-display text-2xl text-white uppercase">{ex.name}</h4>
+                         </div>
+                         <button onClick={() => handleRemoveExercise(ex.id)} className="text-[#444] hover:text-red-500 transition-colors">
+                            <span className="material-symbols-outlined">delete</span>
+                         </button>
+                      </div>
+                      <div className="grid grid-cols-3 gap-3">
+                         <div className="bg-black/40 rounded-xl p-2 flex flex-col items-center">
+                            <span className="text-[8px] text-[#444] font-black uppercase tracking-widest">Séries</span>
+                            <span className="font-display text-xl text-white">{ex.sets}</span>
+                         </div>
+                         <div className="bg-black/40 rounded-xl p-2 flex flex-col items-center">
+                            <span className="text-[8px] text-[#444] font-black uppercase tracking-widest">Reps</span>
+                            <span className="font-display text-xl text-white">{ex.reps}</span>
+                         </div>
+                         <div className="bg-black/40 rounded-xl p-2 flex flex-col items-center">
+                            <span className="text-[8px] text-[#444] font-black uppercase tracking-widest">Pausa</span>
+                            <span className="font-display text-xl text-white">{ex.rest}s</span>
+                         </div>
+                      </div>
+                   </div>
+                 ))}
+                 {selectedExercises.length === 0 && (
+                   <div className="py-20 border-2 border-dashed border-white/5 rounded-[40px] flex flex-col items-center justify-center opacity-20">
+                      <span className="material-symbols-outlined text-6xl mb-4">playlist_add</span>
+                      <p className="font-display text-xl uppercase">Nenhum exercício selecionado</p>
+                   </div>
+                 )}
+              </div>
+           </section>
+        </div>
+      </main>
     </div>
   );
 }
