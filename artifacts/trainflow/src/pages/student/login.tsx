@@ -61,6 +61,15 @@ export default function StudentLogin() {
             {login.isPending ? "VERIFICANDO..." : "ENTRAR"}
             {!login.isPending && <span className="material-symbols-outlined text-[28px]">arrow_forward</span>}
           </Button>
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setLocation("/home")}
+            className="w-full h-14 bg-transparent border-primary/30 text-primary font-display text-xl rounded-full hover:bg-primary/10 transition-all duration-200"
+          >
+            ACESSO RÁPIDO (PREVIEW)
+          </Button>
         </form>
       </main>
 

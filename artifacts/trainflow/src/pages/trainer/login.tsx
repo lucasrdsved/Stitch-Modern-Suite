@@ -70,6 +70,15 @@ export default function TrainerLogin() {
             {login.isPending ? "CARREGANDO..." : "ACESSAR"}
             {!login.isPending && <span className="material-symbols-outlined text-[28px]">arrow_forward</span>}
           </Button>
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setLocation("/t/dashboard")}
+            className="w-full h-14 bg-transparent border-primary/30 text-primary font-display text-xl rounded-full hover:bg-primary/10 transition-all duration-200"
+          >
+            ACESSO RÁPIDO (PREVIEW)
+          </Button>
         </form>
       </main>
 
