@@ -148,7 +148,7 @@
 <main class="flex-1 flex flex-col px-gutter overflow-y-auto w-full max-w-md mx-auto no-scrollbar gap-stack-gap-lg pt-6">
 <!-- Exercise Media Placeholder -->
 <div class="w-full aspect-[4/3] glass-panel rounded-xl overflow-hidden relative shadow-lg">
-<img alt="Exercise Demo" class="w-full h-full object-cover opacity-80" data-alt="A powerful athlete performing a heavy barbell back squat in a dark, grimy industrial gym setting. The lighting is dramatic and moody, with high contrast highlighting the muscle definition and the chalk on the bar. The aesthetic is raw and energetic, with deep shadows and intense highlights fitting a high-performance fitness brand. The shot is dynamic, emphasizing strength and focus." src="https://lh3.googleusercontent.com/aida/ADBb0ugGCayf2R6meX7XkzQt_ul6hBHqvvoJqo9Gk8xbpAKWi7I54AdW6ockjD36od4x4x-DbQ_64qRrHDrmrfo68DZ3Ioprgv3IE4Fr-yWx9w2Bb2RgC6nbbp0XacVNrQ65aTmdNbaJmxXUMAprYjQWaZXPYSnbIq11I8StcgusGAgFgWBWMoUihjLuAEVHUkGJGyhh_h-epAYCcLUoW7H0AVfDry7fgt5vCkD1qDT_czXcELRlAd3kPdBDMZ0"/>
+<img alt="Exercise Demo" class="w-full h-full object-cover opacity-80" data-alt="A powerful athlete performing a heavy barbell back squat in a dark, grimy industrial gym setting. The lighting is dramatic and moody, with high contrast highlighting the muscle definition and the chalk on the bar. The aesthetic is raw and energetic, with deep shadows and intense highlights fitting a high-performance fitness brand. The shot is dynamic, emphasizing strength and focus." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 <div class="absolute inset-0 bg-gradient-to-t from-pure-black/80 to-transparent"></div>
 <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
 <div>
@@ -191,4 +191,79 @@
 </div>
 </main>
 <!-- Navigation Suppressed intentionally for Workout Player mode -->
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

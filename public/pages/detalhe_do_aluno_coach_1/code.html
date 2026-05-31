@@ -149,7 +149,7 @@
 <div class="flex items-center gap-4">
 <span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity" data-icon="notifications">notifications</span>
 <div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle">
-<img alt="Coach Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a fitness coach in a dark, high-end gym setting. He has a focused and determined expression, lit by dramatic cinematic lighting that emphasizes his athletic features. The background is softly blurred, showing premium gym equipment in a minimalist aesthetic of deep blacks and subtle metallic textures." src="https://lh3.googleusercontent.com/aida/ADBb0ugdkqPcbGZxy5KDLimLxC6aqJrGHEtHbmnnknpXyPbKoaq8LUPEQs6QwOqDzynbO7CGWTQY56fbvts0Du76Uyr_NaAqAvSj1HE-oJn0yFJqHvADikmRYpLEI3CHsFcZQAOIwugFN2VJhyyJd49cH9YoXDlYlhWGCC-RwD90qpvorRrpkK_wo9BP2irkbH76m56pZOnfJH97HVn6wPpnMgMtgWrTGXIPCy2SomcGUg1RTmgNAEdaN0L_hwA"/>
+<img alt="Coach Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a fitness coach in a dark, high-end gym setting. He has a focused and determined expression, lit by dramatic cinematic lighting that emphasizes his athletic features. The background is softly blurred, showing premium gym equipment in a minimalist aesthetic of deep blacks and subtle metallic textures." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 </div>
 </header>
@@ -158,7 +158,7 @@
 <section class="flex flex-col gap-6 mb-stack-gap-lg">
 <div class="flex items-center gap-6">
 <div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-primary-fixed-dim shrink-0">
-<img alt="Ricardo Silva" class="w-full h-full object-cover" data-alt="A high-contrast, muscular male athlete named Ricardo Silva training in a dark, atmospheric industrial gym. He is wearing high-performance black athletic gear. The lighting is intense and directional, highlighting his physique against the void-like black background, reflecting a professional and energetic somatotype aesthetic." src="https://lh3.googleusercontent.com/aida/ADBb0ujzoiwsZwjt4CI5r47PG9bkucnHJBHqlA53wthsGXSBQzrT9D6xVhLpPsXuDkny2BDEM42-7BhJii5OSPGifGA3vigEJL6w-eLhTB5U7wgV_qosJj3Ej8FFNlQVmswtTB-OnOEohYQALUDc7OkOocphA55cJ1YrC1e9UWXnWC_gqwV3eA-xG5ZHOK0Z9xoytylUHL2RL_4JnaxR4VUX4ql3paA73fdeRPhNih-ruwXs6E7VbaSlvhgvau0"/>
+<img alt="Ricardo Silva" class="w-full h-full object-cover" data-alt="A high-contrast, muscular male athlete named Ricardo Silva training in a dark, atmospheric industrial gym. He is wearing high-performance black athletic gear. The lighting is intense and directional, highlighting his physique against the void-like black background, reflecting a professional and energetic somatotype aesthetic." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <div class="flex flex-col">
 <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Ricardo Silva</h2>
@@ -303,4 +303,79 @@
             }
         }
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

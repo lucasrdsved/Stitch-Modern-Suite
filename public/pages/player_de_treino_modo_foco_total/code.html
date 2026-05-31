@@ -153,7 +153,7 @@
 </div>
 <div class="flex items-center gap-4">
 <div class="w-10 h-10 rounded-full bg-surface-container-high border border-border-subtle flex items-center justify-center overflow-hidden">
-<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhuFX4_AYk1YzBQuMlRvVUZ1ti216AHHYAgRbWHswupiPZta3YXxupKFuUxA7ljgzt7N5oMS36PgakgFYLlawq00457HlJKNMr5r76rA89xnx36mZE4qOCGBXoNBAv46L5J2QArNbO5gQDy8FUCTwuwCuSR0YvAy3L1waRSA1fzD1LiTE0y79TI-g0Kwx0b0c-A_rcI3IZO31MP1DDF06K_OQ_Hk8ISkdHJrMP3hjge-sHpMPONcFrJ42A"/>
+<img alt="Profile" class="w-full h-full object-cover" src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity cursor-pointer">notifications</span>
 </div>
@@ -176,7 +176,7 @@
 </div>
 <!-- Immersive Exercise Visual/Background -->
 <div class="relative w-full aspect-video rounded-xl overflow-hidden glass-panel group">
-<img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" data-alt="A gritty, high-contrast black and white photograph of a powerful muscular athlete performing a heavy deadlift in a dark industrial gym. Intense green neon light strips on the background wall create a geometric pattern that slices through the shadows. The atmosphere is aggressive and focused, with sweat glistening on the athlete's skin under dramatic overhead spotlighting. Professional sports photography style." src="https://lh3.googleusercontent.com/aida/ADBb0ujM4KsUtW9C1r04X4keyb9b82DdU9vWNalEzWcfmPPaHiJJm_Z7b9VO8JOy9LKqd96Hx_qFmNzHxHY1pIv5HPCFxsDZmD_5YAFNUcvA5Ml1Jog4mWJ4JpSYmc5qk12HZUEj6bbyndzwwVHQMFOL5y6pruso78YUAMlFZwFdowUIBCirqmuv-s0vVyKB0WCmBqCksaCvqi_Ig-fRycx4RfTcubmUm-uuuAB0bLZUM-Vw7XzDIeEOOkUjIIU"/>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" data-alt="A gritty, high-contrast black and white photograph of a powerful muscular athlete performing a heavy deadlift in a dark industrial gym. Intense green neon light strips on the background wall create a geometric pattern that slices through the shadows. The atmosphere is aggressive and focused, with sweat glistening on the athlete's skin under dramatic overhead spotlighting. Professional sports photography style." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 <div class="absolute inset-0 bg-gradient-to-t from-pure-black via-transparent to-transparent"></div>
 <!-- Intensity Indicator Overlay -->
 <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
@@ -240,7 +240,7 @@
 <div class="glass-panel px-6 py-4 rounded-full flex items-center justify-between border border-border-subtle mt-4">
 <div class="flex items-center gap-3 overflow-hidden">
 <div class="w-10 h-10 rounded-lg bg-surface-container-highest flex-shrink-0 overflow-hidden relative">
-<img class="w-full h-full object-cover" data-alt="Abstract music album art with dark moody textures, electric lime geometric accents and liquid glitch effects. High-end modern music player aesthetic, professional lighting, cinematic vibe." src="https://lh3.googleusercontent.com/aida/ADBb0ug7nIBSx6GC35dm-oxihMG0UOm1BTX5IP1FTtnUP8m9hRW4U9ubHcva1rV29hYGZQe_Aqh2ULj9AAqWmxnENoMnYQPUEot4hAXcm18zW12LIW2v6cpFOiu9khDQCHjxGDSlIPs65w3fg8r8HkxHqFQaoqfr9hzKr40SJS4lgW5wIG0S6kifB0BMbGquhzFhqXbUPJg1sOASGGSef8LlyQ04Agj-yIBAM30fAebq3lzidQmpoCW5SzxUGg"/>
+<img class="w-full h-full object-cover" data-alt="Abstract music album art with dark moody textures, electric lime geometric accents and liquid glitch effects. High-end modern music player aesthetic, professional lighting, cinematic vibe." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <div class="flex flex-col truncate">
 <span class="font-label-md text-on-surface truncate">PHONK FOCUS - VOLUME 1</span>
@@ -326,4 +326,79 @@
             });
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

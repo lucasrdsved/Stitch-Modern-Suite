@@ -178,7 +178,7 @@
 <header class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-border-subtle flex items-center justify-between px-container-margin h-button-height-standard">
 <div class="flex items-center gap-3">
 <div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed animate-blur-focus" style="animation-delay: 0.1s;">
-<img class="w-full h-full object-cover" data-alt="A cinematic, close-up portrait of a determined athlete with subtle sweat on their brow, set against a dark, moody gym background with soft Electric Lime lighting accents. The style is high-contrast and professional, emphasizing peak performance and focus in a high-end athletic environment." src="https://lh3.googleusercontent.com/aida/ADBb0ugETvAzYmO0fnuSmHyoc5xlPVnGm_2mL1Tfom-t5BW2uVKWOxPNnPCcPeVLWs_IFVWz2Z8yZAt3v1TSvJh-PeUhQQhWyTMcwzmklhpkw1FbQ6D3h--EfDTnzXj3FJOpCEszSVNdF-8vO-gXq7mBP2ZZQgY7HystniJotzT3B2WIxGuZZMTqwWFR7hXYECteiVHDKJVv5XpC5WKWwiNWopVdTRhl9Ghf5_LnbhPGS2e8KX7vMzAf8BcoIkE"/>
+<img class="w-full h-full object-cover" data-alt="A cinematic, close-up portrait of a determined athlete with subtle sweat on their brow, set against a dark, moody gym background with soft Electric Lime lighting accents. The style is high-contrast and professional, emphasizing peak performance and focus in a high-end athletic environment." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <h1 class="font-display-lg text-[24px] text-primary-fixed tracking-tighter uppercase animate-blur-focus" style="animation-delay: 0.2s;">TRAINFLOW</h1>
 </div>
@@ -224,7 +224,7 @@
 <section class="mb-stack-gap-lg">
 <div class="glass-card rounded-xl overflow-hidden relative group animate-slide-up-expand">
 <div class="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
-<img class="w-full h-full object-cover" data-alt="An abstract, high-contrast silhouette of a powerful muscular physique captured in deep shadows with sharp, Electric Lime backlighting. The aesthetic is minimalist and aggressive, focusing on anatomical form and raw strength within a black-mode high-performance athletic interface." src="https://lh3.googleusercontent.com/aida/ADBb0ugeuKULL5TKPXW6s0JxYPWtsmlphpStdqbati7_MSAz9V15c1E3GChG0CrF_j2ZoPpjVGn6fIXLgiEWVLV5s0LEepDw3qTxToUZt-MTz9-n6BDk600GN3rhFhL5ewix0zyUMt83YCFyEBx5stwSEYno0vc6pRKGV5gBJVTgUXEGBQdOXncntj7GnHC32e7zZ9SPZumCBuU6e7QJkcKFQGsm_nIxN6iqBWZNyIzRUyotFSlxh1IjtBzsFVI"/>
+<img class="w-full h-full object-cover" data-alt="An abstract, high-contrast silhouette of a powerful muscular physique captured in deep shadows with sharp, Electric Lime backlighting. The aesthetic is minimalist and aggressive, focusing on anatomical form and raw strength within a black-mode high-performance athletic interface." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <div class="relative p-6 bg-gradient-to-t from-pure-black via-pure-black/40 to-transparent">
 <h3 class="font-headline-md text-headline-md text-primary-fixed uppercase mb-2">Training Orientation</h3>
@@ -345,4 +345,79 @@
             });
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

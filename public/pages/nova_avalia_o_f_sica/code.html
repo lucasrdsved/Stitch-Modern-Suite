@@ -141,7 +141,7 @@
 </div>
 <div class="flex items-center gap-4">
 <div class="h-10 w-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
-<img alt="Trainer Profile" class="w-full h-full object-cover" data-alt="A professional male fitness trainer with a sharp jawline and athletic build, wearing a sleek black compression shirt. He is in a modern high-end gym setting with moody cinematic lighting, featuring deep shadows and electric lime accents. The style is sharp, clean, and professional, emphasizing high-performance coaching and expertise." src="https://lh3.googleusercontent.com/aida/ADBb0uhWO8SaIRTJQeFwOMC-VQqH7oehEHR1ugGm9V8V0kwEKN08Vf0A793jvLSjZS4c155lB8RhzRxxjFeW_rQ9LVTUnrWMSbAytzVmmVFfrwdyc5EgbNXzJc7rdJOooPFKYNqZPrXnbroHIqLXuV5t3JjJ9OzHxrITjLR7QtAOBrdQPUfP7eTalEHY6ftmZKbxZK302Fiezx6d9YJfQ_4He2YqXq9kPQibcu6paeRTNS1ZUSqtvwWIbLs7iCQ"/>
+<img alt="Trainer Profile" class="w-full h-full object-cover" data-alt="A professional male fitness trainer with a sharp jawline and athletic build, wearing a sleek black compression shirt. He is in a modern high-end gym setting with moody cinematic lighting, featuring deep shadows and electric lime accents. The style is sharp, clean, and professional, emphasizing high-performance coaching and expertise." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform" data-icon="notifications">notifications</span>
 </div>
@@ -341,4 +341,79 @@
             });
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

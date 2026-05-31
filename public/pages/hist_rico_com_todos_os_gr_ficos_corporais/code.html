@@ -133,7 +133,7 @@
 <h1 class="font-headline-md text-headline-md text-primary-fixed tracking-tight">HISTÓRICO DE AVALIAÇÕES</h1>
 </div>
 <div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed/20">
-<img class="w-full h-full object-cover" data-alt="A close-up portrait of a determined athlete in a dark gym environment. The lighting is dramatic and low-key, highlighting muscle definition with high-contrast electric lime reflections. The overall mood is intense, professional, and focused, aligning with a high-performance fitness brand identity." src="https://lh3.googleusercontent.com/aida/ADBb0uhhun5hcLGO6277T_n9_ztUXdQsA8izGxfH3w3QMStYSrxmHGzEshImOHNmHzZjdTyGd-lyN-Elr0t5zUVo2mByUSOX2uVqyMrhHBb1dQIum9koUSZwJ6_xAzfPb460EvshnAdgJfs5ACcv-U2n8igEhBL4oJPtnPogDtXLnhcaTj37R2cKGheYQeSGrFGO1z4Ng-RpYm4mc4ANl2rXPGFdcW69hpuNqe-tMYihVcjDItPDA26V2IvZ-Co"/>
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a determined athlete in a dark gym environment. The lighting is dramatic and low-key, highlighting muscle definition with high-contrast electric lime reflections. The overall mood is intense, professional, and focused, aligning with a high-performance fitness brand identity." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 </header>
 <main class="mt-20 px-container-margin space-y-stack-gap-lg">
@@ -509,4 +509,79 @@
             }
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

@@ -159,7 +159,7 @@
 <div class="exercise-card bg-surface-container-low border border-border-subtle rounded-xl p-4 overflow-hidden relative group">
 <div class="flex gap-4 items-start">
 <div class="w-24 h-24 rounded-lg bg-surface-container-highest flex-shrink-0 overflow-hidden border border-border-subtle">
-<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A detailed cinemagraph style image of a powerful athlete performing a barbell bench press in a dark, high-contrast industrial gym. The lighting is cinematic, focusing on the muscle definition and the matte black finish of the weights. The background is a soft-focus array of gym equipment under cold white and electric lime accent lighting, creating a high-performance athletic atmosphere." src="https://lh3.googleusercontent.com/aida/ADBb0uh1aYliNk7lruV9ElzbtD31gTDZkjX8sXZZttOpgIeMnNyJPNVDLu4nCg0R_GLF2JwB086MPORwtXr_Ulj5Lk_lJ6JI9ldrRNz1VYTDaJ8v-0xxpIuUVANdp-tLRo_t3OplgVoBBTR7HSRHWpoZBWM6v27i0f9vUd11DkPdMwr4nQmGsLFTjRn7oMM7mlJadYTxMelWxAYEiezxJhTo9sv6GwLstp_fYkrMaAC6UF9ms6ydPhlat3MZ5A"/>
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A detailed cinemagraph style image of a powerful athlete performing a barbell bench press in a dark, high-contrast industrial gym. The lighting is cinematic, focusing on the muscle definition and the matte black finish of the weights. The background is a soft-focus array of gym equipment under cold white and electric lime accent lighting, creating a high-performance athletic atmosphere." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <div class="flex-grow">
 <div class="flex justify-between items-start">
@@ -193,7 +193,7 @@
 <div class="exercise-card bg-surface-container-low border border-border-subtle rounded-xl p-4 overflow-hidden relative group">
 <div class="flex gap-4 items-start">
 <div class="w-24 h-24 rounded-lg bg-surface-container-highest flex-shrink-0 overflow-hidden border border-border-subtle">
-<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Close up action shot of a person doing cable flyes. The image features a low-key lighting setup with strong rim lighting on the chest and shoulders. The gym setting is professional with dark tones and electric lime highlights. Dramatic shadows emphasize the movement and intensity of the exercise, maintaining a high-end athletic aesthetic." src="https://lh3.googleusercontent.com/aida/ADBb0ujXXA7Lh469TO0Y5pmMqoFzYv0ruozqgWhrX0mBYW96zW3d_kf2MR6Ywv_5lFLWbZ8J-DTOkndaa34e2YwtctWrWS2B_7jbah6boJeE4obENHaw445Uf7OAwURIl2N3Vo7Xaod2JlZAVAU_maJumOGsoTDHB-OSqDQUknWZpLTEq_sL1oGQ948dy9t6GZKqUlyvHiww5SpsdOpjMzCWjMGS2BIEMIQIpOuxZnk0EElOMSaCqfuEDJJGojk"/>
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Close up action shot of a person doing cable flyes. The image features a low-key lighting setup with strong rim lighting on the chest and shoulders. The gym setting is professional with dark tones and electric lime highlights. Dramatic shadows emphasize the movement and intensity of the exercise, maintaining a high-end athletic aesthetic." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <div class="flex-grow">
 <div class="flex justify-between items-start">
@@ -269,4 +269,79 @@
             });
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

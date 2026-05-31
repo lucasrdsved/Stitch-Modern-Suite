@@ -140,7 +140,7 @@
 <div class="flex items-center gap-4">
 <button class="material-symbols-outlined text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150" data-icon="notifications">notifications</button>
 <div class="w-10 h-10 rounded-full border border-primary-fixed overflow-hidden">
-<img alt="Coach Avatar" class="w-full h-full object-cover" data-alt="A professional high-performance fitness coach with a determined expression, lit by dramatic cinematic lighting with electric lime highlights. The background is a dark, modern gym setting with premium equipment. The overall aesthetic is aggressive, sleek, and high-end, matching the brand's performance-driven identity." src="https://lh3.googleusercontent.com/aida/ADBb0ujBn3V82_CVU7Eybj6pdo5jUujbM8XjKiFZRXvbulKT1anic4RfTqlUkFpz5SL-I1RiNmjmTZH7D6YKZqvcoCkDO57T4ZPUDe2Xf3nnDehrjdf5jNfCVuTYf6bTkeOLHd7KmZc0o0Ym9HtIOnSsucyBHou1VmASuruEQPpXQIhyRdnFfoTdVFJvIT-dOh03pW0CEpJfsq6Lwh6x1jUpwSIll02Z2oloFXbCakvaZs70tI0fSvOl22pUhJY"/>
+<img alt="Coach Avatar" class="w-full h-full object-cover" data-alt="A professional high-performance fitness coach with a determined expression, lit by dramatic cinematic lighting with electric lime highlights. The background is a dark, modern gym setting with premium equipment. The overall aesthetic is aggressive, sleek, and high-end, matching the brand's performance-driven identity." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 </div>
 </header>
@@ -266,7 +266,7 @@
 <div class="flex items-center justify-between">
 <div class="flex items-center gap-3">
 <div class="w-10 h-10 rounded-full border border-primary-fixed p-0.5">
-<img class="w-full h-full object-cover rounded-full" data-alt="A fit woman in intense training session in a dark gym, focused and sweating, with dramatic lighting highlighting her muscles and form. High-contrast athletic photography." src="https://lh3.googleusercontent.com/aida/ADBb0ugUmLLV65MmD2R6st8WrxLL45x4b0rkhm3visF_AcUWZJDWuiPV5gl8CM7KJKgcgB_62-a9yMr-_dUCFRV3UVUJd5MejZ-g5l11Hv3XNxNDGD7nGD_KN1Q8ogDduSv2QAIRilS2K2oOuJrmColXP9R7wlm2v6QHbEg4J46rfrxlLOpVu8dDst7hq2Cj_m1W337nhcLS26yT3vN9Jb-z7T-LJUgoIg2KEXnq1M4iX0YFQaBauO-tExXq_yU"/>
+<img class="w-full h-full object-cover rounded-full" data-alt="A fit woman in intense training session in a dark gym, focused and sweating, with dramatic lighting highlighting her muscles and form. High-contrast athletic photography." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <div>
 <p class="font-label-md text-on-surface">Camila Torres</p>
@@ -376,4 +376,79 @@
             });
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

@@ -135,7 +135,7 @@
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity" data-icon="notifications">notifications</span>
 <div class="w-10 h-10 rounded-full border border-primary-fixed/30 overflow-hidden">
-<img alt="Trainer Profile" class="w-full h-full object-cover" data-alt="A professional fitness trainer portrait in a dark, atmospheric gym environment. High-contrast side lighting reveals muscle definition and a focused expression. The color palette consists of deep charcoal, midnight black, and sharp electric lime accents. The mood is intense, sophisticated, and athletic." src="https://lh3.googleusercontent.com/aida/ADBb0uiydYonO32o6yInJdWZ4M8emjaauSVSxuZqVtaUE9WGkGQhq1NHvw89gZG34122oQ3FvFmTh78YXMCMUu7BsldU1zuWfuphldMpx2I--YnozhHXXMW220NROn0dfzOC1laMOymk6py1JXfnyTHD2QPDNXvXAU3IYC1IaL7mvg7JXokdPoSVql9mXRMpOknTjcbOy670--t5PQcjERaxaZGSy_A22CDEg82UeRhXLmKy5X1tmyjJjHnQIk4"/>
+<img alt="Trainer Profile" class="w-full h-full object-cover" data-alt="A professional fitness trainer portrait in a dark, atmospheric gym environment. High-contrast side lighting reveals muscle definition and a focused expression. The color palette consists of deep charcoal, midnight black, and sharp electric lime accents. The mood is intense, sophisticated, and athletic." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 </div>
 </header>
@@ -144,7 +144,7 @@
 <section class="flex items-center gap-6 py-6">
 <div class="relative">
 <div class="w-24 h-24 rounded-full border-2 border-primary-fixed p-1">
-<img alt="Student Avatar" class="w-full h-full rounded-full object-cover" data-alt="A close-up portrait of a determined young athlete during an intense workout session. Sweat glistens on their skin under harsh, dramatic gym lighting. The background is a blurred high-end gym with black equipment. The aesthetic is raw, powerful, and matches a high-performance athletic brand with electric lime and dark grey tones." src="https://lh3.googleusercontent.com/aida/ADBb0ujhjSOFcGX7g2XgN4FL0OnTPbXUcOgUB9S5MrIw2bI1M1X8eOIY3W6Gqx6ca4dQ_FwxrtF6L_M_DY-xWjpJUtFLa-kKYvycbTUBFD4e6Iu91oEBPyehQJrB92KBTdW-pOenCWKefnoQCix_FlgW3RUyPg1JNHTtOZU5dPOiQ2Qini2FAVF6d3Vx48E83UDtFLN-2BOiIm_ciGmK3B5W0XwH4DRYEO7KykAPKfa6xexS9xFfdiAn8bguum0"/>
+<img alt="Student Avatar" class="w-full h-full rounded-full object-cover" data-alt="A close-up portrait of a determined young athlete during an intense workout session. Sweat glistens on their skin under harsh, dramatic gym lighting. The background is a blurred high-end gym with black equipment. The aesthetic is raw, powerful, and matches a high-performance athletic brand with electric lime and dark grey tones." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <div class="absolute bottom-1 right-1 w-6 h-6 bg-primary-fixed rounded-full border-2 border-pure-black flex items-center justify-center">
 <span class="material-symbols-outlined text-pure-black text-[14px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
@@ -313,4 +313,79 @@
             });
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

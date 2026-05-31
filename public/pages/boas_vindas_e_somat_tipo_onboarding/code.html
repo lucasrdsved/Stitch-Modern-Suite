@@ -138,7 +138,7 @@
 <div class="flex items-center gap-4">
 <span class="material-symbols-outlined text-primary-fixed hover:opacity-80 transition-opacity cursor-pointer">notifications</span>
 <div class="w-8 h-8 rounded-full bg-surface-container-highest border border-primary-fixed/30 flex items-center justify-center overflow-hidden">
-<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uizA9Tt_JpFcg43-QQ5C03UIe24Jr5Mjn5z9aUr1eQQ7JkcCMCBG_l_YKwM2cXPeO4mcYDuTj3DYg87rVJWlpYm8lg6pSSj3T7PYeVGK5ORmsUaJqc7QuJ8-VEKg1ZDK3L90MgR7g9DK7vIpLO-7ZzdsNSXBppOulNQjCdm5gE68j2zhmPQUBRibO_pF8nalQB-2MJ7Lh_Ln9c8miGu1R5FI8hWPTrWBhOIEdaE6H8i9ZvpcjgutM7rJw"/>
+<img alt="User Profile" class="w-full h-full object-cover" src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 </div>
 </header>
@@ -156,7 +156,7 @@
 <div class="relative w-full aspect-square max-w-[320px] md:max-w-[400px]">
 <!-- Main Profile Image -->
 <div class="w-full h-full rounded-[40px] overflow-hidden border border-border-subtle glass-panel flex items-center justify-center">
-<img alt="Mesomorph Somatotype Visualization" class="w-full h-full object-cover grayscale brightness-50" data-alt="A powerful mesomorph athlete standing confidently in a futuristic dark gym environment with electric lime neon light streaks on the walls. The scene is high-contrast, professional, and dramatic, capturing a muscular silhouette with sharp lighting highlights against a black void background. The mood is intense, focused, and high-performance." src="https://lh3.googleusercontent.com/aida/ADBb0ugLWDWvB1DRQksRSyC2PmNb1INVLT0Axbp4NyZoxDJF-ez1QwL1PMhLXAVlqhoeRzGFbRawYvGtYx02xGWWNK-4kGq3-bUvXha3xWJLOabRid6UHEjrKeZs1D34EzT_wC0YmPayYpwHYOVm-wezyvZ0ZvwlKHOlm2HPnJOYuC84IJWHwnhfyq4ogsxYQg6MK5QPdbSTM8XIe_HQMD86edphvQx66oAXWJ94ncOrZIAL8J_LgUFSeEpNvmU"/>
+<img alt="Mesomorph Somatotype Visualization" class="w-full h-full object-cover grayscale brightness-50" data-alt="A powerful mesomorph athlete standing confidently in a futuristic dark gym environment with electric lime neon light streaks on the walls. The scene is high-contrast, professional, and dramatic, capturing a muscular silhouette with sharp lighting highlights against a black void background. The mood is intense, focused, and high-performance." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <!-- Floating Data Chips -->
 <div class="absolute -top-4 -right-4 glass-panel px-6 py-3 rounded-xl border border-primary-fixed/40 glow-lime">
@@ -249,4 +249,79 @@
             });
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>

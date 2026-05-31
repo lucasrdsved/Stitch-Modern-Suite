@@ -144,7 +144,7 @@
 <span class="material-symbols-outlined hover:opacity-80 transition-opacity active:scale-95 transition-transform cursor-pointer" onclick="window.history.back()">arrow_back</span>
 <div class="flex items-center gap-3">
 <div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed">
-<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional portrait of a athletic man in his 30s wearing premium black training gear. He has a focused expression, looking directly at the camera with sharp, professional studio lighting highlighting his muscular physique against a dark, moody gym background. The aesthetic is high-contrast, aggressive, and modern, utilizing a palette of deep blacks and sharp greys." src="https://lh3.googleusercontent.com/aida/ADBb0uhKnkJvNaQel7wgC1bC5twtyhETGg5Vcsn44zM67A_z1qdv1erG4cwA_s7iDGnBmUa0MJYIqWGRHyn8iq_6W7PXvpm08ZsynH-OhX2ugI3zLXh2xV-k3eFmqReDT1NKug9akYAh9rFusg5amUYsyr0oaCWqIxzRVF6RTTT2Ofs9dDkVvJXpLmP1RHxuOdu90Lv4qxjtgImCDrvrfNJIScPUqg-on58zZfCgshi0VKU_2wb9eWEIrP44-Q"/>
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional portrait of a athletic man in his 30s wearing premium black training gear. He has a focused expression, looking directly at the camera with sharp, professional studio lighting highlighting his muscular physique against a dark, moody gym background. The aesthetic is high-contrast, aggressive, and modern, utilizing a palette of deep blacks and sharp greys." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <div>
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile leading-none">MARCOS SILVA</h1>
@@ -191,7 +191,7 @@
 <div class="flex flex-col items-start max-w-[85%]">
 <div class="message-gradient-in p-2 rounded-2xl rounded-tl-none space-y-2">
 <div class="rounded-lg overflow-hidden h-48 w-full border border-border-subtle">
-<img class="w-full h-full object-cover" data-alt="A high-end, atmospheric shot of a professional squat rack in a dark, luxury gym setting. The lighting is dramatic, with a single Electric Lime neon light strip highlighting the chrome texture of the barbell and weights. The floor is black rubber, and the background is blurred to maintain focus on the workout equipment. The mood is powerful and focused." src="https://lh3.googleusercontent.com/aida/ADBb0ujhV1gSbIjjmPWS-siXxgI6qrKknCOQgKojzR2nhOu-mhZHTO0DCHwlaGNGm5RGkIJp8n7iIoAhhPS4mjCW0U262w8UDqV4oFhMUpo0Kj0BcI0iALNYneAWatK6-dNZ4DQ_qc4nIg7s8ArRCbV4uCHEW9_QDD7OT7Kx-YKzpT-Du6EKmC4qtQHxRDxzlfq_5iToVZbURec0tPjMLmdAbHShbid8UpyeNfcrNheEqP8NbWzn09eNHx7J4g"/>
+<img class="w-full h-full object-cover" data-alt="A high-end, atmospheric shot of a professional squat rack in a dark, luxury gym setting. The lighting is dramatic, with a single Electric Lime neon light strip highlighting the chrome texture of the barbell and weights. The floor is black rubber, and the background is blurred to maintain focus on the workout equipment. The mood is powerful and focused." src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23c8ff00" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EExercise Demo%3C/text%3E%3C/svg%3E"/>
 </div>
 <p class="font-body-md text-body-md text-on-surface px-2 pb-1">Consegui sim! Tive que reduzir 2kg pra manter a forma perfeita. O que acha dessa amplitude?</p>
 </div>
@@ -293,4 +293,79 @@
             });
         });
     </script>
+
+
+<script>
+// Navigation handler v2
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('button, a, [data-icon]');
+  if (!target) return;
+
+  // Rotas por ícone
+  const iconRoutes = {
+    'home': '/pages/dashboard_do_aluno/code.html',
+    'dumbbell': '/pages/player_de_treino/code.html',
+    'message-circle': '/pages/mensagens_do_personal/code.html',
+    'user': '/pages/perfil_do_aluno/code.html',
+    'layout-dashboard': '/pages/dashboard_do_personal/code.html',
+    'users': '/pages/lista_de_alunos/code.html',
+    'clipboard-list': '/pages/builder_de_plano_de_treino/code.html',
+    'arrow-left': 'back',
+    'x': 'back',
+    'chevron-left': 'back'
+  };
+
+  // Rotas por texto do botão
+  const textRoutes = {
+    'iniciar treino': '/pages/player_de_treino/code.html',
+    'entrar': '/pages/dashboard_do_aluno/code.html',
+    'começar': '/pages/dashboard_do_aluno/code.html',
+    'ver todos': '/pages/lista_de_alunos/code.html',
+    'ver histórico': '/pages/hist_rico_de_avalia_es_do_aluno/code.html',
+    'nova avaliação': '/pages/nova_avalia_o_f_sica/code.html',
+    'novo treino': '/pages/builder_de_plano_de_treino/code.html',
+    'criar plano': '/pages/builder_de_plano_de_treino/code.html',
+    'adicionar exercício': '/pages/selecionar_exerc_cio/code.html',
+    'salvar': '/pages/dashboard_do_personal/code.html',
+    'concluir': '/pages/dashboard_do_aluno/code.html',
+    'finalizar': '/pages/dashboard_do_aluno/code.html',
+    'próximo': 'next',
+    'anterior': 'back',
+    'voltar': 'back'
+  };
+
+  // Verificar por ícone
+  const icon = target.getAttribute('data-icon');
+  if (icon && iconRoutes[icon]) {
+    e.preventDefault();
+    if (iconRoutes[icon] === 'back') {
+      history.back();
+    } else {
+      window.location.href = iconRoutes[icon];
+    }
+    return;
+  }
+
+  // Verificar por texto do botão
+  const buttonText = target.textContent.toLowerCase().trim();
+  for (const [text, route] of Object.entries(textRoutes)) {
+    if (buttonText.includes(text)) {
+      e.preventDefault();
+      if (route === 'back') {
+        history.back();
+      } else if (route === 'next') {
+        // Noop ou implementar próximo
+      } else {
+        window.location.href = route;
+      }
+      return;
+    }
+  }
+});
+
+// Adicionar cursor pointer em elementos clicáveis
+document.querySelectorAll('button, [data-icon]').forEach(el => {
+  el.style.cursor = 'pointer';
+});
+</script>
 </body></html>
