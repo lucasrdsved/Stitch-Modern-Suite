@@ -1,94 +1,73 @@
 import { useListConversations } from "@workspace/api-client-react";
 import { Link } from "wouter";
-import { Input } from "@/components/ui/input";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
 import { MOCK_CONVERSATIONS } from "@/lib/mock-data";
 
 export default function StudentChat() {
-  const { data: conversationsResponse, isLoading, isError } = useListConversations();
-  const conversations = conversationsResponse || (isError || !conversationsResponse ? MOCK_CONVERSATIONS : undefined);
+  const { data: conversationsResponse, isLoading } = useListConversations();
+  const conversations = conversationsResponse || MOCK_CONVERSATIONS;
+
+  if (isLoading) {
+    return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;
+  }
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">
-      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-[#333333] flex items-center justify-between px-6 h-14">
+      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-6 h-14">
         <div className="flex items-center gap-3">
-          <h1 className="font-display text-primary tracking-tighter text-3xl leading-none mt-1">CHAT</h1>
+          <Link href="/home" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-all text-white">
+            <span className="material-symbols-outlined text-2xl">arrow_back</span>
+          </Link>
+          <h1 className="font-display text-primary tracking-tighter text-3xl leading-none mt-1">MENSAGENS</h1>
         </div>
-        <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors active:scale-95 text-white">
-          <span className="material-symbols-outlined">more_horiz</span>
-        </button>
       </header>
 
-      <main className="flex-1 pt-24 px-6 flex flex-col gap-6 max-w-2xl mx-auto w-full">
-        <section className="flex flex-col gap-1">
-          <h2 className="font-display text-white text-[32px] uppercase tracking-wider leading-none">
-            MENSAGENS
-          </h2>
-          <p className="text-[#888888] text-base">Suas conversas com o personal.</p>
-        </section>
-
-        <div className="relative">
-          <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#888888]">
-            search
-          </span>
-          <Input
-            placeholder="Buscar conversa..."
-            className="h-14 bg-[#121212] border border-[#222222] rounded-xl pl-12 pr-4 text-white placeholder:text-[#666666] focus-visible:ring-0 focus-visible:border-primary transition-colors"
-          />
+      <main className="flex-1 pt-20 px-6 flex flex-col gap-4 max-w-2xl mx-auto w-full">
+        <div className="flex items-center gap-2 mb-2 px-1">
+           <span className="text-[10px] text-[#888888] uppercase font-black tracking-[0.3em]">Conversas Ativas</span>
         </div>
 
-        <section className="space-y-4">
-          {isLoading ? (
-            <div className="animate-pulse space-y-4">
-              <div className="h-20 bg-[#1A1A1A] rounded-2xl border border-[#333333]" />
-              <div className="h-20 bg-[#1A1A1A] rounded-2xl border border-[#333333]" />
-            </div>
-          ) : conversations?.length ? (
-            conversations.map((conv) => (
-              <Link key={conv.id} href={`/chat/${conv.id}`}>
-                <div className="bg-[#1A1A1A] border border-[#333333] rounded-2xl p-4 flex items-center gap-4 hover:border-primary/40 hover:bg-[#1A1A1A]/80 transition-colors">
-                  <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-black/40 border border-[#333333] flex items-center justify-center">
+        <div className="flex flex-col gap-3">
+          {conversations.map((conv) => (
+            <Link key={conv.id} href={`/chat/${conv.id}`}>
+              <div className="bg-[#1A1A1A] border border-white/5 rounded-2xl p-4 flex gap-4 items-center cursor-pointer hover:bg-[#222222] transition-all group active:scale-[0.98]">
+                <div className="relative shrink-0">
+                  <div className="w-14 h-14 rounded-full bg-black flex items-center justify-center overflow-hidden border border-white/5 group-hover:border-primary/30 transition-colors">
                     {conv.otherUserAvatarUrl ? (
-                      <img
-                        src={conv.otherUserAvatarUrl}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
+                      <img alt={conv.otherUserName} className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all" src={conv.otherUserAvatarUrl} />
                     ) : (
-                      <span className="material-symbols-outlined text-white/70">
-                        person
-                      </span>
+                      <span className="material-symbols-outlined text-white/20 text-3xl">person</span>
                     )}
                   </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between items-center mb-1 gap-3">
-                      <div className="font-display text-xl text-white truncate">
-                        {conv.otherUserName || "Treinador"}
-                      </div>
-                    </div>
-                    <div className="text-sm text-[#888888] truncate">
-                      {conv.lastMessage || "Nova conversa"}
-                    </div>
-                  </div>
-
                   {conv.unreadCount > 0 && (
-                    <div className="min-w-7 h-7 px-2 rounded-full bg-primary text-black font-bold text-xs flex items-center justify-center shrink-0">
+                    <div className="absolute top-0 right-0 w-5 h-5 bg-primary text-black text-[10px] font-black rounded-full border-2 border-[#1A1A1A] flex items-center justify-center">
                       {conv.unreadCount}
                     </div>
                   )}
                 </div>
-              </Link>
-            ))
-          ) : (
-            <div className="text-center py-14 bg-[#1A1A1A] border border-[#333333] rounded-2xl">
-              <span className="material-symbols-outlined text-4xl text-[#888888]">
-                chat_bubble
-              </span>
-              <div className="mt-3 text-[#888888]">Nenhuma mensagem ainda.</div>
-            </div>
-          )}
-        </section>
+                
+                <div className="flex flex-col flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-base text-white font-bold group-hover:text-primary transition-colors">{conv.otherUserName}</span>
+                    <span className="text-[10px] text-[#888888] font-bold">{(conv as any).lastMessageTime || 'Agora'}</span>
+                  </div>
+                  <p className="text-sm text-[#888888] truncate group-hover:text-white/70 transition-colors leading-tight">
+                    {conv.lastMessage}
+                  </p>
+                </div>
+                
+                <span className="material-symbols-outlined text-white/10 group-hover:text-primary group-hover:translate-x-1 transition-all">chevron_right</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {conversations.length === 0 && (
+          <div className="flex-1 flex flex-col items-center justify-center py-20 opacity-30">
+             <span className="material-symbols-outlined text-7xl mb-4">forum</span>
+             <p className="font-display text-xl uppercase">Nenhuma conversa encontrada</p>
+          </div>
+        )}
       </main>
 
       <StudentBottomNav />
