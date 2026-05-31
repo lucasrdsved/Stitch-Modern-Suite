@@ -53,6 +53,19 @@ function ProtectedRoute({ component: Component, role, ...rest }: any) {
   return <Component {...rest} />;
 }
 
+function RootRedirect() {
+  const { user, isLoading } = useAuth();
+  const [, setLocation] = useLocation();
+
+  if (!isLoading) {
+    if (user?.role === "trainer") setLocation("/t/dashboard");
+    else if (user?.role === "student") setLocation("/home");
+    else setLocation("/login");
+  }
+
+  return null;
+}
+
 function Router() {
   return (
     <Switch>
@@ -74,20 +87,7 @@ function Router() {
       <Route path="/t/exercises">{(params) => <ProtectedRoute component={TrainerExercises} role="trainer" {...params} />}</Route>
       <Route path="/t/plans/:id">{(params) => <ProtectedRoute component={TrainerPlanDetail} role="trainer" {...params} />}</Route>
 
-      <Route path="/">
-        {() => {
-          const { user, isLoading } = useAuth();
-          const [, setLocation] = useLocation();
-          
-          if (!isLoading) {
-             if (user?.role === "trainer") setLocation("/t/dashboard");
-             else if (user?.role === "student") setLocation("/home");
-             else setLocation("/login");
-          }
-          
-          return null;
-        }}
-      </Route>
+      <Route path="/" component={RootRedirect} />
 
       <Route component={NotFound} />
     </Switch>
