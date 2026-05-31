@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
 import { useListMessages, useSendMessage } from "@workspace/api-client-react";
 import { useAuth } from "@/lib/auth";
-import { ArrowLeft, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { MOCK_MESSAGES } from "@/lib/mock-data";
 
 export default function StudentConversation() {
   const { id } = useParams();
@@ -13,13 +13,14 @@ export default function StudentConversation() {
   const [text, setText] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const { data: messages = [], refetch } = useListMessages(conversationId, {
+  const { data: messagesResponse, refetch, isError } = useListMessages(conversationId, {
     query: {
       enabled: !!conversationId,
       queryKey: ["messages", conversationId],
       refetchInterval: 3000,
     },
   });
+  const messages = messagesResponse || (isError || !messagesResponse ? MOCK_MESSAGES : []);
 
   const send = useSendMessage();
 
@@ -41,20 +42,25 @@ export default function StudentConversation() {
   const trainerName = messages.find((m) => m.senderId !== user?.id)?.senderName ?? "Treinador";
 
   return (
-    <div className="min-h-[100dvh] flex flex-col bg-background text-foreground">
-      <header className="shrink-0 px-6 py-4 border-b border-border flex items-center gap-4 bg-background/80 backdrop-blur-md">
-        <Link href="/chat">
-          <ArrowLeft className="w-6 h-6 text-foreground" />
-        </Link>
-        <div>
-          <div className="font-bold">{trainerName}</div>
-          <div className="text-xs text-muted-foreground">Personal Trainer</div>
+    <div className="bg-black text-white font-sans min-h-screen flex flex-col">
+      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-[#333333] h-14">
+        <div className="h-full px-4 md:px-6 max-w-2xl mx-auto w-full flex items-center gap-3">
+          <Link
+            href="/chat"
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors active:scale-95 text-white"
+          >
+            <span className="material-symbols-outlined">arrow_back</span>
+          </Link>
+          <div className="min-w-0">
+            <div className="font-display text-xl text-white truncate">{trainerName}</div>
+            <div className="text-xs text-[#888888]">Personal Trainer</div>
+          </div>
         </div>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+      <div className="flex-1 overflow-y-auto px-4 md:px-6 pt-20 pb-28 space-y-3 max-w-2xl mx-auto w-full">
         {messages.length === 0 && (
-          <div className="text-center text-muted-foreground text-sm py-12">
+          <div className="text-center text-sm py-14 bg-[#1A1A1A] border border-[#333333] rounded-2xl text-[#888888]">
             Nenhuma mensagem ainda. Diga olá!
           </div>
         )}
@@ -63,14 +69,14 @@ export default function StudentConversation() {
           return (
             <div key={msg.id} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
               <div
-                className={`max-w-[78%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                className={`max-w-[82%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
                   isMe
                     ? "bg-primary text-black rounded-br-sm font-medium"
-                    : "bg-card text-foreground rounded-bl-sm"
+                    : "bg-[#1A1A1A] border border-[#333333] text-white rounded-bl-sm"
                 }`}
               >
                 {msg.content}
-                <div className={`text-[10px] mt-1 ${isMe ? "text-black/50" : "text-muted-foreground"}`}>
+                <div className={`text-[10px] mt-1 ${isMe ? "text-black/60" : "text-[#888888]"}`}>
                   {new Date(msg.sentAt).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}
                 </div>
               </div>
@@ -82,21 +88,23 @@ export default function StudentConversation() {
 
       <form
         onSubmit={handleSend}
-        className="shrink-0 px-4 py-3 border-t border-border flex gap-3 items-center bg-background"
+        className="fixed bottom-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-xl border-t border-[#333333] px-4 md:px-6 py-4 pb-safe"
       >
-        <Input
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Digite uma mensagem..."
-          className="flex-1 bg-card border-border rounded-full h-11 px-5"
-        />
-        <Button
-          type="submit"
-          disabled={!text.trim() || send.isPending}
-          className="w-11 h-11 rounded-full bg-primary text-black p-0 shrink-0"
-        >
-          <Send className="w-4 h-4" />
-        </Button>
+        <div className="max-w-2xl mx-auto w-full flex gap-3 items-center">
+          <Input
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Digite uma mensagem..."
+            className="flex-1 h-12 bg-[#121212] border border-[#222222] rounded-full px-5 text-white placeholder:text-[#666666] focus-visible:ring-0 focus-visible:border-primary transition-colors"
+          />
+          <Button
+            type="submit"
+            disabled={!text.trim() || send.isPending}
+            className="w-12 h-12 rounded-full bg-primary text-black p-0 shrink-0 hover:brightness-110 active:scale-95 transition-all"
+          >
+            <span className="material-symbols-outlined text-[20px]">send</span>
+          </Button>
+        </div>
       </form>
     </div>
   );

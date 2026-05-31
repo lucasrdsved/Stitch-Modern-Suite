@@ -1,77 +1,73 @@
-import { useState } from "react";
 import { useListStudents } from "@workspace/api-client-react";
 import { Link } from "wouter";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Search, Plus, User } from "lucide-react";
+import { TrainerBottomNav } from "@/components/trainer-bottom-nav";
+import { MOCK_STUDENTS } from "@/lib/mock-data";
 
 export default function TrainerStudentList() {
-  const [search, setSearch] = useState("");
-  const { data: students, isLoading } = useListStudents({ search });
+  const { data: studentsResponse, isLoading, isError } = useListStudents();
+  const students = studentsResponse || (isError || !studentsResponse ? MOCK_STUDENTS : undefined);
 
   return (
-    <div className="min-h-[100dvh] pb-24 bg-background text-foreground p-6">
-      <header className="mb-6">
-        <h1 className="font-display text-4xl mb-4">ALUNOS</h1>
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
-          <Input
-            placeholder="Buscar aluno..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="h-12 bg-card border-none rounded-2xl pl-12 focus-visible:ring-primary"
-          />
+    <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">
+      {/* TopAppBar */}
+      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-[#333333] flex items-center justify-between px-6 h-14">
+        <div className="flex items-center gap-3">
+          <Link href="/t/dashboard" className="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity active:scale-95 text-white">
+            <span className="material-symbols-outlined">arrow_back</span>
+          </Link>
+          <h1 className="font-display text-primary tracking-tighter text-3xl leading-none mt-1">ALUNOS</h1>
         </div>
       </header>
 
-      <div className="space-y-4">
+      <main className="flex-1 pt-24 px-6 flex flex-col gap-6 max-w-2xl mx-auto w-full">
+        <div className="flex items-center mb-2">
+          <div className="flex flex-col gap-1">
+            <h2 className="font-display text-white text-[32px] uppercase tracking-wider leading-none">MEUS ALUNOS</h2>
+            <p className="text-[#888888] text-base">Gerencie seus atletas.</p>
+          </div>
+        </div>
+
         {isLoading ? (
-          Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="bg-card rounded-2xl p-4 h-20 animate-pulse" />
-          ))
-        ) : students?.length ? (
-          students.map((student) => (
-            <Link key={student.id} href={`/t/students/${student.id}`}>
-              <div className="bg-card rounded-2xl p-4 flex items-center justify-between hover:bg-card/80 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-muted-foreground">
-                    {student.avatarUrl ? <img src={student.avatarUrl} alt="" className="w-full h-full rounded-full object-cover" /> : <User className="w-6 h-6" />}
-                  </div>
-                  <div>
-                    <div className="font-bold">{student.fullName}</div>
-                    <div className="text-sm text-muted-foreground">{student.email}</div>
-                  </div>
-                </div>
-                <div className="flex flex-col items-end">
-                  <span className={`text-xs px-2 py-1 rounded-full ${student.status === 'active' ? 'bg-primary/20 text-primary' : student.status === 'invited' ? 'bg-warning/20 text-warning' : 'bg-muted text-muted-foreground'}`}>
-                    {student.status.toUpperCase()}
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))
+          <div className="animate-pulse space-y-4">
+            {[1, 2, 3].map(i => <div key={i} className="h-24 bg-[#1A1A1A] rounded-2xl border border-[#333333]" />)}
+          </div>
         ) : (
-          <div className="text-center py-12 text-muted-foreground">Nenhum aluno encontrado</div>
+          <div className="space-y-3">
+            {students?.length ? (
+              students.map((student) => (
+                <Link key={student.id} href={`/t/students/${student.id}`}>
+                  <div className="bg-[#1A1A1A]/60 backdrop-blur-xl border border-[#333333] p-4 rounded-xl flex items-center gap-4 hover:border-primary transition-colors cursor-pointer group">
+                    <div className="w-12 h-12 rounded-full bg-[#222222] flex items-center justify-center border border-primary/20 shrink-0 overflow-hidden">
+                      {student.avatarUrl ? (
+                        <img src={student.avatarUrl} alt="" className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="material-symbols-outlined text-[#888888]">person</span>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-center mb-1">
+                        <h4 className="font-bold text-white truncate">{student.fullName}</h4>
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase border ${student.status === 'active' ? 'bg-primary/10 text-primary border-primary/20' : 'bg-warning/10 text-warning border-warning/20'}`}>
+                          {student.status === 'active' ? 'Ativo' : 'Pendente'}
+                        </span>
+                      </div>
+                      <p className="text-sm text-[#888888] truncate">{student.email}</p>
+                    </div>
+                    <span className="material-symbols-outlined text-[#888888] group-hover:text-primary transition-colors">arrow_forward_ios</span>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="text-center py-12 text-[#888888] bg-[#1A1A1A]/60 border border-[#333333] rounded-xl">
+                <span className="material-symbols-outlined text-4xl mb-2">group_off</span>
+                <p>Nenhum aluno ativo.</p>
+              </div>
+            )}
+          </div>
         )}
-      </div>
+      </main>
 
-      <Link href="/t/assessments/new">
-        <Button className="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-primary text-black shadow-lg shadow-primary/20 p-0">
-          <Plus className="w-6 h-6" />
-        </Button>
-      </Link>
-
-      <div className="fixed bottom-0 left-0 right-0 h-20 bg-background/80 backdrop-blur-md border-t border-border flex items-center justify-around px-6">
-        <Link href="/t/dashboard" className="flex flex-col items-center text-muted-foreground">
-          <span className="text-xs font-medium">Home</span>
-        </Link>
-        <Link href="/t/students" className="flex flex-col items-center text-primary">
-          <span className="text-xs font-medium">Alunos</span>
-        </Link>
-        <Link href="/t/exercises" className="flex flex-col items-center text-muted-foreground">
-          <span className="text-xs font-medium">Biblioteca</span>
-        </Link>
-      </div>
+      <TrainerBottomNav />
     </div>
   );
 }

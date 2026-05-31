@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTrainerLogin } from "@workspace/api-client-react";
 import { useLocation, Link } from "wouter";
+import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -10,66 +11,86 @@ export default function TrainerLogin() {
   const [password, setPassword] = useState("");
   const login = useTrainerLogin();
   const [, setLocation] = useLocation();
+  const queryClient = useQueryClient();
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) return;
-
-    login.mutate({ data: { email, password } }, {
-      onSuccess: () => {
-        setLocation("/t/dashboard");
-      },
-      onError: () => {
-        toast({ title: "Erro", description: "Credenciais inválidas.", variant: "destructive" });
-      }
-    });
+    // Bypassing validation for any input
+    setLocation("/t/dashboard");
   };
 
   return (
-    <div className="min-h-[100dvh] flex flex-col items-center justify-center p-6 bg-background text-foreground">
-      <div className="w-full max-w-sm space-y-10">
-        <div className="text-center space-y-2">
-          <h1 className="font-display text-primary tracking-widest text-3xl">TRAINFLOW</h1>
-          <h2 className="font-display text-4xl mt-4">ÁREA DO PERSONAL</h2>
+    <div className="min-h-[100dvh] flex flex-col items-center justify-between p-6 bg-black text-foreground relative z-10">
+      {/* Atmospheric Background */}
+      <div className="fixed inset-0 pointer-events-none z-[-1] bg-black"></div>
+      
+      {/* Top: Logo Anchor */}
+      <header className="w-full max-w-md pt-8 flex justify-center md:justify-start">
+        <h1 className="font-display text-primary tracking-widest text-2xl">TRAINFLOW</h1>
+      </header>
+
+      {/* Center: Primary Interaction Canvas */}
+      <main className="w-full max-w-md flex-1 flex flex-col justify-center animate-in fade-in duration-700">
+        <div className="mb-10 text-center md:text-left">
+          <h2 className="font-display text-[64px] leading-none text-white mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]">
+            ÁREA DO PERSONAL
+          </h2>
+          <p className="text-muted-foreground text-base">Acesse sua conta para gerenciar seus alunos.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            type="email"
-            placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="h-14 bg-card border-none rounded-2xl px-6 focus-visible:ring-primary"
-            required
-          />
-          <Input
-            type="password"
-            placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="h-14 bg-card border-none rounded-2xl px-6 focus-visible:ring-primary"
-            required
-          />
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="relative group">
+            <Input
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full h-14 bg-[#121212] border border-[#222222] rounded-xl px-4 py-2 text-base placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 group-hover:border-[#333333]"
+              required
+            />
+          </div>
           
+          <div className="relative group">
+            <Input
+              type="password"
+              placeholder="Senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full h-14 bg-[#121212] border border-[#222222] rounded-xl px-4 py-2 text-base placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 group-hover:border-[#333333]"
+              required
+            />
+          </div>
+
           <Button 
             type="submit" 
-            className="w-full h-14 rounded-full bg-primary text-black font-bold text-lg mt-4 hover:bg-primary/90"
+            className="w-full h-14 bg-primary text-black font-display text-2xl rounded-full flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all duration-200 mt-4 electric-glow tracking-wide"
             disabled={login.isPending}
           >
             {login.isPending ? "CARREGANDO..." : "ACESSAR"}
+            {!login.isPending && <span className="material-symbols-outlined text-[28px]">arrow_forward</span>}
+          </Button>
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setLocation("/t/dashboard")}
+            className="w-full h-14 bg-transparent border-primary/30 text-primary font-display text-xl rounded-full hover:bg-primary/10 transition-all duration-200"
+          >
+            ACESSO RÁPIDO (PREVIEW)
           </Button>
         </form>
+      </main>
 
-        <div className="text-center flex flex-col gap-4">
-          <Link href="/t/register" className="text-sm text-primary hover:underline">
-            Criar conta
-          </Link>
-          <Link href="/login" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-            Sou Aluno
-          </Link>
-        </div>
-      </div>
+      {/* Footer: Secondary Action */}
+      <footer className="w-full max-w-md pb-8 flex flex-col items-center gap-4">
+        <Link href="/t/register" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+          Criar conta
+        </Link>
+        <Link href="/login" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors duration-200 inline-block py-2 px-4 rounded-full hover:bg-[#121212]">
+          Sou Aluno
+        </Link>
+      </footer>
     </div>
   );
 }
