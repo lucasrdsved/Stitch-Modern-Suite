@@ -1,31 +1,9 @@
-import { useListMyStudents, useCreateMagicToken } from "@workspace/api-client-react";
+import { useListStudents } from "@workspace/api-client-react";
 import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
 import { TrainerBottomNav } from "@/components/trainer-bottom-nav";
 
 export default function TrainerStudentList() {
-  const { data: students, isLoading } = useListMyStudents();
-  const createToken = useCreateMagicToken();
-  const [newStudentName, setNewStudentName] = useState("");
-  const [newStudentEmail, setNewStudentEmail] = useState("");
-  const { toast } = useToast();
-
-  const handleCreateToken = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newStudentName || !newStudentEmail) return;
-
-    createToken.mutate({ data: { studentName: newStudentName, studentEmail: newStudentEmail } }, {
-      onSuccess: (data) => {
-        toast({ title: "Convite gerado", description: `Código: ${data.token}` });
-        setNewStudentName("");
-        setNewStudentEmail("");
-      }
-    });
-  };
+  const { data: students, isLoading } = useListStudents();
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">
@@ -40,44 +18,11 @@ export default function TrainerStudentList() {
       </header>
 
       <main className="flex-1 pt-24 px-6 flex flex-col gap-6 max-w-2xl mx-auto w-full">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex items-center mb-2">
           <div className="flex flex-col gap-1">
             <h2 className="font-display text-white text-[32px] uppercase tracking-wider leading-none">MEUS ALUNOS</h2>
             <p className="text-[#888888] text-base">Gerencie seus atletas.</p>
           </div>
-          
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="h-10 w-10 rounded-full bg-primary text-black hover:bg-primary/90 electric-glow p-0">
-                <span className="material-symbols-outlined">add</span>
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="bg-[#1A1A1A] border-[#333333] text-white">
-              <DialogHeader>
-                <DialogTitle className="font-display text-2xl tracking-widest text-primary">NOVO ALUNO</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleCreateToken} className="space-y-4 pt-4">
-                <Input
-                  placeholder="Nome do Aluno"
-                  value={newStudentName}
-                  onChange={(e) => setNewStudentName(e.target.value)}
-                  className="bg-black border-[#333333] focus-visible:ring-primary"
-                  required
-                />
-                <Input
-                  type="email"
-                  placeholder="E-mail do Aluno"
-                  value={newStudentEmail}
-                  onChange={(e) => setNewStudentEmail(e.target.value)}
-                  className="bg-black border-[#333333] focus-visible:ring-primary"
-                  required
-                />
-                <Button type="submit" className="w-full bg-primary text-black font-display text-xl tracking-widest electric-glow hover:bg-primary/90" disabled={createToken.isPending}>
-                  {createToken.isPending ? "GERANDO..." : "GERAR CÓDIGO"}
-                </Button>
-              </form>
-            </DialogContent>
-          </Dialog>
         </div>
 
         {isLoading ? (

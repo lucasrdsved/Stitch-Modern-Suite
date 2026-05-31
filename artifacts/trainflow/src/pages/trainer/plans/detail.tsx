@@ -202,7 +202,7 @@ export default function TrainerPlanDetail() {
         dayId: currentDay.id,
         data: {
           exerciseId,
-          sets: String(sets),
+          sets,
           reps: String(reps),
           restSeconds,
           exerciseOrder: (currentDay.exercises?.length || 0) + 1,
@@ -218,7 +218,9 @@ export default function TrainerPlanDetail() {
   };
 
   return (
-    <div className="min-h-[100dvh] pb-24 bg-black text-white">
+    <div className="min-h-[100dvh] pb-24 bg-black text-white relative overflow-hidden">
+      <div className="pointer-events-none absolute -top-28 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_0%,rgba(201,242,54,0.10),transparent_60%)]" />
       <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-[#333333] flex items-center justify-between px-6 h-14">
         <div className="flex items-center gap-4">
           <Link href={`/t/students/${plan.studentId}`} className="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity active:scale-95 text-white">
@@ -226,77 +228,85 @@ export default function TrainerPlanDetail() {
           </Link>
           <h1 className="font-display text-primary tracking-tighter text-3xl leading-none mt-1">TRAINFLOW</h1>
         </div>
-        <Button className="bg-primary text-black font-bold h-10 rounded-full px-6 electric-glow">PUBLICAR</Button>
+        <Button className="bg-primary text-black font-display text-xl tracking-wide h-10 rounded-full px-6 electric-glow hover:brightness-110 active:scale-[0.99] transition">
+          PUBLICAR
+        </Button>
       </header>
 
-      <main className="mt-20 px-6 max-w-2xl mx-auto">
-      <section className="mb-8 mt-6">
-        <div className="flex flex-col gap-1">
-          <label className="text-[10px] text-[#888888] uppercase tracking-widest">Nome do Plano</label>
-          <div className="font-display text-[32px] leading-none text-white">{plan.name}</div>
-        </div>
-        <div className="flex items-center gap-2 mt-2">
-          <span className="material-symbols-outlined text-[18px] text-[#888888]">person</span>
-          <div className="text-sm text-white">Aluno #{plan.studentId}</div>
-        </div>
-      </section>
+      <main className="mt-20 px-6 max-w-2xl mx-auto pt-6 relative">
+        <section className="mb-8">
+          <div className="flex flex-col gap-1">
+            <div className="text-[10px] text-[#888888] uppercase tracking-[0.28em]">Builder Profissional</div>
+            <label className="text-[11px] text-[#888888] uppercase tracking-widest mt-4">Nome do Plano</label>
+            <div className="font-display text-[38px] leading-none text-white">{plan.name}</div>
+          </div>
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1.5">
+            <span className="material-symbols-outlined text-[18px] text-[#888888]">person</span>
+            <div className="text-sm text-white/90">Aluno #{plan.studentId}</div>
+          </div>
+        </section>
 
-      <div className="pb-2 flex gap-6 overflow-x-auto no-scrollbar border-b border-[#333333] sticky top-14 bg-black z-40">
-        {plan.days?.map((day, idx) => (
-          <button
-            key={day.id}
-            onClick={() => setActiveTab(idx)}
-            className={`py-3 whitespace-nowrap font-display text-2xl transition-colors ${activeTab === idx ? "text-primary border-b-3 border-primary" : "text-[#888888]"}`}
-          >
-            {day.name.toUpperCase()}
-          </button>
-        ))}
-        <button
-          onClick={handleAddDay}
-          disabled={addDay.isPending}
-          className="px-4 py-2 text-primary font-bold flex items-center gap-1 shrink-0"
+        <div
+          className="pb-2 pt-1 flex gap-4 overflow-x-auto border-b border-[#333333] sticky top-14 -mx-6 px-6 bg-black/90 backdrop-blur-xl z-40"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          <Plus className="w-4 h-4" /> NOVO DIA
-        </button>
-      </div>
+          {plan.days?.map((day, idx) => (
+            <button
+              key={day.id}
+              onClick={() => setActiveTab(idx)}
+              className={`py-3 whitespace-nowrap font-display text-2xl transition-colors border-b-[3px] ${activeTab === idx ? "text-primary border-primary" : "text-[#888888] border-transparent hover:text-white"}`}
+            >
+              {day.name.toUpperCase()}
+            </button>
+          ))}
+          <button
+            onClick={handleAddDay}
+            disabled={addDay.isPending}
+            className="ml-1 px-4 py-2 text-primary font-bold inline-flex items-center gap-1 shrink-0 rounded-full border border-primary/30 bg-primary/10 hover:bg-primary/15 transition disabled:opacity-50"
+          >
+            <Plus className="w-4 h-4" /> NOVO DIA
+          </button>
+        </div>
 
-      <div className="py-6 space-y-4">
-        {currentDay?.exercises?.length ? (
-          currentDay.exercises.map((ex) => (
-            <div key={ex.id} className="bg-[#1A1A1A] border border-[#333333] rounded-xl p-5 overflow-hidden relative group">
-              <div className="font-display text-2xl mb-3 text-white uppercase tracking-tight">{ex.exerciseName}</div>
-              <div className="flex gap-4">
-                <div className="flex-1">
-                  <div className="text-xs text-[#888888] mb-1 uppercase">Séries</div>
-                  <Input defaultValue={ex.sets || ""} className="bg-black border-[#333333] h-10 rounded-xl text-center focus-visible:ring-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-xs text-[#888888] mb-1 uppercase">Reps</div>
-                  <Input defaultValue={ex.reps || ""} className="bg-black border-[#333333] h-10 rounded-xl text-center focus-visible:ring-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-xs text-[#888888] mb-1 uppercase">Descanso</div>
-                  <Input defaultValue={ex.restSeconds || ""} className="bg-black border-[#333333] h-10 rounded-xl text-center focus-visible:ring-primary" />
+        <div className="py-6 space-y-4">
+          {currentDay?.exercises?.length ? (
+            currentDay.exercises.map((ex) => (
+              <div key={ex.id} className="glass-panel rounded-2xl p-5 overflow-hidden relative">
+                <div className="pointer-events-none absolute -top-10 -right-10 h-28 w-28 bg-primary/10 blur-3xl" />
+                <div className="font-display text-2xl mb-4 text-white uppercase tracking-tight">{ex.exerciseName}</div>
+                <div className="flex gap-4">
+                  <div className="flex-1">
+                    <div className="text-xs text-[#888888] mb-1 uppercase tracking-widest">Séries</div>
+                    <Input defaultValue={ex.sets || ""} className="bg-black/60 border-[#333333] h-11 rounded-xl text-center font-bold focus-visible:ring-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs text-[#888888] mb-1 uppercase tracking-widest">Reps</div>
+                    <Input defaultValue={ex.reps || ""} className="bg-black/60 border-[#333333] h-11 rounded-xl text-center font-bold focus-visible:ring-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs text-[#888888] mb-1 uppercase tracking-widest">Descanso</div>
+                    <Input defaultValue={ex.restSeconds || ""} className="bg-black/60 border-[#333333] h-11 rounded-xl text-center font-bold focus-visible:ring-primary" />
+                  </div>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className="glass-panel text-center py-12 text-white/70 rounded-2xl">
+              <div className="font-display text-2xl text-white/80">NENHUM EXERCÍCIO</div>
+              <div className="text-sm text-white/60 mt-1">Adicione exercícios para montar o treino do dia.</div>
             </div>
-          ))
-        ) : (
-          <div className="text-center py-12 text-[#888888] border border-dashed border-[#333333] rounded-2xl">
-            Nenhum exercício neste dia
-          </div>
-        )}
+          )}
 
-        {currentDay && (
-          <Button
-            onClick={() => setPickerOpen(true)}
-            variant="outline"
-            className="w-full h-14 border-dashed border-primary text-primary rounded-2xl bg-transparent"
-          >
-            <Plus className="w-5 h-5 mr-2" /> Adicionar Exercício
-          </Button>
-        )}
-      </div>
+          {currentDay && (
+            <Button
+              onClick={() => setPickerOpen(true)}
+              variant="outline"
+              className="w-full h-14 border-dashed border-primary/60 text-primary rounded-2xl bg-primary/5 hover:bg-primary/10 hover:border-primary transition"
+            >
+              <Plus className="w-5 h-5 mr-2" /> Adicionar Exercício
+            </Button>
+          )}
+        </div>
       </main>
 
       <ExercisePicker

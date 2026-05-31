@@ -13,6 +13,9 @@ export default function StudentHome() {
   }
 
   const firstName = user?.fullName?.split(" ")[0] || "ALUNO";
+  const todayWorkout = today?.todayWorkout;
+  const todayWorkoutFocus = (todayWorkout as unknown as { focus?: string } | undefined)?.focus;
+  const todayWorkoutEstimatedMinutes = (todayWorkout as unknown as { estimatedMinutes?: number } | undefined)?.estimatedMinutes;
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">
@@ -54,7 +57,7 @@ export default function StudentHome() {
               </div>
               <h3 className="font-display text-white text-[32px] leading-tight">
                 {today.todayWorkout.name}<br/>
-                <span className="text-[#888888] font-display text-2xl">{today.todayWorkout.focus || 'COMPLETO'}</span>
+                <span className="text-[#888888] font-display text-2xl">{todayWorkoutFocus || 'COMPLETO'}</span>
               </h3>
             </div>
             
@@ -68,7 +71,7 @@ export default function StudentHome() {
               <div className="bg-black/40 border border-[#333333] rounded-lg p-3 flex flex-col">
                 <span className="text-xs text-[#888888] uppercase font-medium">Duração Est.</span>
                 <div className="flex items-baseline gap-1 mt-1">
-                  <span className="font-display text-white text-2xl">{today.todayWorkout.estimatedMinutes || 45}</span>
+                  <span className="font-display text-white text-2xl">{todayWorkoutEstimatedMinutes || 45}</span>
                   <span className="text-xs text-[#888888] font-medium">MIN</span>
                 </div>
               </div>
