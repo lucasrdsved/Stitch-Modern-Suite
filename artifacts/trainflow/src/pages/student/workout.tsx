@@ -1,9 +1,11 @@
 import { useListMySessions } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
+import { MOCK_SESSIONS } from "@/lib/mock-data";
 
 export default function StudentWorkout() {
-  const { data: sessions, isLoading } = useListMySessions();
+  const { data: sessionsResponse, isLoading, isError } = useListMySessions();
+  const sessions = sessionsResponse || (isError || !sessionsResponse ? MOCK_SESSIONS : undefined);
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24 selection:bg-primary selection:text-black">

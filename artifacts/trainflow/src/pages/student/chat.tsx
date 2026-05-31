@@ -2,9 +2,11 @@ import { useListConversations } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { Input } from "@/components/ui/input";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
+import { MOCK_CONVERSATIONS } from "@/lib/mock-data";
 
 export default function StudentChat() {
-  const { data: conversations, isLoading } = useListConversations();
+  const { data: conversationsResponse, isLoading, isError } = useListConversations();
+  const conversations = conversationsResponse || (isError || !conversationsResponse ? MOCK_CONVERSATIONS : undefined);
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">

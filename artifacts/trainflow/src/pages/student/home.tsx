@@ -3,10 +3,12 @@ import { useGetStudentToday } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
+import { MOCK_STUDENT_TODAY } from "@/lib/mock-data";
 
 export default function StudentHome() {
   const { user } = useAuth();
-  const { data: today, isLoading } = useGetStudentToday();
+  const { data: todayResponse, isLoading, isError } = useGetStudentToday();
+  const today = todayResponse || (isError || !todayResponse ? MOCK_STUDENT_TODAY : undefined);
 
   if (isLoading) {
     return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;

@@ -2,9 +2,11 @@ import { useGetMyLatestAssessment } from "@workspace/api-client-react";
 import { useAuth } from "@/lib/auth";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { MOCK_ASSESSMENT } from "@/lib/mock-data";
 
 export default function StudentWelcome() {
-  const { data: assessment, isLoading } = useGetMyLatestAssessment();
+  const { data: assessmentResponse, isLoading, isError } = useGetMyLatestAssessment();
+  const assessment = assessmentResponse || (isError || !assessmentResponse ? MOCK_ASSESSMENT : undefined);
   const { user } = useAuth();
 
   if (isLoading) {

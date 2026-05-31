@@ -4,10 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { TrainerBottomNav } from "@/components/trainer-bottom-nav";
+import { MOCK_EXERCISES } from "@/lib/mock-data";
 
 export default function TrainerExercises() {
   const [search, setSearch] = useState("");
-  const { data: exercises, isLoading } = useListExercises({ search });
+  const { data: exercisesResponse, isLoading, isError } = useListExercises({ search });
+  const exercises = exercisesResponse || (isError || !exercisesResponse ? MOCK_EXERCISES : undefined);
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">

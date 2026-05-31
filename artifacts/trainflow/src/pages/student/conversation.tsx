@@ -4,6 +4,7 @@ import { useListMessages, useSendMessage } from "@workspace/api-client-react";
 import { useAuth } from "@/lib/auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { MOCK_MESSAGES } from "@/lib/mock-data";
 
 export default function StudentConversation() {
   const { id } = useParams();
@@ -12,13 +13,14 @@ export default function StudentConversation() {
   const [text, setText] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const { data: messages = [], refetch } = useListMessages(conversationId, {
+  const { data: messagesResponse, refetch, isError } = useListMessages(conversationId, {
     query: {
       enabled: !!conversationId,
       queryKey: ["messages", conversationId],
       refetchInterval: 3000,
     },
   });
+  const messages = messagesResponse || (isError || !messagesResponse ? MOCK_MESSAGES : []);
 
   const send = useSendMessage();
 

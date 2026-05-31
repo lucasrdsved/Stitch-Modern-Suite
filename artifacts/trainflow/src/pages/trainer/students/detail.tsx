@@ -1,11 +1,13 @@
 import { useGetStudent } from "@workspace/api-client-react";
 import { useParams, Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { MOCK_STUDENT_DETAIL } from "@/lib/mock-data";
 
 export default function TrainerStudentDetail() {
   const { id } = useParams();
   const studentId = Number(id);
-  const { data: student, isLoading } = useGetStudent(studentId, { query: { enabled: !!studentId, queryKey: ['getStudent', studentId] } });
+  const { data: studentResponse, isLoading, isError } = useGetStudent(studentId, { query: { enabled: !!studentId, queryKey: ['getStudent', studentId] } });
+  const student = studentResponse || (isError || !studentResponse ? MOCK_STUDENT_DETAIL : undefined);
 
   if (isLoading) {
     return <div className="min-h-[100dvh] flex items-center justify-center bg-black"><div className="animate-pulse w-8 h-8 rounded-full bg-primary" /></div>;

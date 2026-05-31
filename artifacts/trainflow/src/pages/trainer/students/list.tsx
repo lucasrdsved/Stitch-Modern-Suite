@@ -1,9 +1,11 @@
 import { useListStudents } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { TrainerBottomNav } from "@/components/trainer-bottom-nav";
+import { MOCK_STUDENTS } from "@/lib/mock-data";
 
 export default function TrainerStudentList() {
-  const { data: students, isLoading } = useListStudents();
+  const { data: studentsResponse, isLoading, isError } = useListStudents();
+  const students = studentsResponse || (isError || !studentsResponse ? MOCK_STUDENTS : undefined);
 
   return (
     <div className="bg-black text-white font-sans min-h-screen flex flex-col pb-24">

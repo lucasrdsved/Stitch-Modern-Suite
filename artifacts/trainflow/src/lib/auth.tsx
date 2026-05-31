@@ -22,24 +22,25 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const { data: user, isLoading, error } = useGetMe({ query: { retry: false, queryKey: ["auth/me"] } });
-  const logoutMutation = useLogout();
+  // MOCK DATA FOR FRONTEND PREVIEW
+  const mockUser: User = {
+    id: 1,
+    role: "trainer",
+    fullName: "Carlos Mendes (MOCK)",
+    email: "trainer@trainflow.app",
+    avatarUrl: null
+  };
 
-  const handleLogout = () => {
-    logoutMutation.mutate(undefined, {
-      onSuccess: () => {
-        // Force reload or navigate
-        window.location.href = "/login";
-      },
-    });
+  const logout = () => {
+    window.location.href = "/login";
   };
 
   return (
     <AuthContext.Provider
       value={{
-        user: user && !error ? (user as User) : null,
-        isLoading,
-        logout: handleLogout,
+        user: mockUser,
+        isLoading: false,
+        logout: logout,
       }}
     >
       {children}

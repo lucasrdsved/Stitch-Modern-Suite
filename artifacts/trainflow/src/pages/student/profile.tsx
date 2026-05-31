@@ -3,10 +3,12 @@ import { useGetMyLatestAssessment } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { StudentBottomNav } from "@/components/student-bottom-nav";
 import { motion } from "framer-motion";
+import { MOCK_ASSESSMENT } from "@/lib/mock-data";
 
 export default function StudentProfile() {
   const { user, logout } = useAuth();
-  const { data: assessment, isLoading } = useGetMyLatestAssessment();
+  const { data: assessmentResponse, isLoading, isError } = useGetMyLatestAssessment();
+  const assessment = assessmentResponse || (isError || !assessmentResponse ? MOCK_ASSESSMENT : undefined);
 
   return (
     <div className="bg-background text-foreground font-sans min-h-screen flex flex-col pb-24">

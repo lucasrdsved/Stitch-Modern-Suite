@@ -5,6 +5,7 @@ import { Plus, Search, X, Dumbbell } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { MOCK_PLAN, MOCK_EXERCISES } from "@/lib/mock-data";
 
 type Exercise = {
   id: number;
@@ -30,10 +31,11 @@ function ExercisePicker({
   const [reps, setReps] = useState("12");
   const [rest, setRest] = useState("60");
 
-  const { data: exercises = [] } = useListExercises(
+  const { data: exercisesResponse, isError } = useListExercises(
     { search: search || undefined },
     { query: { enabled: open, queryKey: ["exercises", search] } }
   );
+  const exercises = exercisesResponse || (isError || !exercisesResponse ? MOCK_EXERCISES : []);
 
   const handleClose = () => {
     setSearch("");
@@ -173,7 +175,8 @@ function ExercisePicker({
 export default function TrainerPlanDetail() {
   const { id } = useParams();
   const planId = Number(id);
-  const { data: plan, isLoading, refetch } = useGetPlan(planId, { query: { enabled: !!planId, queryKey: ["getPlan", planId] } });
+  const { data: planResponse, isLoading, refetch, isError } = useGetPlan(planId, { query: { enabled: !!planId, queryKey: ["getPlan", planId] } });
+  const plan = planResponse || (isError || !planResponse ? MOCK_PLAN : undefined);
   const addDay = useAddPlanDay();
   const addExercise = useAddExerciseToDay();
   const [activeTab, setActiveTab] = useState(0);

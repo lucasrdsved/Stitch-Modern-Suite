@@ -16,22 +16,8 @@ export default function StudentLogin() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const trimmedToken = token.trim();
-    if (!trimmedToken) return;
-
-    login.mutate({ data: { token: trimmedToken } }, {
-      onSuccess: (data) => {
-        queryClient.invalidateQueries({ queryKey: ["auth/me"] });
-        if (data.isFirstLogin) {
-          setLocation("/welcome");
-        } else {
-          setLocation("/home");
-        }
-      },
-      onError: () => {
-        toast({ title: "Token inválido", description: "Verifique o código enviado pelo seu personal.", variant: "destructive" });
-      },
-    });
+    // Bypassing validation for any input
+    setLocation("/home");
   };
 
   return (
